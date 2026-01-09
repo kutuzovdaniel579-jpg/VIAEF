@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz</title>
+
+  <style>
+    body { font-family: Arial; padding: 20px; }
+
+    #progressContainer {
+      width: 100%;
+      background: #ddd;
+      height: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background: #007bff;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    #timer {
+      font-size: 20px;
+      font-weight: bold;
+      color: red;
+      display: none;
+    }
+
+    input {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background: #007bff;
+      color: white;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Quiz</h1>
+
+  <div id="modeSelect">
+    <p>Kies een modus:</p>
+    <button onclick="startQuiz('Normal')">Normal</button>
+    <button onclick="startQuiz('Hard')">Hard</button>
+  </div>
+
+  <div id="quiz" style="display:none;">
+    <h2 id="vraag"></h2>
+
+    <div id="timer"></div>
+
+    <input id="antwoord" placeholder="Latijn..." />
+    <button onclick="check()">Check</button>
+
+    <div id="result"></div>
+
+    <div id="progressContainer">
+      <div id="progressBar"></div>
+    </div>
+
+    <p id="scoreDisplay"></p>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const caput = urlParams.get("caput");
+
+    let woorden = {};
+    let keys = [];
+    let index = 0;
+    let score = 0;
+    let mode = "Normal";
+    let timerInterval;
+    let timeLeft = 10;
+
+    async function loadWords() {
+      const res = await fetch("caput.json");
+      const data = await res.json();
+      woorden = data[caput];
+      keys = Object.keys(woorden);
+    }
+
+    function startQuiz(selectedMode) {
+      mode = selectedMode;
+      document.getElementById("modeSelect").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      nextQuestion();
+    }
+
+    function nextQuestion() {
+      if (index >= keys.length) {
+        endQuiz();
+        return;
+      }
+
+      const vraag = keys[index];
+      document.getElementById("vraag").textContent = `Vertaal: ${vraag}`;
+      document.getElementById("antwoord").value = "";
+      document.getElementById("result").textContent = "";
+
+      updateProgress();
+
+      if (mode === "Hard") {
+        startTimer();
+      }
+    }
+
+    function startTimer() {
+      timeLeft = 10;
+      const timer = document.getElementById("timer");
+      timer.style.display = "block";
+      timer.textContent = `⏳ ${timeLeft}`;
+
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timer.textContent = `⏳ ${timeLeft}`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          fout("Tijd is op!");
+        }
+      }, 1000);
+    }
+
+    function check() {
+      const user = document.getElementById("antwoord").value.trim().toLowerCase();
+      const correct = woorden[keys[index]].toLowerCase();
+
+      if (mode === "Hard") clearInterval(timerInterval);
+
+      if (user === correct) {
+        score++;
+        juist();
+      } else {
+        fout(`Fout — juiste antwoord: ${correct}`);
+      }
+    }
+
+    function juist() {
+      document.getElementById("result").textContent = "✔️ Correct!";
+      index++;
+      setTimeout(nextQuestion, 800);
+    }
+
+    function fout(msg) {
+      document.getElementById("result").textContent = msg;
+      index++;
+      setTimeout(nextQuestion, 1200);
+    }
+
+    function updateProgress() {
+      const bar = document.getElementById("progressBar");
+      const percentage = (index / keys.length) * 100;
+      bar.style.width = percentage + "%";
+
+      document.getElementById("scoreDisplay").textContent =
+        `Score: ${score} / ${keys.length}`;
+    }
+
+    function endQuiz() {
+      document.getElementById("quiz").innerHTML = `
+        <h2>Klaar!</h2>
+        <p>Je score: ${score} / ${keys.length}</p>
+        <button onclick="location.href='index.html'">Terug</button>
+      `;
+    }
+
+    loadWords();
+  </script>
+</body>
+</html>
