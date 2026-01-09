@@ -1,8 +1,10 @@
 {
-  "woorden": [
-    { "nl": "water", "la": "aqua" },
-    { "nl": "mens", "la": "homo" },
-    { "nl": "boek", "la": "liber" },
-    { "nl": "zon", "la": "sol" }
-  ]
+  "C1.2": {
+    "water": "aqua",
+    "mens": "homo"
+  },
+  "C1.3": {
+    "boek": "liber",
+    "zon": "sol"
+  }
 }
