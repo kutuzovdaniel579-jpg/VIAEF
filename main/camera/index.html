@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Camera Vertaler</title>
+
+  <!-- Tesseract.js voor OCR -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    video, canvas {
+      width: 100%;
+      max-width: 350px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 12px;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background: #007bff;
+      color: white;
+    }
+    #output {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f5f5f5;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>📸 Camera Vertaler</h1>
+  <p>Maak een foto → OCR → Vertaling NL → Latijn</p>
+
+  <video id="camera" autoplay playsinline></video>
+
+  <br>
+  <button id="switchBtn">🔄 Wissel camera</button>
+  <button id="captureBtn">📸 Maak foto</button>
+
+  <canvas id="snapshot"></canvas>
+
+  <div id="output">
+    <h3>📄 Herkende tekst:</h3>
+    <p id="recognizedText">Nog niets...</p>
+
+    <h3>🏛️ Latijnse vertaling:</h3>
+    <p id="latinText">Nog niets...</p>
+  </div>
+
+  <script>
+    const video = document.getElementById("camera");
+    const canvas = document.getElementById("snapshot");
+    const recognizedText = document.getElementById("recognizedText");
+    const latinText = document.getElementById("latinText");
+
+    let currentFacing = "environment"; // start met achtercamera
+    let stream;
+
+    async function startCamera() {
+      if (stream) {
+        stream.getTracks().forEach(t => t.stop());
+      }
+
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { exact: currentFacing } }
+        });
+      } catch (e) {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: currentFacing }
+        });
+      }
+
+      video.srcObject = stream;
+    }
+
+    startCamera();
+
+    document.getElementById("switchBtn").onclick = () => {
+      currentFacing = currentFacing === "environment" ? "user" : "environment";
+      startCamera();
+    };
+
+    document.getElementById("captureBtn").onclick = async () => {
+      const ctx = canvas.getContext("2d");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0);
+
+      recognizedText.textContent = "Bezig met tekst herkennen...";
+      const result = await Tesseract.recognize(canvas, "nld");
+      const text = result.data.text.trim();
+      recognizedText.textContent = text || "Geen tekst gevonden.";
+
+      latinText.textContent = "Bezig met vertalen...";
+      const translation = await fetch(
+        "https://api.mymemory.translated.net/get?q=" +
+          encodeURIComponent(text) +
+          "&langpair=nl|la"
+      );
+      const data = await translation.json();
+      latinText.textContent = data.responseData.translatedText;
+    };
+  </script>
+</body>
+</html>
