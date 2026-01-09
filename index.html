@@ -7,25 +7,131 @@
 
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: black;
-      color: white;
+      margin: 0;
+      background: #f4e4c1;
+      overflow: hidden;
       font-family: Arial;
-      font-size: 32px;
+    }
+
+    /* Caesar */
+    #caesar {
+      position: absolute;
+      bottom: 20px;
+      left: -80px;
+      width: 60px;
+      height: 100px;
+      background: #f7d7a8;
+      border-radius: 10px;
+      border: 3px solid #000;
+      animation: walk 4s linear forwards;
+    }
+
+    /* Caesar toga */
+    #caesar::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 100px;
+      background: white;
+      border-left: 3px solid #000;
+      border-right: 3px solid #000;
+      border-bottom: 3px solid #000;
+      border-radius: 10px;
+      top: 0;
+      left: 0;
+      opacity: 0.9;
+    }
+
+    /* Romeins gebouw */
+    #building {
+      position: absolute;
+      top: -300px;
+      right: 20px;
+      width: 180px;
+      height: 140px;
+      background: #fff;
+      border: 4px solid #000;
+      border-radius: 4px;
+      animation: drop 2.5s ease-out forwards;
+      animation-delay: 1s;
+    }
+
+    /* Zuilen */
+    .pillar {
+      position: absolute;
+      bottom: 0;
+      width: 20px;
+      height: 100px;
+      background: #eee;
+      border: 3px solid #000;
+    }
+
+    .pillar:nth-child(1) { left: 15px; }
+    .pillar:nth-child(2) { left: 55px; }
+    .pillar:nth-child(3) { left: 95px; }
+    .pillar:nth-child(4) { left: 135px; }
+
+    /* Dak */
+    #roof {
+      position: absolute;
+      top: -40px;
+      left: -10px;
+      width: 200px;
+      height: 40px;
+      background: #c0392b;
+      border: 4px solid #000;
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    }
+
+    /* Animaties */
+    @keyframes walk {
+      0% { left: -80px; }
+      100% { left: 140px; }
+    }
+
+    @keyframes drop {
+      0% { top: -300px; }
+      80% { top: 40px; }
+      100% { top: 20px; }
+    }
+
+    /* Fade-out */
+    #fade {
+      position: absolute;
+      inset: 0;
+      background: #f4e4c1;
+      opacity: 0;
+      pointer-events: none;
+      animation: fadeout 1s forwards;
+      animation-delay: 4.5s;
+    }
+
+    @keyframes fadeout {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
     }
   </style>
 
   <script>
     setTimeout(() => {
       window.location.href = "main/";
-    }, 1500);
+    }, 5500);
   </script>
 </head>
 
 <body>
-  <div>LatinLearner</div>
+
+  <div id="caesar"></div>
+
+  <div id="building">
+    <div id="roof"></div>
+    <div class="pillar"></div>
+    <div class="pillar"></div>
+    <div class="pillar"></div>
+    <div class="pillar"></div>
+  </div>
+
+  <div id="fade"></div>
+
 </body>
 </html>
