@@ -82,111 +82,111 @@
   </div>
 
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const caput = urlParams.get("caput");
+  const urlParams = new URLSearchParams(window.location.search);
+  const caput = urlParams.get("caput");
 
-    let woorden = {};
-    let keys = [];
-    let index = 0;
-    let score = 0;
-    let mode = "Normal";
-    let timerInterval;
-    let timeLeft = 10;
+  let woorden = {};
+  let keys = [];
+  let index = 0;
+  let score = 0;
+  let mode = "Normal";
+  let timerInterval;
+  let timeLeft = 10;
 
-    async function loadWords() {
-      const res = await fetch("caput.json");
-      const data = await res.json();
-      woorden = data[caput];
-      keys = Object.keys(woorden);
+  async function loadWords() {
+    const res = await fetch("caput.json");
+    const data = await res.json();
+    woorden = data[caput];
+    keys = Object.keys(woorden);
+  }
+
+  function startQuiz(selectedMode) {
+    mode = selectedMode;
+    document.getElementById("modeSelect").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+    nextQuestion();
+  }
+
+  function nextQuestion() {
+    if (index >= keys.length) {
+      endQuiz();
+      return;
     }
 
-    function startQuiz(selectedMode) {
-      mode = selectedMode;
-      document.getElementById("modeSelect").style.display = "none";
-      document.getElementById("quiz").style.display = "block";
-      nextQuestion();
+    const vraag = woorden[keys[index]].NL;
+    document.getElementById("vraag").textContent = `Vertaal: ${vraag}`;
+    document.getElementById("antwoord").value = "";
+    document.getElementById("result").textContent = "";
+
+    updateProgress();
+
+    if (mode === "Hard") {
+      startTimer();
     }
+  }
 
-    function nextQuestion() {
-      if (index >= keys.length) {
-        endQuiz();
-        return;
-      }
+  function startTimer() {
+    timeLeft = 10;
+    const timer = document.getElementById("timer");
+    timer.style.display = "block";
+    timer.textContent = `⏳ ${timeLeft}`;
 
-      const vraag = keys[index];
-      document.getElementById("vraag").textContent = `Vertaal: ${vraag}`;
-      document.getElementById("antwoord").value = "";
-      document.getElementById("result").textContent = "";
-
-      updateProgress();
-
-      if (mode === "Hard") {
-        startTimer();
-      }
-    }
-
-    function startTimer() {
-      timeLeft = 10;
-      const timer = document.getElementById("timer");
-      timer.style.display = "block";
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      timeLeft--;
       timer.textContent = `⏳ ${timeLeft}`;
 
-      clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        timer.textContent = `⏳ ${timeLeft}`;
-
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          fout("Tijd is op!");
-        }
-      }, 1000);
-    }
-
-    function check() {
-      const user = document.getElementById("antwoord").value.trim().toLowerCase();
-      const correct = woorden[keys[index]].toLowerCase();
-
-      if (mode === "Hard") clearInterval(timerInterval);
-
-      if (user === correct) {
-        score++;
-        juist();
-      } else {
-        fout(`Fout — juiste antwoord: ${correct}`);
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        fout("Tijd is op!");
       }
+    }, 1000);
+  }
+
+  function check() {
+    const user = document.getElementById("antwoord").value.trim().toLowerCase();
+    const correct = woorden[keys[index]].LA.toLowerCase();
+
+    if (mode === "Hard") clearInterval(timerInterval);
+
+    if (user === correct) {
+      score++;
+      juist();
+    } else {
+      fout(`Fout — juiste antwoord: ${correct}`);
     }
+  }
 
-    function juist() {
-      document.getElementById("result").textContent = "✔️ Correct!";
-      index++;
-      setTimeout(nextQuestion, 800);
-    }
+  function juist() {
+    document.getElementById("result").textContent = "✔️ Correct!";
+    index++;
+    setTimeout(nextQuestion, 800);
+  }
 
-    function fout(msg) {
-      document.getElementById("result").textContent = msg;
-      index++;
-      setTimeout(nextQuestion, 1200);
-    }
+  function fout(msg) {
+    document.getElementById("result").textContent = msg;
+    index++;
+    setTimeout(nextQuestion, 1200);
+  }
 
-    function updateProgress() {
-      const bar = document.getElementById("progressBar");
-      const percentage = (index / keys.length) * 100;
-      bar.style.width = percentage + "%";
+  function updateProgress() {
+    const bar = document.getElementById("progressBar");
+    const percentage = (index / keys.length) * 100;
+    bar.style.width = percentage + "%";
 
-      document.getElementById("scoreDisplay").textContent =
-        `Score: ${score} / ${keys.length}`;
-    }
+    document.getElementById("scoreDisplay").textContent =
+      `Score: ${score} / ${keys.length}`;
+  }
 
-    function endQuiz() {
-      document.getElementById("quiz").innerHTML = `
-        <h2>Klaar!</h2>
-        <p>Je score: ${score} / ${keys.length}</p>
-        <button onclick="location.href='index.html'">Terug</button>
-      `;
-    }
+  function endQuiz() {
+    document.getElementById("quiz").innerHTML = `
+      <h2>Klaar!</h2>
+      <p>Je score: ${score} / ${keys.length}</p>
+      <button onclick="location.href='index.html'">Terug</button>
+    `;
+  }
 
-    loadWords();
-  </script>
+  loadWords();
+</script>
 </body>
 </html>
