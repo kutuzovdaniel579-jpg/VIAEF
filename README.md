@@ -19,16 +19,25 @@ Every vocabulary entry follows a strict, unified schema, making the dataset pred
 ---
 
 ## 📚 Supported Languages
-- Latin (primary)
+**For Learning:**
+- Latin
+
+**Website Languages:**
+- Dutch
+
+
+**Comming Soon:**
+```
 - English
 - French
 - Dutch
 - Russian
-
+```
 ---
 
 ## 🧩 Data Structure
 
+This is the json structure we use and may change in the future
 ```json
 {
   "word": {
@@ -38,3 +47,4 @@ Every vocabulary entry follows a strict, unified schema, making the dataset pred
     "Tel": "Roman numeral (optional)"
   }
 }
+```
