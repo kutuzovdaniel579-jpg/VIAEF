@@ -9,38 +9,25 @@
     body { font-family: Arial, sans-serif; padding: 20px; }
     h1 { margin-bottom: 10px; }
 
-    #hoofdstukken {
+    #hoofdstukken, #subHoofdstukken {
       margin-bottom: 15px;
     }
 
-    .hoofdstuk-btn {
+    .hoofdstuk-btn, .subhoofdstuk-btn {
       padding: 10px 15px;
       margin: 5px;
       background: #eee;
       border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    #subHoofdstukken {
-      margin-bottom: 15px;
-    }
-
-    .subhoofdstuk-btn {
-      padding: 8px 12px;
-      margin: 4px;
-      background: #f7f7f7;
-      border-radius: 6px;
       border: 1px solid #ccc;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 16px;
       transition: 0.2s;
     }
 
     .subhoofdstuk-btn:hover {
-      border-width: 2px;
       border-color: #007bff;
+      border-width: 2px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
 
     .woord {
@@ -53,30 +40,13 @@
     .woord small {
       color: #555;
     }
-
-    #quizBtn {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      padding: 10px 15px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      display: none;
-    }
   </style>
 </head>
 
 <body>
-  <button id="quizBtn">🎯 Quiz</button>
-
   <h1>Woorden per Caput</h1>
 
   <div id="hoofdstukken">Hoofdstukken laden...</div>
-
   <div id="subHoofdstukken"></div>
 
   <h2 id="caputTitel"></h2>
@@ -108,7 +78,6 @@
       huidigCaput = caput;
       huidigSub = null;
 
-      document.getElementById("quizBtn").style.display = "block";
       document.getElementById("caputTitel").textContent = "Hoofdstuk " + caput;
       document.getElementById("subTitel").textContent = "";
       document.getElementById("woordenLijst").innerHTML = "";
@@ -125,6 +94,15 @@
         btn.onclick = () => laadSubHoofdstuk(caput, sub);
         subHoofdstukkenDiv.appendChild(btn);
       });
+
+      const quizBtn = document.createElement("button");
+      quizBtn.className = "subhoofdstuk-btn";
+      quizBtn.textContent = "🎯 Quiz";
+      quizBtn.onclick = () => {
+        if (!huidigCaput) return;
+        window.location.href = `quiz.html?caput=${huidigCaput}`;
+      };
+      subHoofdstukkenDiv.appendChild(quizBtn);
     }
 
     function laadSubHoofdstuk(caput, sub) {
@@ -151,12 +129,6 @@
         lijst.appendChild(div);
       });
     }
-
-    document.getElementById("quizBtn").onclick = () => {
-      if (!huidigCaput) return;
-      // quiz kiest zelf subhoofdstuk, zoals in je aangepaste quiz.html
-      window.location.href = `quiz.html?caput=${huidigCaput}`;
-    };
 
     loadJSON();
   </script>
