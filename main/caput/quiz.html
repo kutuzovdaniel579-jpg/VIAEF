@@ -81,7 +81,7 @@
     <p id="scoreDisplay"></p>
   </div>
 
-  <script>
+<script>
   const urlParams = new URLSearchParams(window.location.search);
   const caput = urlParams.get("caput");
 
@@ -96,7 +96,17 @@
   async function loadWords() {
     const res = await fetch("caput.json");
     const data = await res.json();
-    woorden = data[caput];
+
+    const subhoofdstukken = data[caput];
+
+    // ALLE woorden uit ALLE subhoofdstukken samenvoegen
+    let alleWoorden = {};
+
+    Object.keys(subhoofdstukken).forEach(sub => {
+      Object.assign(alleWoorden, subhoofdstukken[sub]);
+    });
+
+    woorden = alleWoorden;
     keys = Object.keys(woorden);
   }
 
@@ -188,5 +198,6 @@
 
   loadWords();
 </script>
+
 </body>
 </html>
