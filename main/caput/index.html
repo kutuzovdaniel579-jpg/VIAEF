@@ -9,9 +9,7 @@
     body { font-family: Arial; padding: 20px; }
     h1 { margin-bottom: 10px; }
 
-    #hoofdstukken {
-      margin-bottom: 20px;
-    }
+    #hoofdstukken { margin-bottom: 20px; }
 
     .hoofdstuk-btn {
       padding: 10px 15px;
@@ -85,10 +83,17 @@
       const lijst = document.getElementById("woordenLijst");
       lijst.innerHTML = "";
 
-      const woorden = woordenData[caput];
+      const subhoofdstukken = woordenData[caput];
 
-      Object.keys(woorden).forEach(key => {
-        const item = woorden[key];
+      // ALLE woorden uit ALLE subhoofdstukken samenvoegen
+      let alleWoorden = {};
+
+      Object.keys(subhoofdstukken).forEach(sub => {
+        Object.assign(alleWoorden, subhoofdstukken[sub]);
+      });
+
+      Object.keys(alleWoorden).forEach(key => {
+        const item = alleWoorden[key];
 
         const div = document.createElement("div");
         div.className = "woord";
