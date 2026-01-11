@@ -8,23 +8,6 @@
   <style>
     body { font-family: Arial; padding: 20px; }
 
-    #subSelect button, #themaSelect button {
-      padding: 10px 15px;
-      margin: 5px;
-      font-size: 16px;
-      border: 2px solid #ccc;
-      border-radius: 6px;
-      background: #51A6E8;
-      cursor: pointer;
-      transition: 0.2s;
-      color: white;
-    }
-
-    #subSelect button:hover, #themaSelect button:hover {
-      border-color: #007bff;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    }
-
     #modeSelect button {
       padding: 12px 18px;
       margin: 10px;
@@ -81,6 +64,7 @@
       border-radius: 6px;
       background: #51A6E8;
       color: white;
+      cursor: pointer;
     }
 
     #result {
@@ -123,8 +107,7 @@
     const thema = params.get("thema");
 
     let data = {};
-    let woorden = {};
-    let keys = [];
+    let vragen = []; // { vraag: "...", antwoord: "..." }
     let index = 0;
     let score = 0;
     let mode = "Normal";
@@ -135,8 +118,22 @@
       const res = await fetch("gram.json");
       data = await res.json();
 
-      woorden = data[hoofdstuk][sub][thema];
-      keys = Object.keys(woorden);
+      const blok = data[hoofdstuk][sub][thema];
+      vragen = [];
+
+      // Flatten structuur: voor elk werkwoord en elke persoon één vraag
+      Object.keys(blok).forEach(ww => {
+        const vormen = blok[ww]; // bv. {1e: "...", 2e: "..."}
+        Object.keys(vormen).forEach(persoon => {
+          vragen.push({
+            vraag: `${ww} – ${persoon}`, // bv. "esse – 1e"
+            antwoord: vormen[persoon]    // bv. "sum"
+          });
+        });
+      });
+
+      // eventueel shuffle
+      // vragen.sort(() => Math.random() - 0.5);
 
       document.getElementById("modeSelect").style.display = "block";
     }
@@ -149,13 +146,13 @@
     }
 
     function nextQuestion() {
-      if (index >= keys.length) {
+      if (index >= vragen.length) {
         endQuiz();
         return;
       }
 
-      const vraag = keys[index]; 
-      document.getElementById("vraag").textContent = `Vertaal: ${vraag}`;
+      const huidige = vragen[index];
+      document.getElementById("vraag").textContent = `Vertaal: ${huidige.vraag}`;
       document.getElementById("antwoord").value = "";
       document.getElementById("result").textContent = "";
 
@@ -183,7 +180,7 @@
 
     function check() {
       const user = document.getElementById("antwoord").value.trim().toLowerCase();
-      const correct = woorden[keys[index]].toLowerCase();
+      const correct = vragen[index].antwoord.toLowerCase();
 
       if (mode === "Hard") clearInterval(timerInterval);
 
@@ -209,15 +206,15 @@
 
     function updateProgress() {
       const bar = document.getElementById("progressBar");
-      const percentage = (index / keys.length) * 100;
+      const percentage = (index / vragen.length) * 100;
       bar.style.width = percentage + "%";
-      document.getElementById("scoreDisplay").textContent = `Score: ${score} / ${keys.length}`;
+      document.getElementById("scoreDisplay").textContent = `Score: ${score} / ${vragen.length}`;
     }
 
     function endQuiz() {
       document.getElementById("quiz").innerHTML = `
         <h2>Klaar!</h2>
-        <p>Je score: ${score} / ${keys.length}</p>
+        <p>Je score: ${score} / ${vragen.length}</p>
         <button onclick="location.href='index.html'">Terug</button>
       `;
     }
