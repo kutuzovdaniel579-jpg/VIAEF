@@ -13,7 +13,6 @@
       margin-bottom: 15px;
     }
 
-    /* Algemene knopstijl */
     .hoofdstuk-btn,
     .subhoofdstuk-btn {
       padding: 10px 15px;
@@ -27,7 +26,6 @@
       transition: 0.2s;
     }
 
-    /* Hover animatie */
     .hoofdstuk-btn:hover,
     .subhoofdstuk-btn:hover {
       border-width: 2px;
@@ -36,7 +34,6 @@
       transform: translateY(-2px);
     }
 
-    /* Subhoofdstukken container */
     #subHoofdstukken {
       margin-top: 10px;
       margin-bottom: 20px;
@@ -54,31 +51,33 @@
     let data = {};
 
     async function loadJSON() {
-      const res = await fetch("caput.json"); // zelfde JSON als je woordenpagina
+      const res = await fetch("gram.json"); 
       data = await res.json();
 
       const hoofdstukkenDiv = document.getElementById("hoofdstukken");
       hoofdstukkenDiv.innerHTML = "";
 
-      Object.keys(data).forEach(caput => {
+      // Hoofdstukken = C1, C2, C3, C5
+      Object.keys(data).forEach(hoofdstuk => {
         const btn = document.createElement("button");
         btn.className = "hoofdstuk-btn";
-        btn.textContent = caput;
-        btn.onclick = () => laadSubHoofdstukken(caput);
+        btn.textContent = hoofdstuk;
+        btn.onclick = () => laadSubHoofdstukken(hoofdstuk);
         hoofdstukkenDiv.appendChild(btn);
       });
     }
 
-    function laadSubHoofdstukken(caput) {
+    function laadSubHoofdstukken(hoofdstuk) {
       const subDiv = document.getElementById("subHoofdstukken");
       subDiv.innerHTML = "";
 
-      Object.keys(data[caput]).forEach(sub => {
+      // Subhoofdstukken = C1.9, C2.3, C3.7, C3.8, C5.3
+      Object.keys(data[hoofdstuk]).forEach(sub => {
         const btn = document.createElement("button");
         btn.className = "subhoofdstuk-btn";
         btn.textContent = sub;
         btn.onclick = () => {
-          window.location.href = `${caput}/${sub}.html`;
+          window.location.href = `${hoofdstuk}/${sub}.html`;
         };
         subDiv.appendChild(btn);
       });
