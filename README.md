@@ -55,3 +55,16 @@ This is the json structure we use and may change in the future
   }
 }
 ```
+
+---
+## 📰 Version Structure
+
+The Version structure is as followed
+```
+1.22.333.444.555
+```
+- 1 stands for VIÆF 1
+- 2 stands for mayor updates
+- 3 stands for small updates
+- 4 stands for mayor bug fixes
+- 5 stands for small bug fixes
