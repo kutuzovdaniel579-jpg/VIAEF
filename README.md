@@ -27,6 +27,7 @@ Every vocabulary entry follows a strict, unified schema, making the dataset pred
 ## 📚 Supported Languages
 **For Learning:**
 - Latin
+- Greek
 
 **Website Languages:**
 - Dutch
