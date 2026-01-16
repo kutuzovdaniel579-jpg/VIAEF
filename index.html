@@ -17,12 +17,14 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      overflow: hidden;
     }
 
+    /* --- LOADING LOGO --- */
     .logo {
       width: 120px;
       height: 120px;
-      background-image: url("logo.png"); /* vervang met jouw bestandsnaam */
+      background-image: url("logo.png");
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -55,25 +57,94 @@
     }
 
     @keyframes blink {
-      0%, 80%, 100% { opacity: 0.2; }
-      40% { opacity: 1; }
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    /* --- TAALKEUZE UI (identiek aan Caput UI) --- */
+    #taalKeuze {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .taal-btn {
+      padding: 10px 15px;
+      margin: 5px;
+      background: #51A6E8;
+      color: white;
+      border-radius: 6px;
+      border: 1px solid #0f6f99;
+      cursor: pointer;
+      font-size: 18px;
+      transition: 0.2s;
+      width: 200px;
+    }
+
+    .taal-btn:hover {
+      border-width: 2px;
+      border-color: #0b4f6d;
+      box-shadow: 0 0 6px rgba(255,255,255,0.25);
+      transform: translateY(-2px);
     }
   </style>
-
-  <script>
-    setTimeout(() => {
-      window.location.href = "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/";
-    }, 2500);
-  </script>
 </head>
 
 <body>
-  <div class="logo"></div>
-  <div class="loading-text">
-    Loading
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
+
+  <!-- LOADING SCREEN -->
+  <div id="loadingScreen">
+    <div class="logo"></div>
+    <div class="loading-text">
+      Laden
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
   </div>
+
+  <!-- TAAL KEUZE -->
+  <div id="taalKeuze">
+    <h1>Kies een taal</h1>
+    <div id="taalKnoppen"></div>
+  </div>
+
+  <script>
+    /* ------------------------------
+       Talen makkelijk aanpasbaar
+    ------------------------------ */
+    const talen = [
+      { naam: "Latijn", link: "main/LA/index.html" },
+      { naam: "Grieks", link: "main/GR/index.html" }
+    ];
+
+    /* ------------------------------
+       Na loading → taalkeuze tonen
+    ------------------------------ */
+    setTimeout(() => {
+      document.getElementById("loadingScreen").style.display = "none";
+      document.getElementById("taalKeuze").style.display = "flex";
+
+      const container = document.getElementById("taalKnoppen");
+      container.innerHTML = "";
+
+      talen.forEach(t => {
+        const btn = document.createElement("button");
+        btn.className = "taal-btn";
+        btn.textContent = t.naam;
+        btn.onclick = () => window.location.href = t.link;
+        container.appendChild(btn);
+      });
+
+    }, 1800); // duur van loading
+  </script>
+
 </body>
 </html>
