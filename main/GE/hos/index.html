@@ -57,13 +57,13 @@
   <script>
     let landenData = {};
     let microData = {};
-    let actiefType = "landen"; // "landen" of "microstaten"
+    let actiefType = "landen"; 
     let actieveDefinitie = "VN";
 
     async function loadJSON() {
       try {
         const [landenRes, microRes] = await Promise.all([
-          fetch("https://kutuzovdaniel579-jpg.github.io/VIAEF/main/GE/landen.json")
+          fetch("https://kutuzovdaniel579-jpg.github.io/VIAEF/main/GE/landen.json"),
           fetch("https://kutuzovdaniel579-jpg.github.io/VIAEF/main/GE/Microstaten.json")
         ]);
 
@@ -86,10 +86,12 @@
       wrapper.innerHTML = "";
 
       const definities = ["Landen", "VN", "Uitgebreid", "Maximaal"];
+
       definities.forEach(type => {
         const btn = document.createElement("button");
         btn.className = "definitie-btn";
         btn.textContent = type;
+
         btn.onclick = () => {
           actiefType = type === "Landen" ? "landen" : "microstaten";
           actieveDefinitie = type;
@@ -97,6 +99,7 @@
           document.getElementById("niveauTitel").textContent = "";
           document.getElementById("landenLijst").innerHTML = "";
         };
+
         wrapper.appendChild(btn);
       });
     }
@@ -106,6 +109,7 @@
       wrapper.innerHTML = "";
 
       const niveaus = ["Baby", "Easy", "Normal", "Hardcore", "Insane", "Nerd"];
+
       niveaus.forEach(niveau => {
         const btn = document.createElement("button");
         btn.className = "niveau-btn";
@@ -121,6 +125,7 @@
       lijst.innerHTML = "";
 
       let data = {};
+
       if (actiefType === "landen") {
         data = landenData[niveau];
       } else {
