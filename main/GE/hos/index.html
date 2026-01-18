@@ -1,16 +1,80 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VIÆF – Aardrijkskunde</title>
+
   <style>
-    body { font-family: system-ui, sans-serif; background:#0b1020; color:#f5f5f5; padding:20px; }
-    select, button { padding:6px 10px; margin:4px; border-radius:6px; border:none; }
-    button { background:#4f46e5; color:white; cursor:pointer; }
-    button:hover { background:#6366f1; }
-    .card { background:rgba(255,255,255,0.06); border-radius:12px; padding:16px 20px; margin-top:16px; backdrop-filter:blur(16px); }
+    body { 
+      font-family: Arial, sans-serif; 
+      padding: 20px; 
+      background: #ffffff;
+      color: #000;
+    }
+
+    h1 { margin-bottom: 10px; }
+
+    /* Algemene knopstijl */
+    .hoofdstuk-btn,
+    .subhoofdstuk-btn,
+    .geo-btn {
+      padding: 10px 15px;
+      margin: 5px;
+      background: #51A6E8;
+      color: white;
+      border-radius: 6px;
+      border: 1px solid #0f6f99;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    /* Hover animatie */
+    .hoofdstuk-btn:hover,
+    .subhoofdstuk-btn:hover:not(.quiz-btn),
+    .geo-btn:hover:not(.quiz-btn) {
+      border-width: 2px;
+      border-color: #0b4f6d;
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Quiz-knop stijl */
+    .quiz-btn {
+      background: #BF0D0D;
+      border-color: #8a0909;
+    }
+
+    .quiz-btn:hover {
+      border-width: 2px;
+      border-color: #5c0606;
+      box-shadow: 0 0 6px rgba(0,0,0,0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Vraag/antwoord kaart */
+    .woord {
+      padding: 10px;
+      margin: 10px 0;
+      background: #f0f0f0;
+      border-radius: 6px;
+    }
+
+    .woord small {
+      color: #555;
+    }
+
+    select {
+      padding: 8px 12px;
+      margin: 5px;
+      border-radius: 6px;
+      border: 1px solid #0f6f99;
+      font-size: 16px;
+    }
   </style>
 </head>
+
 <body>
   <h1>Aardrijkskunde – Hoofdsteden</h1>
 
@@ -40,12 +104,12 @@
       </select>
     </span>
 
-    <button id="newQuestionBtn">Nieuwe vraag</button>
+    <button id="newQuestionBtn" class="geo-btn">Nieuwe vraag</button>
   </div>
 
-  <div class="card" id="questionCard" style="display:none;">
-    <div id="questionText"></div>
-    <button id="showAnswerBtn">Toon antwoord</button>
+  <div id="questionCard" class="woord" style="display:none;">
+    <div id="questionText" style="font-size:18px; font-weight:bold;"></div>
+    <button id="showAnswerBtn" class="geo-btn" style="margin-top:10px;">Toon antwoord</button>
     <div id="answerText" style="margin-top:8px; font-weight:bold; display:none;"></div>
   </div>
 
@@ -116,7 +180,6 @@
       newQuestion();
     });
 
-    // init
     loadData().catch(console.error);
   </script>
 </body>
