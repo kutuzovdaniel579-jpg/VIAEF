@@ -20,6 +20,59 @@
       overflow: hidden;
     }
 
+    /* 🌍 Language Globe */
+    .language-globe {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      width: 28px;
+      height: 28px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Globe_icon.svg/1024px-Globe_icon.svg.png');
+      background-size: cover;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: 0.2s;
+    }
+    .language-globe:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* 🌐 Dropdown Menu */
+    .language-menu {
+      position: absolute;
+      top: 55px;
+      right: 20px;
+      background: #111;
+      border: 1px solid #444;
+      padding: 10px;
+      border-radius: 6px;
+      display: none;
+      flex-direction: column;
+      min-width: 150px;
+    }
+
+    .language-menu h4 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      color: #bbb;
+    }
+
+    .language-option {
+      padding: 6px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: 0.2s;
+    }
+
+    .language-option:hover {
+      background: #333;
+    }
+
+    .language-option.active {
+      background: #555;
+    }
+
     .logo {
       width: 120px;
       height: 120px;
@@ -54,138 +107,81 @@
     @keyframes fadeIn {
       to { opacity: 1; transform: scale(1); }
     }
-
-    @keyframes blink {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
-    }
-
-    #keuzeScherm, #taalKeuze {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      animation: fadeIn 0.6s ease-out forwards;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-      color: white;
-    }
-
-    .taal-btn {
-      padding: 10px 15px;
-      margin: 5px;
-      background: #51A6E8;
-      color: white;
-      border-radius: 6px;
-      border: 1px solid #0f6f99;
-      cursor: pointer;
-      font-size: 18px;
-      transition: 0.2s;
-      width: 200px;
-    }
-
-    .taal-btn:hover {
-      border-width: 2px;
-      border-color: #0b4f6d;
-      box-shadow: 0 0 6px rgba(255,255,255,0.25);
-      transform: translateY(-2px);
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- LOADING SCREEN -->
-  <div id="loadingScreen">
-    <div class="logo"></div>
-    <div class="loading-text">
-      Laden
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
+  <!-- 🌍 Globe -->
+  <div class="language-globe" id="globe"></div>
+
+  <!-- 🌐 Dropdown -->
+  <div class="language-menu" id="languageMenu">
+    <h4>Select Language</h4>
+    <div class="language-option" data-lang="nl">Dutch</div>
+    <div class="language-option" data-lang="en">English</div>
   </div>
 
-  <!-- CATEGORIE KEUZE -->
-  <div id="keuzeScherm">
-    <h1>Kies een categorie</h1>
-    <div id="categorieKnoppen"></div>
+  <div class="logo"></div>
+
+  <div class="loading-text" id="loadingText">
+    Laden
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
   </div>
 
-  <!-- TAAL KEUZE -->
-  <div id="taalKeuze">
-    <h1>Kies een taal</h1>
-    <div id="taalKnoppen"></div>
-  </div>
+<script>
+/* 🌐 Vertalingen */
+const translations = {
+  nl: {
+    loading: "Laden"
+  },
+  en: {
+    loading: "Loading"
+  }
+};
 
-  <script>
-    /* ------------------------------
-       Modulaire categorieën
-    ------------------------------ */
-  const categorieën = [
-    { naam: "Aardrijkskunde", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/GE" },
-    { naam: "Geschiedenis", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/HS" },
-    { naam: "Talen", type: "talen" }
-  ];
+/* 🌍 Taal ophalen of default NL */
+let currentLang = localStorage.getItem("language") || "nl";
 
+/* 🌐 UI elementen */
+const globe = document.getElementById("globe");
+const menu = document.getElementById("languageMenu");
+const loadingText = document.getElementById("loadingText");
 
-    /* ------------------------------
-       Modulaire talen
-    ------------------------------ */
-    const talen = [
-      { naam: "Latijn", link: "main/LA/index.html" },
-      { naam: "Grieks", link: "main/GR/index.html" },
-      { naam: "Russisch", link: "main/RU/index.html" },
-      { naam: "Frans", link: "main/FR/index.html" },
-      { naam: "Engels", link: "main/EN/index.html" },
-      { naam: "Nederlands", link: "main/NL/index.html" }
-    ];
+/* 🌍 Globe toggle */
+globe.addEventListener("click", () => {
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+});
 
-    /* ------------------------------
-       Na loading → categorie keuze
-    ------------------------------ */
-    setTimeout(() => {
-      document.getElementById("loadingScreen").style.display = "none";
-      document.getElementById("keuzeScherm").style.display = "flex";
+/* 🌐 Taal wisselen */
+document.querySelectorAll(".language-option").forEach(option => {
+  option.addEventListener("click", () => {
+    const lang = option.getAttribute("data-lang");
+    setLanguage(lang);
+    menu.style.display = "none";
+  });
+});
 
-      const container = document.getElementById("categorieKnoppen");
-      container.innerHTML = "";
+/* 🌐 Taal instellen */
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem("language", lang);
 
-      categorieën.forEach(c => {
-        const btn = document.createElement("button");
-        btn.className = "taal-btn";
-        btn.textContent = c.naam;
+  // Active highlight
+  document.querySelectorAll(".language-option").forEach(opt => {
+    opt.classList.remove("active");
+    if (opt.getAttribute("data-lang") === lang) opt.classList.add("active");
+  });
 
-        btn.onclick = () => {
-          if (c.type === "talen") {
-            // toon taalkeuze
-            document.getElementById("keuzeScherm").style.display = "none";
-            document.getElementById("taalKeuze").style.display = "flex";
+  // Tekst aanpassen
+  loadingText.childNodes[0].textContent = translations[lang].loading + " ";
+}
 
-            const taalContainer = document.getElementById("taalKnoppen");
-            taalContainer.innerHTML = "";
-
-            talen.forEach(t => {
-              const tbtn = document.createElement("button");
-              tbtn.className = "taal-btn";
-              tbtn.textContent = t.naam;
-              tbtn.onclick = () => window.location.href = t.link;
-              taalContainer.appendChild(tbtn);
-            });
-
-          } else {
-            // directe link
-            window.location.href = c.link;
-          }
-        };
-
-        container.appendChild(btn);
-      });
-
-    }, 1800);
-  </script>
+/* Init */
+setLanguage(currentLang);
+</script>
 
 </body>
 </html>
