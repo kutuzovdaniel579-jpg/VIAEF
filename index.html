@@ -50,6 +50,7 @@
       display: none;
       flex-direction: column;
       min-width: 150px;
+      z-index: 999;
     }
 
     .language-menu h4 {
@@ -125,62 +126,62 @@
   <div class="logo"></div>
 
   <div class="loading-text" id="loadingText">
-    Laden
+    <span id="loadingWord">Laden</span>
     <div class="dot"></div>
     <div class="dot"></div>
     <div class="dot"></div>
   </div>
 
 <script>
-/* 🌐 Vertalingen */
-const translations = {
-  nl: {
-    loading: "Laden"
-  },
-  en: {
-    loading: "Loading"
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* 🌐 Vertalingen */
+  const translations = {
+    nl: { loading: "Laden" },
+    en: { loading: "Loading" }
+  };
+
+  /* 🌍 Taal ophalen of default NL */
+  let currentLang = localStorage.getItem("language") || "nl";
+
+  /* 🌐 UI elementen */
+  const globe = document.getElementById("globe");
+  const menu = document.getElementById("languageMenu");
+  const loadingWord = document.getElementById("loadingWord");
+
+  /* 🌍 Globe toggle */
+  globe.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  });
+
+  /* 🌐 Taal wisselen */
+  document.querySelectorAll(".language-option").forEach(option => {
+    option.addEventListener("click", () => {
+      const lang = option.getAttribute("data-lang");
+      setLanguage(lang);
+      menu.style.display = "none";
+    });
+  });
+
+  /* 🌐 Taal instellen */
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem("language", lang);
+
+    // Active highlight
+    document.querySelectorAll(".language-option").forEach(opt => {
+      opt.classList.remove("active");
+      if (opt.getAttribute("data-lang") === lang) opt.classList.add("active");
+    });
+
+    // Tekst aanpassen
+    loadingWord.textContent = translations[lang].loading;
   }
-};
 
-/* 🌍 Taal ophalen of default NL */
-let currentLang = localStorage.getItem("language") || "nl";
+  /* Init */
+  setLanguage(currentLang);
 
-/* 🌐 UI elementen */
-const globe = document.getElementById("globe");
-const menu = document.getElementById("languageMenu");
-const loadingText = document.getElementById("loadingText");
-
-/* 🌍 Globe toggle */
-globe.addEventListener("click", () => {
-  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 });
-
-/* 🌐 Taal wisselen */
-document.querySelectorAll(".language-option").forEach(option => {
-  option.addEventListener("click", () => {
-    const lang = option.getAttribute("data-lang");
-    setLanguage(lang);
-    menu.style.display = "none";
-  });
-});
-
-/* 🌐 Taal instellen */
-function setLanguage(lang) {
-  currentLang = lang;
-  localStorage.setItem("language", lang);
-
-  // Active highlight
-  document.querySelectorAll(".language-option").forEach(opt => {
-    opt.classList.remove("active");
-    if (opt.getAttribute("data-lang") === lang) opt.classList.add("active");
-  });
-
-  // Tekst aanpassen
-  loadingText.childNodes[0].textContent = translations[lang].loading + " ";
-}
-
-/* Init */
-setLanguage(currentLang);
 </script>
 
 </body>
