@@ -64,80 +64,115 @@
 
   <!-- CATEGORIE KEUZE -->
   <div id="keuzeScherm">
-    <h1>Kies een categorie</h1>
+    <h1 data-i18n="choose_category"></h1>
     <div id="categorieKnoppen"></div>
   </div>
 
   <!-- TAAL KEUZE -->
   <div id="taalKeuze">
-    <h1>Kies een taal</h1>
+    <h1 data-i18n="choose_language"></h1>
     <div id="taalKnoppen"></div>
   </div>
 
-  <script>
-    /* ------------------------------
-       Modulaire categorieën
-    ------------------------------ */
-    const categorieën = [
-      { naam: "Aardrijkskunde", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/GE" },
-      { naam: "Geschiedenis", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/HS" },
-      { naam: "Talen", type: "talen" }
-    ];
+<script>
+/* ------------------------------
+   TAALENGINE
+------------------------------ */
 
-    /* ------------------------------
-       Modulaire talen
-    ------------------------------ */
-    const talen = [
-      { naam: "Latijn", link: "main/LA/index.html" },
-      { naam: "Grieks", link: "main/GR/index.html" },
-      { naam: "Russisch", link: "main/RU/index.html" },
-      { naam: "Frans", link: "main/FR/index.html" },
-      { naam: "Engels", link: "main/EN/index.html" },
-      { naam: "Nederlands", link: "main/NL/index.html" }
-    ];
+async function loadLanguage(lang) {
+  localStorage.setItem("language", lang);
 
-    /* ------------------------------
-       DIRECT STARTEN ZONDER LOADING
-    ------------------------------ */
-    function startApp() {
-      document.getElementById("keuzeScherm").style.display = "flex";
+  const res = await fetch("/languages/languages.json");
+  const translations = await res.json();
 
-      const container = document.getElementById("categorieKnoppen");
-      container.innerHTML = "";
-
-      categorieën.forEach(c => {
-        const btn = document.createElement("button");
-        btn.className = "taal-btn";
-        btn.textContent = c.naam;
-
-        btn.onclick = () => {
-          if (c.type === "talen") {
-            document.getElementById("keuzeScherm").style.display = "none";
-            document.getElementById("taalKeuze").style.display = "flex";
-
-            const taalContainer = document.getElementById("taalKnoppen");
-            taalContainer.innerHTML = "";
-
-            talen.forEach(t => {
-              const tbtn = document.createElement("button");
-              tbtn.className = "taal-btn";
-              tbtn.textContent = t.naam;
-              tbtn.onclick = () => window.location.href = t.link;
-              taalContainer.appendChild(tbtn);
-            });
-
-          } else {
-            window.location.href = c.link;
-          }
-        };
-
-        container.appendChild(btn);
-      });
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (translations[lang][key]) {
+      el.textContent = translations[lang][key];
     }
+  });
+}
 
-    // Start meteen
-    startApp();
-  </script>
+document.addEventListener("DOMContentLoaded", () => {
+  let saved = localStorage.getItem("language");
+
+  if (!saved) {
+    const browserLang = navigator.language.toLowerCase();
+    if (browserLang.startsWith("nl")) saved = "nl";
+    else if (browserLang.startsWith("en")) saved = "en";
+    else saved = "nl";
+  }
+
+  loadLanguage(saved);
+  startApp();
+});
+
+/* ------------------------------
+   CATEGORIEËN
+------------------------------ */
+
+const categorieën = [
+  { naam: "geography", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/GE" },
+  { naam: "history", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/HS" },
+  { naam: "languages", type: "talen" }
+];
+
+/* ------------------------------
+   TALEN
+------------------------------ */
+
+const talen = [
+  { naam: "latin", link: "main/LA/index.html" },
+  { naam: "greek", link: "main/GR/index.html" },
+  { naam: "russian", link: "main/RU/index.html" },
+  { naam: "french", link: "main/FR/index.html" },
+  { naam: "english", link: "main/EN/index.html" },
+  { naam: "dutch", link: "main/NL/index.html" }
+];
+
+/* ------------------------------
+   START APP
+------------------------------ */
+
+function startApp() {
+  document.getElementById("keuzeScherm").style.display = "flex";
+
+  const container = document.getElementById("categorieKnoppen");
+  container.innerHTML = "";
+
+  categorieën.forEach(c => {
+    const btn = document.createElement("button");
+    btn.className = "taal-btn";
+    btn.setAttribute("data-i18n", c.naam);
+
+    btn.onclick = () => {
+      if (c.type === "talen") {
+        document.getElementById("keuzeScherm").style.display = "none";
+        document.getElementById("taalKeuze").style.display = "flex";
+
+        const taalContainer = document.getElementById("taalKnoppen");
+        taalContainer.innerHTML = "";
+
+        talen.forEach(t => {
+          const tbtn = document.createElement("button");
+          tbtn.className = "taal-btn";
+          tbtn.setAttribute("data-i18n", t.naam);
+          tbtn.onclick = () => window.location.href = t.link;
+          taalContainer.appendChild(tbtn);
+        });
+
+        loadLanguage(localStorage.getItem("language"));
+      } else {
+        window.location.href = c.link;
+      }
+    };
+
+    container.appendChild(btn);
+  });
+
+  loadLanguage(localStorage.getItem("language"));
+}
+</script>
 
 </body>
 </html>
