@@ -4,4 +4,5 @@
 - [Status](docs/STATUS.md)
 - [Changelog](docs/UPDATES.md)
 - [Upcomming Updates](docs/FUPDS.md)
+- [Modes](docs/Modes.md)
 ---
