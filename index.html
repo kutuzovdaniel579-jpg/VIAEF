@@ -13,127 +13,131 @@
       color: white;
       font-family: Arial, sans-serif;
       height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       overflow: hidden;
     }
 
-    /* 🌍 Language Globe */
-    .language-globe {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      width: 28px;
-      height: 28px;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Globe_icon.svg/1024px-Globe_icon.svg.png');
-      background-size: cover;
-      cursor: pointer;
-      opacity: 0.8;
-      transition: 0.2s;
-      z-index: 1000;
-    }
-    .language-globe:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
-    /* 🌐 Dropdown Menu */
-    .language-menu {
-      position: absolute;
-      top: 55px;
-      right: 20px;
-      background: #111;
-      border: 1px solid #444;
-      padding: 10px;
-      border-radius: 6px;
+    #keuzeScherm, #taalKeuze {
       display: none;
       flex-direction: column;
-      min-width: 150px;
-      z-index: 999;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 0.6s ease-out forwards;
     }
 
-    .language-menu h4 {
-      margin: 0 0 8px 0;
-      font-size: 14px;
-      color: #bbb;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .language-option {
-      padding: 6px;
+    h1 {
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .taal-btn {
+      padding: 10px 15px;
+      margin: 5px;
+      background: #51A6E8;
+      color: white;
+      border-radius: 6px;
+      border: 1px solid #0f6f99;
       cursor: pointer;
-      border-radius: 4px;
+      font-size: 18px;
       transition: 0.2s;
+      width: 200px;
     }
 
-    .language-option:hover {
-      background: #333;
-    }
-
-    .language-option.active {
-      background: #555;
+    .taal-btn:hover {
+      border-width: 2px;
+      border-color: #0b4f6d;
+      box-shadow: 0 0 6px rgba(255,255,255,0.25);
+      transform: translateY(-2px);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- 🌍 Globe -->
-  <div class="language-globe" id="globe"></div>
-
-  <!-- 🌐 Dropdown -->
-  <div class="language-menu" id="languageMenu">
-    <h4>Select Language</h4>
-    <div class="language-option" data-lang="nl">Dutch</div>
-    <div class="language-option" data-lang="en">English</div>
+  <!-- CATEGORIE KEUZE -->
+  <div id="keuzeScherm">
+    <h1>Kies een categorie</h1>
+    <div id="categorieKnoppen"></div>
   </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+  <!-- TAAL KEUZE -->
+  <div id="taalKeuze">
+    <h1>Kies een taal</h1>
+    <div id="taalKnoppen"></div>
+  </div>
 
-  /* 🌐 Vertalingen */
-  const translations = {
-    nl: {},
-    en: {}
-  };
+  <script>
+    /* ------------------------------
+       Modulaire categorieën
+    ------------------------------ */
+    const categorieën = [
+      { naam: "Aardrijkskunde", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/GE" },
+      { naam: "Geschiedenis", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/HS" },
+      { naam: "Talen", type: "talen" }
+    ];
 
-  /* 🌍 Taal ophalen of default NL */
-  let currentLang = localStorage.getItem("language") || "nl";
+    /* ------------------------------
+       Modulaire talen
+    ------------------------------ */
+    const talen = [
+      { naam: "Latijn", link: "main/LA/index.html" },
+      { naam: "Grieks", link: "main/GR/index.html" },
+      { naam: "Russisch", link: "main/RU/index.html" },
+      { naam: "Frans", link: "main/FR/index.html" },
+      { naam: "Engels", link: "main/EN/index.html" },
+      { naam: "Nederlands", link: "main/NL/index.html" }
+    ];
 
-  /* 🌐 UI elementen */
-  const globe = document.getElementById("globe");
-  const menu = document.getElementById("languageMenu");
+    /* ------------------------------
+       DIRECT STARTEN ZONDER LOADING
+    ------------------------------ */
+    function startApp() {
+      document.getElementById("keuzeScherm").style.display = "flex";
 
-  /* 🌍 Globe toggle */
-  globe.addEventListener("click", () => {
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  });
+      const container = document.getElementById("categorieKnoppen");
+      container.innerHTML = "";
 
-  /* 🌐 Taal wisselen */
-  document.querySelectorAll(".language-option").forEach(option => {
-    option.addEventListener("click", () => {
-      const lang = option.getAttribute("data-lang");
-      setLanguage(lang);
-      menu.style.display = "none";
-    });
-  });
+      categorieën.forEach(c => {
+        const btn = document.createElement("button");
+        btn.className = "taal-btn";
+        btn.textContent = c.naam;
 
-  /* 🌐 Taal instellen */
-  function setLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem("language", lang);
+        btn.onclick = () => {
+          if (c.type === "talen") {
+            document.getElementById("keuzeScherm").style.display = "none";
+            document.getElementById("taalKeuze").style.display = "flex";
 
-    // Active highlight
-    document.querySelectorAll(".language-option").forEach(opt => {
-      opt.classList.remove("active");
-      if (opt.getAttribute("data-lang") === lang) opt.classList.add("active");
-    });
+            const taalContainer = document.getElementById("taalKnoppen");
+            taalContainer.innerHTML = "";
 
-    // Hier kun je later teksten aanpassen als je content toevoegt
-  }
+            talen.forEach(t => {
+              const tbtn = document.createElement("button");
+              tbtn.className = "taal-btn";
+              tbtn.textContent = t.naam;
+              tbtn.onclick = () => window.location.href = t.link;
+              taalContainer.appendChild(tbtn);
+            });
 
-  /* Init */
-  setLanguage(currentLang);
+          } else {
+            window.location.href = c.link;
+          }
+        };
 
-});
-</script>
+        container.appendChild(btn);
+      });
+    }
+
+    // Start meteen
+    startApp();
+  </script>
 
 </body>
 </html>
