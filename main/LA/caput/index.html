@@ -3,17 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Caput — Woorden</title>
+  <title data-i18n="la_words_title">Caput — Woorden</title>
 
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
+    body { font-family: Arial, sans-serif; padding: 20px; background:black; color:white; }
     h1 { margin-bottom: 10px; }
 
-    #hoofdstukken, #subHoofdstukken {
-      margin-bottom: 15px;
-    }
+    #hoofdstukken, #subHoofdstukken { margin-bottom: 15px; }
 
-    /* Algemene knopstijl voor ALLE knoppen */
     .hoofdstuk-btn,
     .subhoofdstuk-btn {
       padding: 10px 15px;
@@ -27,7 +24,6 @@
       transition: 0.2s;
     }
 
-    /* Hover animatie voor ALLE knoppen */
     .hoofdstuk-btn:hover,
     .subhoofdstuk-btn:hover:not(.quiz-btn) {
       border-width: 2px;
@@ -36,13 +32,11 @@
       transform: translateY(-2px);
     }
 
-    /* Quiz-knop krijgt eigen kleur */
     .quiz-btn {
       background: #BF0D0D;
       border-color: #8a0909;
     }
 
-    /* Hover voor quiz-knop */
     .quiz-btn:hover {
       border-width: 2px;
       border-color: #5c0606;
@@ -55,101 +49,181 @@
       margin: 10px 0;
       background: #f0f0f0;
       border-radius: 6px;
+      color:black;
     }
 
-    .woord small {
-      color: #555;
+    .woord small { color: #555; }
+
+    .lang-switch {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .lang-switch button {
+      padding: 4px 8px;
+      font-size: 12px;
+      background: #222;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .lang-switch button.active {
+      background: #51A6E8;
+      border-color: #0f6f99;
     }
   </style>
 </head>
 
 <body>
-  <h1>Woorden per Caput</h1>
 
-  <div id="hoofdstukken">Hoofdstukken laden...</div>
+  <!-- Taalkeuze -->
+  <div class="lang-switch">
+    <button id="btn-nl">NL</button>
+    <button id="btn-en">EN</button>
+  </div>
+
+  <h1 data-i18n="la_words_title"></h1>
+
+  <div id="hoofdstukken" data-i18n="la_loading_chapters"></div>
   <div id="subHoofdstukken"></div>
 
   <h2 id="caputTitel"></h2>
   <h3 id="subTitel"></h3>
   <div id="woordenLijst"></div>
 
-  <script>
-    let woordenData = {};
-    let huidigCaput = null;
-    let huidigSub = null;
+<script>
+/* ------------------------------
+   TAALENGINE
+------------------------------ */
 
-    async function loadJSON() {
-      const res = await fetch("caput.json");
-      woordenData = await res.json();
+let currentLang = "nl";
+let translationsCache = null;
 
-      const hoofdstukkenDiv = document.getElementById("hoofdstukken");
-      hoofdstukkenDiv.innerHTML = "";
+async function loadTranslations() {
+  if (translationsCache) return translationsCache;
+  const res = await fetch("../../../languages/languages.json");
+  translationsCache = await res.json();
+  return translationsCache;
+}
 
-      Object.keys(woordenData).forEach(caput => {
-        const btn = document.createElement("button");
-        btn.className = "hoofdstuk-btn";
-        btn.textContent = caput;
-        btn.onclick = () => laadCaput(caput);
-        hoofdstukkenDiv.appendChild(btn);
-      });
-    }
+async function applyLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem("language", lang);
 
-    function laadCaput(caput) {
-      huidigCaput = caput;
-      huidigSub = null;
+  const t = await loadTranslations();
 
-      document.getElementById("caputTitel").textContent = "Hoofdstuk " + caput;
-      document.getElementById("subTitel").textContent = "";
-      document.getElementById("woordenLijst").innerHTML = "";
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (t[lang] && t[lang][key]) el.textContent = t[lang][key];
+  });
 
-      const subHoofdstukkenDiv = document.getElementById("subHoofdstukken");
-      subHoofdstukkenDiv.innerHTML = "";
+  document.getElementById("btn-nl").classList.toggle("active", lang === "nl");
+  document.getElementById("btn-en").classList.toggle("active", lang === "en");
+}
 
-      const subhoofdstukken = woordenData[caput];
+document.addEventListener("DOMContentLoaded", async () => {
+  let saved = localStorage.getItem("language");
 
-      Object.keys(subhoofdstukken).forEach(sub => {
-        const btn = document.createElement("button");
-        btn.className = "subhoofdstuk-btn";
-        btn.textContent = sub;
-        btn.onclick = () => laadSubHoofdstuk(caput, sub);
-        subHoofdstukkenDiv.appendChild(btn);
-      });
+  if (!saved) {
+    const browserLang = navigator.language.toLowerCase();
+    saved = browserLang.startsWith("nl") ? "nl" : "en";
+  }
 
-      const quizBtn = document.createElement("button");
-      quizBtn.className = "subhoofdstuk-btn quiz-btn";
-      quizBtn.textContent = "🎯 Quiz";
-      quizBtn.onclick = () => {
-        window.location.href = `quiz.html?caput=${huidigCaput}`;
-      };
-      subHoofdstukkenDiv.appendChild(quizBtn);
-    }
+  await applyLanguage(saved);
 
-    function laadSubHoofdstuk(caput, sub) {
-      huidigSub = sub;
+  document.getElementById("btn-nl").onclick = () => applyLanguage("nl");
+  document.getElementById("btn-en").onclick = () => applyLanguage("en");
+});
 
-      const lijst = document.getElementById("woordenLijst");
-      lijst.innerHTML = "";
+/* ------------------------------
+   CAPUT FUNCTIONALITEIT
+------------------------------ */
 
-      document.getElementById("subTitel").textContent = "Subhoofdstuk " + sub;
+let woordenData = {};
+let huidigCaput = null;
+let huidigSub = null;
 
-      const woorden = woordenData[caput][sub];
+async function loadJSON() {
+  const res = await fetch("caput.json");
+  woordenData = await res.json();
 
-      Object.keys(woorden).forEach(key => {
-        const item = woorden[key];
+  const hoofdstukkenDiv = document.getElementById("hoofdstukken");
+  hoofdstukkenDiv.innerHTML = "";
 
-        const div = document.createElement("div");
-        div.className = "woord";
+  Object.keys(woordenData).forEach(caput => {
+    const btn = document.createElement("button");
+    btn.className = "hoofdstuk-btn";
+    btn.textContent = caput;
+    btn.onclick = () => laadCaput(caput);
+    hoofdstukkenDiv.appendChild(btn);
+  });
+}
 
-        div.innerHTML = `
-          <b>${item.NL}</b> → ${item.LA}<br>
-          <small>${item.Gen ?? ""} ${item.Tel ?? ""}</small>
-        `;
+function laadCaput(caput) {
+  huidigCaput = caput;
+  huidigSub = null;
 
-        lijst.appendChild(div);
-      });
-    }
+  document.getElementById("caputTitel").textContent =
+    `${translationsCache[currentLang]["la_chapter"]} ${caput}`;
 
-    loadJSON();
-  </script>
+  document.getElementById("subTitel").textContent = "";
+  document.getElementById("woordenLijst").innerHTML = "";
+
+  const subHoofdstukkenDiv = document.getElementById("subHoofdstukken");
+  subHoofdstukkenDiv.innerHTML = "";
+
+  const subhoofdstukken = woordenData[caput];
+
+  Object.keys(subhoofdstukken).forEach(sub => {
+    const btn = document.createElement("button");
+    btn.className = "subhoofdstuk-btn";
+    btn.textContent = sub;
+    btn.onclick = () => laadSubHoofdstuk(caput, sub);
+    subHoofdstukkenDiv.appendChild(btn);
+  });
+
+  const quizBtn = document.createElement("button");
+  quizBtn.className = "subhoofdstuk-btn quiz-btn";
+  quizBtn.textContent = translationsCache[currentLang]["la_quiz"];
+  quizBtn.onclick = () => {
+    window.location.href = `quiz.html?caput=${huidigCaput}`;
+  };
+  subHoofdstukkenDiv.appendChild(quizBtn);
+}
+
+function laadSubHoofdstuk(caput, sub) {
+  huidigSub = sub;
+
+  const lijst = document.getElementById("woordenLijst");
+  lijst.innerHTML = "";
+
+  document.getElementById("subTitel").textContent =
+    `${translationsCache[currentLang]["la_subchapter"]} ${sub}`;
+
+  const woorden = woordenData[caput][sub];
+
+  Object.keys(woorden).forEach(key => {
+    const item = woorden[key];
+
+    const div = document.createElement("div");
+    div.className = "woord";
+
+    div.innerHTML = `
+      <b>${item.NL}</b> → ${item.LA}<br>
+      <small>${item.Gen ?? ""} ${item.Tel ?? ""}</small>
+    `;
+
+    lijst.appendChild(div);
+  });
+}
+
+loadJSON();
+</script>
+
 </body>
 </html>
