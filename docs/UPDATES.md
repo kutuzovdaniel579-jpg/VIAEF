@@ -14,7 +14,6 @@
 ![](https://img.shields.io/badge/v0.1.7.1.0_•_24/01/2026-darkcyan)
 →
 ![](https://img.shields.io/badge/v0.2.7.1.0_•_25/01/2026-darkred)
-25/01/2026
 
 
 ## 📌 Versie-overzicht
