@@ -1,6 +1,6 @@
 ## Documents
 
 - [README](docs/ABOUT.md)
-- [Warning](docs/WARNING.md)
+- [Status](docs/STATUS.md)
 - [Changelog](docs/UPDATES.md)
 ---
