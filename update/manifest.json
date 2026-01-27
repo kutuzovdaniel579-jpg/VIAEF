@@ -1,0 +1,6 @@
+{
+  "files": [
+    { "source": "update/file1.html", "target": "docs/file1.html" },
+    { "source": "update/data.json", "target": "data/data.json" }
+  ]
+}
