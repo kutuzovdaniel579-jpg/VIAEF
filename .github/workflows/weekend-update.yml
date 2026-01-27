@@ -1,0 +1,40 @@
+name: Weekend Auto Update
+
+on:
+  schedule:
+    - cron: "0 2 * * 6"   # zaterdag 02:00
+    - cron: "0 2 * * 0"   # zondag 02:00
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install jq (JSON parser)
+        run: sudo apt-get install -y jq
+
+      - name: Process manifest.json
+        run: |
+          manifest="update/manifest.json"
+
+          jq -c '.files[]' "$manifest" | while read item; do
+            src=$(echo "$item" | jq -r '.source')
+            dst=$(echo "$item" | jq -r '.target')
+
+            echo "Kopieer $src → $dst"
+
+            mkdir -p "$(dirname "$dst")"
+            cp "$src" "$dst"
+          done
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Weekend auto-update"
+          git push
