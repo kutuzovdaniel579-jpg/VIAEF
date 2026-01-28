@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title data-i18n="la_words_title">Caput — Woorden</title>
+  <title>Caput — Woorden</title>
 
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; background:black; color:white; }
@@ -53,43 +53,14 @@
     }
 
     .woord small { color: #555; }
-
-    .lang-switch {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      display: flex;
-      gap: 6px;
-    }
-
-    .lang-switch button {
-      padding: 4px 8px;
-      font-size: 12px;
-      background: #222;
-      color: #fff;
-      border: 1px solid #555;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .lang-switch button.active {
-      background: #51A6E8;
-      border-color: #0f6f99;
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- Taalkeuze -->
-  <div class="lang-switch">
-    <button id="btn-nl">NL</button>
-    <button id="btn-en">EN</button>
-  </div>
+  <h1>Caput — Woorden</h1>
 
-  <h1 data-i18n="la_words_title"></h1>
-
-  <div id="hoofdstukken" data-i18n="la_loading_chapters"></div>
+  <div id="hoofdstukken">Hoofdstukken laden…</div>
   <div id="subHoofdstukken"></div>
 
   <h2 id="caputTitel"></h2>
@@ -98,60 +69,7 @@
 
 <script>
 /* ------------------------------
-   TAALENGINE (ROBUST)
------------------------------- */
-
-let currentLang = "nl";
-let translationsCache = null;
-
-async function loadTranslations() {
-  if (translationsCache) return translationsCache;
-
-  try {
-    const res = await fetch("../../../languages/languages.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("Kon languages.json niet laden");
-    translationsCache = await res.json();
-    return translationsCache;
-  } catch (err) {
-    console.error("TAAL FOUT:", err);
-    translationsCache = { nl: {}, en: {} }; // Fallback
-    return translationsCache;
-  }
-}
-
-async function applyLanguage(lang) {
-  currentLang = lang;
-  localStorage.setItem("language", lang);
-
-  const t = await loadTranslations();
-
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.getAttribute("data-i18n");
-    if (t[lang] && t[lang][key]) {
-      el.textContent = t[lang][key];
-    }
-  });
-
-  document.getElementById("btn-nl").classList.toggle("active", lang === "nl");
-  document.getElementById("btn-en").classList.toggle("active", lang === "en");
-}
-
-document.addEventListener("DOMContentLoaded", async () => {
-  let saved = localStorage.getItem("language");
-
-  if (!saved) {
-    const browserLang = navigator.language.toLowerCase();
-    saved = browserLang.startsWith("nl") ? "nl" : "en";
-  }
-
-  await applyLanguage(saved);
-
-  document.getElementById("btn-nl").onclick = () => applyLanguage("nl");
-  document.getElementById("btn-en").onclick = () => applyLanguage("en");
-});
-
-/* ------------------------------
-   CAPUT FUNCTIONALITEIT (ROBUST)
+   CAPUT FUNCTIONALITEIT (ZONDER TAALENGINE)
 ------------------------------ */
 
 let woordenData = {};
@@ -160,7 +78,7 @@ let huidigSub = null;
 
 async function loadJSON() {
   const hoofdstukkenDiv = document.getElementById("hoofdstukken");
-  hoofdstukkenDiv.textContent = "Loading…";
+  hoofdstukkenDiv.textContent = "Hoofdstukken laden…";
 
   try {
     const res = await fetch("caput.json", { cache: "no-store" });
@@ -197,11 +115,7 @@ function laadCaput(caput) {
   huidigCaput = caput;
   huidigSub = null;
 
-  const t = translationsCache?.[currentLang] ?? {};
-
-  document.getElementById("caputTitel").textContent =
-    `${t["la_chapter"] ?? "Caput"} ${caput}`;
-
+  document.getElementById("caputTitel").textContent = `Caput ${caput}`;
   document.getElementById("subTitel").textContent = "";
   document.getElementById("woordenLijst").innerHTML = "";
 
@@ -225,7 +139,7 @@ function laadCaput(caput) {
 
   const quizBtn = document.createElement("button");
   quizBtn.className = "subhoofdstuk-btn quiz-btn";
-  quizBtn.textContent = t["la_quiz"] ?? "Quiz";
+  quizBtn.textContent = "Quiz";
   quizBtn.onclick = () => {
     window.location.href = `quiz.html?caput=${huidigCaput}`;
   };
@@ -238,10 +152,7 @@ function laadSubHoofdstuk(caput, sub) {
   const lijst = document.getElementById("woordenLijst");
   lijst.innerHTML = "";
 
-  const t = translationsCache?.[currentLang] ?? {};
-
-  document.getElementById("subTitel").textContent =
-    `${t["la_subchapter"] ?? "Subhoofdstuk"} ${sub}`;
+  document.getElementById("subTitel").textContent = `Subhoofdstuk ${sub}`;
 
   const woorden = woordenData[caput]?.[sub];
 
