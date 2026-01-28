@@ -1,12 +1,12 @@
 # 🔮 Upcoming
 ---
 
-## 🛠️ v0.1.7.1.0 — 25/01/2026
+## 🛠️ v0.1.7.1.0 — 28/01/2026
 - Website fix  
 
 | Version | Date | Changes |
 |--------|------|---------|
-| ![](https://img.shields.io/badge/v0.1.7.1.0-darkcyan) | 24/01/2026 | Website fix |
+| ![](https://img.shields.io/badge/v0.1.7.1.0-darkcyan) | 28/01/2026 | Website fix |
 
 ---
 
@@ -20,6 +20,6 @@
 
 | Version | Date | Changes |
 |--------|------|---------|
-| ![](https://img.shields.io/badge/v0.2.7.1.0-darkred) | 25/01/2026 | French learning<br>Dutch learning<br>English learning<br>Russian learning<br>History learning<br>Fully developed Geography |
+| ![](https://img.shields.io/badge/v0.2.7.1.0-darkred) | 28/01/2026 | French learning<br>Dutch learning<br>English learning<br>Russian learning<br>History learning<br>Fully developed Geography |
 
 ---
