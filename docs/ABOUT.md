@@ -62,4 +62,15 @@ The Version structure is as followed
 - 4 stands for mayor bug fixes
 - 5 stands for small bug fixes
 
+---
+## ⛩️ Source
+
+The Voc/Gramm/cult/literature for latin is used from
+the dutch book: "Pegasus Novus".
+Made by Pelcmans
+
+We mainly use it bc i mean its better
+from an school book then internet
+the
+
 https://kutuzovdaniel579-jpg.github.io/VIAEF
