@@ -2417,123 +2417,159 @@
 
 }
 
+"C6": {
   "C6.2": {
-  "copia": {
-    "NL": "de hoeveelheid; de gelegenheid",
-    "LA": "copia",
-    "Gen": "copiae"
+    "copia": { "NL": "de hoeveelheid; de gelegenheid", "LA": "copia", "Gen": "copiae" },
+    "sermo": { "NL": "het gesprek; het taalgebruik", "LA": "sermo", "Gen": "sermonis" },
+    "vates": { "NL": "de waarzegger; de dichter", "LA": "vates", "Gen": "vatis" },
+    "voluntas": { "NL": "de wil", "LA": "voluntas", "Gen": "voluntatis" },
+    "aureus": { "NL": "gouden", "LA": "aureus", "Gen": "~a, ~um" },
+    "medius": { "NL": "middelste; het midden van", "LA": "medius", "Gen": "~a, ~um" },
+    "obscurus": { "NL": "duister; onbeduidend", "LA": "obscurus", "Gen": "~a, ~um" },
+    "brevis": { "NL": "kort", "LA": "brevis", "Gen": "~, breve; brevis" },
+    "mortalis": { "NL": "sterfelijk", "LA": "mortalis", "Gen": "~, mortale; mortal-is" },
+    "nobilis": { "NL": "adellijk; beroemd", "LA": "nobilis", "Gen": "~, nobile; nobil-is" },
+    "omnis": { "NL": "geheel; elk", "LA": "omnis", "Gen": "~, omne; omn-is" },
+    "omnes": { "NL": "alle", "LA": "omnes", "Gen": "~, omnia; omnium" },
+    "tristis": { "NL": "droevig", "LA": "tristis", "Gen": "~, triste; trist-is" },
+    "audax": { "NL": "moedig; overmoedig", "LA": "audax", "Gen": "~, ~; audac-is" },
+    "dives": { "NL": "rijk", "LA": "dives", "Gen": "~, ~; divit-is" },
+    "ferox": { "NL": "woest; uitdagend", "LA": "ferox", "Gen": "~, ~; feroc-is" },
+    "ingens": { "NL": "reusachtig", "LA": "ingens", "Gen": "~, ~; ingent-is" },
+    "sapiens": { "NL": "wijs; verstandig", "LA": "sapiens", "Gen": "~, ~; sapient-is" },
+    "celer": { "NL": "snel", "LA": "celer", "Gen": "celeris, celere; celer-is" },
+    "incitare": { "NL": "aanvuren", "LA": "incitare", "Gen": "incito" },
+    "complere": { "NL": "vullen", "LA": "complere", "Gen": "compleo" },
+    "adhuc": { "NL": "tot nu toe; nog altijd", "LA": "adhuc", "Gen": "bijwoord" },
+    "diu": { "NL": "lange tijd", "LA": "diu", "Gen": "bijwoord" }
   },
-  "sermo": {
-    "NL": "het gesprek; het taalgebruik",
-    "LA": "sermo",
-    "Gen": "sermonis"
+
+  "C6.3": {
+    "fortis": { "NL": "dapper; sterk", "LA": "fortis", "Gen": "~, forte; fort-is" },
+    "praeda": { "NL": "de buit; de prooi", "LA": "praeda", "Gen": "praedae" },
+    "crudelis": { "NL": "wreed", "LA": "crudelis", "Gen": "~, crudele; crudel-is" },
+    "difficilis": { "NL": "moeilijk", "LA": "difficilis", "Gen": "~, difficile; difficil-is" },
+    "facilis": { "NL": "gemakkelijk", "LA": "facilis", "Gen": "~, facile; facil-is" },
+    "gravis": { "NL": "zwaar; ernstig", "LA": "gravis", "Gen": "~, grave; grav-is" },
+    "levis": { "NL": "licht", "LA": "levis", "Gen": "~, leve; lev-is" },
+    "similis": { "NL": "gelijk aan; gelijkend op", "LA": "similis", "Gen": "~, simile; simil-is" },
+    "utilis": { "NL": "nuttig", "LA": "utilis", "Gen": "~, utile; util-is" },
+    "atrox": { "NL": "vreselijk", "LA": "atrox", "Gen": "~, ~; atroc-is" },
+    "felix": { "NL": "gelukkig", "LA": "felix", "Gen": "~, ~; felic-is" },
+    "pauper": { "NL": "arm", "LA": "pauper", "Gen": "~, ~; pauper-is" },
+    "vetus": { "NL": "oud", "LA": "vetus", "Gen": "~, veter-is" },
+    "acer": { "NL": "scherp; fel", "LA": "acer", "Gen": "acris, acre; acr-is" }
   },
-  "vates": {
-    "NL": "de waarzegger; de dichter",
-    "LA": "vates",
-    "Gen": "vatis"
+
+  "C6.4": {
+    "minister": { "NL": "de dienaar", "LA": "minister", "Gen": "ministri" },
+    "fortuna": { "NL": "het lot; de toestand", "LA": "fortuna", "Gen": "fortunae" },
+    "ars": { "NL": "het vakmanschap; de kunst", "LA": "ars", "Gen": "artis" }
   },
-  "voluntas": {
-    "NL": "de wil",
-    "LA": "voluntas",
-    "Gen": "voluntatis"
+
+  "C6.5": {
+    "asinus": { "NL": "de ezel", "LA": "asinus", "Gen": "asini" },
+    "aurum": { "NL": "het goud", "LA": "aurum", "Gen": "auri" },
+    "collis": { "NL": "de heuvel", "LA": "collis", "Gen": "collis" },
+    "hostis": { "NL": "de vijand", "LA": "hostis", "Gen": "hostis" },
+    "libertas": { "NL": "de vrijheid", "LA": "libertas", "Gen": "libertatis" },
+    "vestis": { "NL": "de kleding", "LA": "vestis", "Gen": "vestis" },
+    "animal": { "NL": "het levend wezen; het dier", "LA": "animal", "Gen": "animalis" },
+    "dubitare": { "NL": "twijfelen; aarzelen", "LA": "dubitare", "Gen": "dubito" },
+    "imponere": { "NL": "plaatsen op; opleggen", "LA": "imponere", "Gen": "impono" },
+    "ferre": { "NL": "dragen; brengen", "LA": "ferre", "Gen": "fero" },
+    "afferre": { "NL": "brengen", "LA": "afferre", "Gen": "affero" },
+    "auferre": { "NL": "wegnemen; wegbrengen", "LA": "auferre", "Gen": "aufero" },
+    "offerre": { "NL": "aanbieden", "LA": "offerre", "Gen": "offero" },
+    "referre": { "NL": "terugbrengen; rapporteren", "LA": "referre", "Gen": "refero" },
+    "transferre": { "NL": "overbrengen", "LA": "transferre", "Gen": "transfero" },
+    "velle": { "NL": "willen", "LA": "velle", "Gen": "volo" },
+    "malle": { "NL": "liever willen", "LA": "malle", "Gen": "malo" },
+    "nolle": { "NL": "niet willen", "LA": "nolle", "Gen": "nolo" },
+    "mox": { "NL": "weldra", "LA": "mox", "Gen": "bijwoord" }
   },
-  "aureus": {
-    "NL": "gouden",
-    "LA": "aureus",
+
+  "C6.6": {
+    "dolus": { "NL": "de list", "LA": "dolus", "Gen": "doli" },
+    "calor": { "NL": "de warmte", "LA": "calor", "Gen": "caloris" },
+    "avis": { "NL": "de vogel", "LA": "avis", "Gen": "avis" },
+    "carmen": { "NL": "het lied; het gedicht", "LA": "carmen", "Gen": "carminis" },
+    "frigus": { "NL": "de kou", "LA": "frigus", "Gen": "frigoris" },
+    "mare": { "NL": "de zee", "LA": "mare", "Gen": "maris" },
+    "moenia": { "NL": "de stadsmuren", "LA": "moenia", "Gen": "moenium" },
+    "aeternus": { "NL": "eeuwig", "LA": "aeternus", "Gen": "~a, ~um" },
+    "expugnare": { "NL": "veroveren", "LA": "expugnare", "Gen": "expugno" },
+    "aliter": { "NL": "anders", "LA": "aliter", "Gen": "bijwoord" },
+    "facile": { "NL": "gemakkelijk", "LA": "facile", "Gen": "bijwoord" },
+    "multum": { "NL": "veel", "LA": "multum", "Gen": "bijwoord" },
+    "ac": { "NL": "en ook", "LA": "ac", "Gen": "voegwoord" },
+    "atque": { "NL": "en ook", "LA": "atque", "Gen": "voegwoord" }
+  },
+
+  "C6.10": {
+  "ala": {
+    "NL": "de vleugel",
+    "LA": "ala",
+    "Gen": "alae"
+  },
+  "copiae": {
+    "NL": "de troepen",
+    "LA": "copiae",
+    "Gen": "copiarum"
+  },
+  "custos": {
+    "NL": "de bewaker",
+    "LA": "custos",
+    "Gen": "custodis"
+  },
+  "arx": {
+    "NL": "de burcht",
+    "LA": "arx",
+    "Gen": "arcis"
+  },
+  "egregius": {
+    "NL": "buitengewoon",
+    "LA": "egregius",
     "Gen": "~a, ~um"
   },
-  "medius": {
-    "NL": "middelste; het midden van",
-    "LA": "medius",
+  "secundus": {
+    "NL": "tweede; gunstig",
+    "LA": "secundus",
     "Gen": "~a, ~um"
   },
-  "obscurus": {
-    "NL": "duister; onbeduidend",
-    "LA": "obscurus",
+  "tacitus": {
+    "NL": "zwijgend",
+    "LA": "tacitus",
     "Gen": "~a, ~um"
   },
-  "brevis": {
-    "NL": "kort",
-    "LA": "brevis",
-    "Gen": "~, breve; brevis"
+  "cedere": {
+    "NL": "gaan; wijken",
+    "LA": "cedere",
+    "Gen": "cedo"
   },
-  "mortalis": {
-    "NL": "sterfelijk",
-    "LA": "mortalis",
-    "Gen": "~, mortale; mortal-is"
+  "discedere": {
+    "NL": "uiteengaan; weggaan",
+    "LA": "discedere",
+    "Gen": "discedo"
   },
-  "nobilis": {
-    "NL": "adellijk; beroemd",
-    "LA": "nobilis",
-    "Gen": "~, nobile; nobil-is"
+  "colere": {
+    "NL": "bewerken; bewonen; vereren",
+    "LA": "colere",
+    "Gen": "colo"
   },
-  "omnis": {
-    "NL": "geheel; elk",
-    "LA": "omnis",
-    "Gen": "~, omne; omn-is"
+  "custodire": {
+    "NL": "bewaken",
+    "LA": "custodire",
+    "Gen": "custodio"
   },
-  "omnes": {
-    "NL": "alle",
-    "LA": "omnes",
-    "Gen": "~, omnia; omnium"
-  },
-  "tristis": {
-    "NL": "droevig",
-    "LA": "tristis",
-    "Gen": "~, triste; trist-is"
-  },
-  "audax": {
-    "NL": "moedig; overmoedig",
-    "LA": "audax",
-    "Gen": "~, ~; audac-is"
-  },
-  "dives": {
-    "NL": "rijk",
-    "LA": "dives",
-    "Gen": "~, ~; divit-is"
-  },
-  "ferox": {
-    "NL": "woest; uitdagend",
-    "LA": "ferox",
-    "Gen": "~, ~; feroc-is"
-  },
-  "ingens": {
-    "NL": "reusachtig",
-    "LA": "ingens",
-    "Gen": "~, ~; ingent-is"
-  },
-  "sapiens": {
-    "NL": "wijs; verstandig",
-    "LA": "sapiens",
-    "Gen": "~, ~; sapient-is"
-  },
-  "celer": {
-    "NL": "snel",
-    "LA": "celer",
-    "Gen": "celeris, celere; celer-is"
-  },
-  "incitare": {
-    "NL": "aanvuren",
-    "LA": "incitare",
-    "Gen": "incito"
-  },
-  "complere": {
-    "NL": "vullen",
-    "LA": "complere",
-    "Gen": "compleo"
-  },
-  "adhuc": {
-    "NL": "tot nu toe; nog altijd",
-    "LA": "adhuc",
-    "Gen": "bijwoord"
-  },
-  "diu": {
-    "NL": "lange tijd",
-    "LA": "diu",
+  "interim": {
+    "NL": "intussen",
+    "LA": "interim",
     "Gen": "bijwoord"
   }
 }
 
 }
+}
+
 
