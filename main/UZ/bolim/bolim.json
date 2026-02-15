@@ -133,4 +133,901 @@
       }
     }
   },
+  "1B": {
+  "Thema": "familie",
+
+  "1.1B": {
+    "Subthema": "ouders",
+    "moeder": {
+      "uz": "она",
+      "uzn": "ona",
+      "uitspraak": "ona",
+      "formeel": "ona",
+      "informeel": "ona"
+    },
+    "vader": {
+      "uz": "ота",
+      "uzn": "ota",
+      "uitspraak": "ota",
+      "formeel": "ota",
+      "informeel": "ota"
+    },
+    "ouder": {
+      "uz": "ота‑она",
+      "uzn": "ota‑ona",
+      "uitspraak": "ota‑ona",
+      "formeel": "ota‑ona",
+      "informeel": "ota‑ona"
+    },
+    "stiefmoeder": {
+      "uz": "ўгай она",
+      "uzn": "ugay ona",
+      "uitspraak": "oegaj ona",
+      "formeel": "ugay ona",
+      "informeel": "ugay ona"
+    },
+    "stiefvader": {
+      "uz": "ўгай ота",
+      "uzn": "ugay ota",
+      "uitspraak": "oegaj ota",
+      "formeel": "ugay ota",
+      "informeel": "ugay ota"
+    },
+    "pleegmoeder": {
+      "uz": "тарбиячи она",
+      "uzn": "tarbiyachi ona",
+      "uitspraak": "tar-bia-tsji ona",
+      "formeel": "tarbiyachi ona",
+      "informeel": "tarbiyachi ona"
+    },
+    "pleegvader": {
+      "uz": "тарбиячи ота",
+      "uzn": "tarbiyachi ota",
+      "uitspraak": "tar-bia-tsji ota",
+      "formeel": "tarbiyachi ota",
+      "informeel": "tarbiyachi ota"
+    },
+    "biologische_moeder": {
+      "uz": "биологик она",
+      "uzn": "biologik ona",
+      "uitspraak": "bio-logik ona",
+      "formeel": "biologik ona",
+      "informeel": "biologik ona"
+    },
+    "biologische_vader": {
+      "uz": "биологик ота",
+      "uzn": "biologik ota",
+      "uitspraak": "bio-logik ota",
+      "formeel": "biologik ota",
+      "informeel": "biologik ota"
+    },
+    "voogd": {
+      "uz": "ҳомий",
+      "uzn": "homiy",
+      "uitspraak": "homij",
+      "formeel": "homiy",
+      "informeel": "homiy"
+    },
+    "ouderfiguur": {
+      "uz": "ота‑она ўрнидаги шахс",
+      "uzn": "ota‑ona o‘rnidagi shaxs",
+      "uitspraak": "ota‑ona oernidagi sjachs",
+      "formeel": "ota‑ona o‘rnidagi shaxs",
+      "informeel": "ota‑ona o‘rnidagi shaxs"
+    },
+    "adoptieouder": {
+      "uz": "асраб олувчи",
+      "uzn": "asrab oluvchi",
+      "uitspraak": "asrab oloe-vtsji",
+      "formeel": "asrab oluvchi",
+      "informeel": "asrab oluvchi"
+    },
+    "zwangere_moeder": {
+      "uz": "ҳомиладор она",
+      "uzn": "homilador ona",
+      "uitspraak": "homila-dor ona",
+      "formeel": "homilador ona",
+      "informeel": "homilador ona"
+    },
+    "alleenstaande_moeder": {
+      "uz": "яланғоч она",
+      "uzn": "yalang‘och ona",
+      "uitspraak": "jalang-otsj ona",
+      "formeel": "yalang‘och ona",
+      "informeel": "yalang‘och ona"
+    },
+    "alleenstaande_vader": {
+      "uz": "яланғоч ота",
+      "uzn": "yalang‘och ota",
+      "uitspraak": "jalang-otsj ota",
+      "formeel": "yalang‘och ota",
+      "informeel": "yalang‘och ota"
+    }
+  },
+
+  "1.2B": {
+    "Subthema": "kinderen",
+    "kind": {
+      "uz": "бола",
+      "uzn": "bola",
+      "uitspraak": "bola",
+      "formeel": "bola",
+      "informeel": "bola"
+    },
+    "zoon": {
+      "uz": "ўғил",
+      "uzn": "o‘g‘il",
+      "uitspraak": "oe-ghil",
+      "formeel": "o‘g‘il",
+      "informeel": "o‘g‘il"
+    },
+    "dochter": {
+      "uz": "қиз",
+      "uzn": "qiz",
+      "uitspraak": "kiz",
+      "formeel": "qiz",
+      "informeel": "qiz"
+    },
+    "stiefkind": {
+      "uz": "ўгай бола",
+      "uzn": "ugay bola",
+      "uitspraak": "oegaj bola",
+      "formeel": "ugay bola",
+      "informeel": "ugay bola"
+    },
+    "pleegkind": {
+      "uz": "тарбияланувчи",
+      "uzn": "tarbiyalanuvchi",
+      "uitspraak": "tar-bia-la-noev-tsji",
+      "formeel": "tarbiyalanuvchi",
+      "informeel": "tarbiyalanuvchi"
+    },
+    "adoptiekind": {
+      "uz": "асраб олинган бола",
+      "uzn": "asrab olingan bola",
+      "uitspraak": "asrab olingan bola",
+      "formeel": "asrab olingan bola",
+      "informeel": "asrab olingan bola"
+    },
+    "baby": {
+      "uz": "чаға",
+      "uzn": "chaga",
+      "uitspraak": "tsjaga",
+      "formeel": "chaga",
+      "informeel": "chaga"
+    }
+  },
+
+  "1.3B": {
+    "Subthema": "broers_en_zussen",
+    "broer": {
+      "uz": "ака / ука",
+      "uzn": "aka / uka",
+      "uitspraak": "aka / oeka",
+      "formeel": "aka / uka",
+      "informeel": "aka / uka"
+    },
+    "zus": {
+      "uz": "опа / сингил",
+      "uzn": "opa / singil",
+      "uitspraak": "opa / singil",
+      "formeel": "opa / singil",
+      "informeel": "opa / singil"
+    },
+    "stiefbroer": {
+      "uz": "ўгай ака",
+      "uzn": "ugay aka",
+      "uitspraak": "oegaj aka",
+      "formeel": "ugay aka",
+      "informeel": "ugay aka"
+    },
+    "stiefzus": {
+      "uz": "ўгай опа",
+      "uzn": "ugay opa",
+      "uitspraak": "oegaj opa",
+      "formeel": "ugay opa",
+      "informeel": "ugay opa"
+    },
+    "halfbroer": {
+      "uz": "ўгай ука",
+      "uzn": "ugay uka",
+      "uitspraak": "oegaj oeka",
+      "formeel": "ugay uka",
+      "informeel": "ugay uka"
+    },
+    "halfzus": {
+      "uz": "ўгай сингил",
+      "uzn": "ugay singil",
+      "uitspraak": "oegaj singil",
+      "formeel": "ugay singil",
+      "informeel": "ugay singil"
+    }
+  },
+
+  "1.4B": {
+    "Subthema": "grootouders",
+    "grootmoeder": {
+      "uz": "буvi",
+      "uzn": "buvi",
+      "uitspraak": "boewi",
+      "formeel": "buvi",
+      "informeel": "buvi"
+    },
+    "grootvader": {
+      "uz": "буva",
+      "uzn": "buva",
+      "uitspraak": "boewa",
+      "formeel": "buva",
+      "informeel": "buva"
+    },
+    "oma": {
+      "uz": "буvi",
+      "uzn": "buvi",
+      "uitspraak": "boewi",
+      "formeel": "buvi",
+      "informeel": "buvi"
+    },
+    "opa": {
+      "uz": "буva",
+      "uzn": "buva",
+      "uitspraak": "boewa",
+      "formeel": "buva",
+      "informeel": "buva"
+    }
+  },
+
+  "1.5B": {
+    "Subthema": "kleinkinderen",
+    "kleinkind": {
+      "uz": "невара",
+      "uzn": "nevara",
+      "uitspraak": "nevara",
+      "formeel": "nevara",
+      "informeel": "nevara"
+    },
+    "kleinzoon": {
+      "uz": "невара ўғил",
+      "uzn": "nevara o‘g‘il",
+      "uitspraak": "nevara oe-ghil",
+      "formeel": "nevara o‘g‘il",
+      "informeel": "nevara o‘g‘il"
+    },
+    "kleindochter": {
+      "uz": "невара қиз",
+      "uzn": "nevara qiz",
+      "uitspraak": "nevara kiz",
+      "formeel": "nevara qiz",
+      "informeel": "nevara qiz"
+    }
+  },
+
+  "1.6B": {
+    "Subthema": "overige_familie",
+    "familielid": {
+      "uz": "қариндош",
+      "uzn": "qarindosh",
+      "uitspraak": "karindosj",
+      "formeel": "qarindosh",
+      "informeel": "qarindosh"
+    },
+    "verwant": {
+      "uz": "яқин қариндош",
+      "uzn": "yaqin qarindosh",
+      "uitspraak": "jakin karindosj",
+      "formeel": "yaqin qarindosh",
+      "informeel": "yaqin qarindosh"
+    }
+  },
+
+  "1.7B": {
+    "Subthema": "huwelijk_en_partners",
+    "partner": {
+      "uz": "шерик",
+      "uzn": "sherik",
+      "uitspraak": "sjerik",
+      "formeel": "sherik",
+      "informeel": "sherik"
+    },
+    "echtgenoot": {
+      "uz": "эр",
+      "uzn": "er",
+      "uitspraak": "er",
+      "formeel": "er",
+      "informeel": "er"
+    },
+    "echtgenote": {
+      "uz": "хотин",
+      "uzn": "xotin",
+      "uitspraak": "chotin",
+      "formeel": "xotin",
+      "informeel": "xotin"
+    },
+    "verloofde": {
+      "uz": "совчи",
+      "uzn": "sovchi",
+      "uitspraak": "sov-tsji",
+      "formeel": "sovchi",
+      "informeel": "sovchi"
+    }
+  },
+
+  "1.8B": {
+    "Subthema": "uitgebreide_familie",
+    "oom": {
+      "uz": "амаки / тог‘а",
+      "uzn": "amaki / toga",
+      "uitspraak": "amaki / toga",
+      "formeel": "amaki / toga",
+      "informeel": "amaki / toga"
+    },
+    "tante": {
+      "uz": "хола / амма",
+      "uzn": "xola / amma",
+      "uitspraak": "chola / amma",
+      "formeel": "xola / amma",
+      "informeel": "xola / amma"
+    },
+    "neef": {
+      "uz": "жиян",
+      "uzn": "jiyan",
+      "uitspraak": "djijan",
+      "formeel": "jiyan",
+      "informeel": "jiyan"
+    },
+    "nicht": {
+      "uz": "жиян",
+      "uzn": "jiyan",
+      "uitspraak": "djijan",
+      "formeel": "jiyan",
+      "informeel": "jiyan"
+    }
+  }
+},
+"2B": {
+  "Thema": "school",
+
+  "2.1B": {
+    "Subthema": "schooltypen",
+    "school": {
+      "uz": "мактаб",
+      "uzn": "maktab",
+      "uitspraak": "maktab",
+      "formeel": "maktab",
+      "informeel": "maktab"
+    },
+    "basisschool": {
+      "uz": "бошланғич мактаб",
+      "uzn": "boshlang‘ich maktab",
+      "uitspraak": "boshlang-gitsj maktab",
+      "formeel": "boshlang‘ich maktab",
+      "informeel": "boshlang‘ich maktab"
+    },
+    "middelbare_school": {
+      "uz": "ўрта мактаб",
+      "uzn": "o‘rta maktab",
+      "uitspraak": "oerta maktab",
+      "formeel": "o‘rta maktab",
+      "informeel": "o‘rta maktab"
+    },
+    "universiteit": {
+      "uz": "университет",
+      "uzn": "universitet",
+      "uitspraak": "universitet",
+      "formeel": "universitet",
+      "informeel": "universitet"
+    }
+  },
+
+  "2.2B": {
+    "Subthema": "schoolruimtes",
+    "klaslokaal": {
+      "uz": "синф хонаси",
+      "uzn": "sinfxonasi",
+      "uitspraak": "sinf-cho-nasi",
+      "formeel": "sinfxonasi",
+      "informeel": "sinfxonasi"
+    },
+    "bibliotheek": {
+      "uz": "кутубхона",
+      "uzn": "kutubxona",
+      "uitspraak": "koetoe-bchona",
+      "formeel": "kutubxona",
+      "informeel": "kutubxona"
+    },
+    "kantine": {
+      "uz": "ошхона",
+      "uzn": "oshxona",
+      "uitspraak": "osj-chona",
+      "formeel": "oshxona",
+      "informeel": "oshxona"
+    },
+    "gymzaal": {
+      "uz": "спорт зали",
+      "uzn": "sport zali",
+      "uitspraak": "sport zali",
+      "formeel": "sport zali",
+      "informeel": "sport zali"
+    }
+  },
+
+  "2.3B": {
+    "Subthema": "schoolmateriaal",
+    "boek": {
+      "uz": "китоб",
+      "uzn": "kitob",
+      "uitspraak": "kitob",
+      "formeel": "kitob",
+      "informeel": "kitob"
+    },
+    "schrift": {
+      "uz": "дафтар",
+      "uzn": "daftar",
+      "uitspraak": "daftar",
+      "formeel": "daftar",
+      "informeel": "daftar"
+    },
+    "pen": {
+      "uz": "ручка",
+      "uzn": "ruchka",
+      "uitspraak": "roetsjka",
+      "formeel": "ruchka",
+      "informeel": "ruchka"
+    },
+    "potlood": {
+      "uz": "қалам",
+      "uzn": "qalam",
+      "uitspraak": "kalam",
+      "formeel": "qalam",
+      "informeel": "qalam"
+    },
+    "rugzak": {
+      "uz": "рюкзак",
+      "uzn": "ryukzak",
+      "uitspraak": "rjoekzak",
+      "formeel": "ryukzak",
+      "informeel": "ryukzak"
+    }
+  },
+
+  "2.4B": {
+    "Subthema": "personeel",
+    "leraar": {
+      "uz": "ўқитувчи",
+      "uzn": "o‘qituvchi",
+      "uitspraak": "oekitoev-tsji",
+      "formeel": "o‘qituvchi",
+      "informeel": "o‘qituvchi"
+    },
+    "directeur": {
+      "uz": "директор",
+      "uzn": "direktor",
+      "uitspraak": "direktor",
+      "formeel": "direktor",
+      "informeel": "direktor"
+    },
+    "conciërge": {
+      "uz": "хозим",
+      "uzn": "xozim",
+      "uitspraak": "chozim",
+      "formeel": "xozim",
+      "informeel": "xozim"
+    },
+    "assistent": {
+      "uz": "ёрдамчи",
+      "uzn": "yordamchi",
+      "uitspraak": "jordam-tsji",
+      "formeel": "yordamchi",
+      "informeel": "yordamchi"
+    }
+  },
+
+  "2.5B": {
+    "Subthema": "leerlingen",
+    "leerling": {
+      "uz": "ўқувчи",
+      "uzn": "o‘quvchi",
+      "uitspraak": "oekoew-tsji",
+      "formeel": "o‘quvchi",
+      "informeel": "o‘quvchi"
+    },
+    "klasgenoot": {
+      "uz": "синфдош",
+      "uzn": "sinfdosh",
+      "uitspraak": "sinf-dosj",
+      "formeel": "sinfdosh",
+      "informeel": "sinfdosh"
+    },
+    "nieuweling": {
+      "uz": "янги ўқувчи",
+      "uzn": "yangi o‘quvchi",
+      "uitspraak": "jangi oekoew-tsji",
+      "formeel": "yangi o‘quvchi",
+      "informeel": "yangi o‘quvchi"
+    }
+  },
+
+  "2.6B": {
+    "Subthema": "vakken",
+    "wiskunde": {
+      "uz": "математика",
+      "uzn": "matematika",
+      "uitspraak": "matematika",
+      "formeel": "matematika",
+      "informeel": "matematika"
+    },
+    "taal": {
+      "uz": "тил",
+      "uzn": "til",
+      "uitspraak": "til",
+      "formeel": "til",
+      "informeel": "til"
+    },
+    "geschiedenis": {
+      "uz": "тарих",
+      "uzn": "tarix",
+      "uitspraak": "tarich",
+      "formeel": "tarix",
+      "informeel": "tarix"
+    },
+    "biologie": {
+      "uz": "биология",
+      "uzn": "biologiya",
+      "uitspraak": "biologija",
+      "formeel": "biologiya",
+      "informeel": "biologiya"
+    }
+  },
+
+  "2.7B": {
+    "Subthema": "activiteiten",
+    "huiswerk": {
+      "uz": "уй вазифаси",
+      "uzn": "uy vazifasi",
+      "uitspraak": "oej vazifasi",
+      "formeel": "uy vazifasi",
+      "informeel": "uy vazifasi"
+    },
+    "studeren": {
+      "uz": "ўқиш",
+      "uzn": "o‘qish",
+      "uitspraak": "oekisj",
+      "formeel": "o‘qish",
+      "informeel": "o‘qish"
+    },
+    "presenteren": {
+      "uz": "тақдим қилиш",
+      "uzn": "taqdim qilish",
+      "uitspraak": "takdim kilisj",
+      "formeel": "taqdim qilish",
+      "informeel": "taqdim qilish"
+    },
+    "sporten": {
+      "uz": "спорт билан шуғулланиш",
+      "uzn": "sport bilan shug‘ullanish",
+      "uitspraak": "sport bilan sjoegoellanish",
+      "formeel": "sport bilan shug‘ullanish",
+      "informeel": "sport bilan shug‘ullanish"
+    }
+  },
+
+  "2.8B": {
+    "Subthema": "administratie",
+    "rapport": {
+      "uz": "баҳо қоғози",
+      "uzn": "baho qog‘ozi",
+      "uitspraak": "baho kog-ozi",
+      "formeel": "baho qog‘ozi",
+      "informeel": "baho qog‘ozi"
+    },
+    "agenda": {
+      "uz": "кун тартиби",
+      "uzn": "kun tartibi",
+      "uitspraak": "koen tartibi",
+      "formeel": "kun tartibi",
+      "informeel": "kun tartibi"
+    },
+    "inschrijving": {
+      "uz": "рўйхатдан ўтиш",
+      "uzn": "ro‘yxatdan o‘tish",
+      "uitspraak": "roej-chatdan oetisj",
+      "formeel": "ro‘yxatdan o‘tish",
+      "informeel": "ro‘yxatdan o‘tish"
+    }
+  }
+},
+"3B": {
+  "Thema": "begroeten_ontmoeten_afscheid",
+
+  "3.1B": {
+    "Subthema": "begroeten",
+    "hallo": {
+      "uz": "салом",
+      "uzn": "salom",
+      "uitspraak": "salom",
+      "formeel": "salom",
+      "informeel": "salom"
+    },
+    "goede_dag": {
+      "uz": "хайрли кун",
+      "uzn": "xayrli kun",
+      "uitspraak": "chajrli koen",
+      "formeel": "xayrli kun",
+      "informeel": "xayrli kun"
+    },
+    "goedemorgen": {
+      "uz": "хайрли тонг",
+      "uzn": "xayrli tong",
+      "uitspraak": "chajrli tong",
+      "formeel": "xayrli tong",
+      "informeel": "xayrli tong"
+    },
+    "goedenavond": {
+      "uz": "хайрли кеч",
+      "uzn": "xayrli kech",
+      "uitspraak": "chajrli ketsj",
+      "formeel": "xayrli kech",
+      "informeel": "xayrli kech"
+    },
+    "hoe_gaat_het": {
+      "uz": "қалейсиз",
+      "uzn": "qalaysiz",
+      "uitspraak": "kalajsiz",
+      "formeel": "qalaysiz",
+      "informeel": "qalaysan"
+    }
+  },
+
+  "3.2B": {
+    "Subthema": "ontmoeten",
+    "aangenaam": {
+      "uz": "танишганимдан хурсандман",
+      "uzn": "tanishganimdan xursandman",
+      "uitspraak": "tanishganimdan choersandman",
+      "formeel": "tanishganimdan xursandman",
+      "informeel": "tanishganimdan xursandman"
+    },
+    "mijn_naam_is": {
+      "uz": "менинг исмим ...",
+      "uzn": "mening ismim ...",
+      "uitspraak": "mening ismim",
+      "formeel": "mening ismim ...",
+      "informeel": "ismim ..."
+    },
+    "hoe_heet_jij": {
+      "uz": "исмингиз ким",
+      "uzn": "ismingiz kim",
+      "uitspraak": "ismingiz kim",
+      "formeel": "ismingiz kim",
+      "informeel": "isming kim"
+    },
+    "waar_kom_je_vandaan": {
+      "uz": "қаердансиз",
+      "uzn": "qayerdansiz",
+      "uitspraak": "kajerdansiz",
+      "formeel": "qayerdansiz",
+      "informeel": "qayerdansan"
+    }
+  },
+
+  "3.3B": {
+    "Subthema": "afscheid_nemen",
+    "tot_ziens": {
+      "uz": "хайр",
+      "uzn": "xayr",
+      "uitspraak": "chajr",
+      "formeel": "xayr",
+      "informeel": "xayr"
+    },
+    "dag": {
+      "uz": "саломат бўлинг",
+      "uzn": "salomat bo‘ling",
+      "uitspraak": "salomat boeling",
+      "formeel": "salomat bo‘ling",
+      "informeel": "salomat bo‘l"
+    },
+    "tot_later": {
+      "uz": "кейин кўришамиз",
+      "uzn": "keyin ko‘rishamiz",
+      "uitspraak": "kejin koerishamiz",
+      "formeel": "keyin ko‘rishamiz",
+      "informeel": "ko‘rishamiz"
+    },
+    "goedenacht": {
+      "uz": "хайрли тун",
+      "uzn": "xayrli tun",
+      "uitspraak": "chajrli toewn",
+      "formeel": "xayrli tun",
+      "informeel": "xayrli tun"
+    }
+  },
+
+  "3.4B": {
+    "Subthema": "sociale_basiszinnen",
+    "dankjewel": {
+      "uz": "рахмат",
+      "uzn": "rahmat",
+      "uitspraak": "rahmat",
+      "formeel": "rahmat",
+      "informeel": "rahmat"
+    },
+    "alstublieft": {
+      "uz": "илтимос",
+      "uzn": "iltimos",
+      "uitspraak": "iltimos",
+      "formeel": "iltimos",
+      "informeel": "iltimos"
+    },
+    "sorry": {
+      "uz": "кечирасиз",
+      "uzn": "kechirasiz",
+      "uitspraak": "ketsjirasiz",
+      "formeel": "kechirasiz",
+      "informeel": "kechir"
+    },
+    "geen_probleem": {
+      "uz": "муаммо йўқ",
+      "uzn": "muammo yo‘q",
+      "uitspraak": "moeammo jok",
+      "formeel": "muammo yo‘q",
+      "informeel": "muammo yo‘q"
+    }
+  }
+},
+  "4B": {
+  "Thema": "emoties_en_gevoelens",
+
+  "4.1B": {
+    "Subthema": "positief",
+    "blij": {
+      "uz": "хурсанд",
+      "uzn": "xursand",
+      "uitspraak": "choersand",
+      "formeel": "xursand",
+      "informeel": "xursand"
+    },
+    "tevreden": {
+      "uz": "мамнун",
+      "uzn": "mamnun",
+      "uitspraak": "mamnoen",
+      "formeel": "mamnun",
+      "informeel": "mamnun"
+    },
+    "enthousiast": {
+      "uz": "ҳайажонли",
+      "uzn": "hayajonli",
+      "uitspraak": "hajadzjonli",
+      "formeel": "hayajonli",
+      "informeel": "hayajonli"
+    }
+  },
+
+  "4.2B": {
+    "Subthema": "negatief",
+    "verdrietig": {
+      "uz": "хўнгин",
+      "uzn": "xo‘ngin",
+      "uitspraak": "choengin",
+      "formeel": "xo‘ngin",
+      "informeel": "xo‘ngin"
+    },
+    "boos": {
+      "uz": "жахлдор",
+      "uzn": "jaxldor",
+      "uitspraak": "djahldor",
+      "formeel": "jaxldor",
+      "informeel": "jaxldor"
+    },
+    "bang": {
+      "uz": "қўрққан",
+      "uzn": "qo‘rqqan",
+      "uitspraak": "koerkkan",
+      "formeel": "qo‘rqqan",
+      "informeel": "qo‘rqqan"
+    }
+  },
+
+  "4.3B": {
+    "Subthema": "neutraal",
+    "moe": {
+      "uz": "чарчаган",
+      "uzn": "charchagan",
+      "uitspraak": "tsjartsjagan",
+      "formeel": "charchagan",
+      "informeel": "charchagan"
+    },
+    "verveeld": {
+      "uz": "зериккан",
+      "uzn": "zerikkan",
+      "uitspraak": "zerikkan",
+      "formeel": "zerikkan",
+      "informeel": "zerikkan"
+    },
+    "rustig": {
+      "uz": "тинч",
+      "uzn": "tinch",
+      "uitspraak": "tintsj",
+      "formeel": "tinch",
+      "informeel": "tinch"
+    }
+  }
+},
+
+"5B": {
+  "Thema": "dagelijks_leven",
+
+  "5.1B": {
+    "Subthema": "basisacties",
+    "eten": {
+      "uz": "ейиш",
+      "uzn": "eyish",
+      "uitspraak": "ejisj",
+      "formeel": "eyish",
+      "informeel": "eyish"
+    },
+    "drinken": {
+      "uz": "ичиш",
+      "uzn": "ichish",
+      "uitspraak": "itsjisj",
+      "formeel": "ichish",
+      "informeel": "ichish"
+    },
+    "slapen": {
+      "uz": "ухлаш",
+      "uzn": "uxlash",
+      "uitspraak": "oechlash",
+      "formeel": "uxlash",
+      "informeel": "uxlash"
+    }
+  },
+
+  "5.2B": {
+    "Subthema": "dagelijkse_routine",
+    "opstaan": {
+      "uz": "туриш",
+      "uzn": "turish",
+      "uitspraak": "toerish",
+      "formeel": "turish",
+      "informeel": "turish"
+    },
+    "wassen": {
+      "uz": "ювиниш",
+      "uzn": "yuvinish",
+      "uitspraak": "joevinisj",
+      "formeel": "yuvinish",
+      "informeel": "yuvinish"
+    },
+    "aankleden": {
+      "uz": "кийиниш",
+      "uzn": "kiyinish",
+      "uitspraak": "kijinisj",
+      "formeel": "kiyinish",
+      "informeel": "kiyinish"
+    }
+  },
+
+  "5.3B": {
+    "Subthema": "bewegen",
+    "lopen": {
+      "uz": "юриш",
+      "uzn": "yurish",
+      "uitspraak": "joerish",
+      "formeel": "yurish",
+      "informeel": "yurish"
+    },
+    "rennen": {
+      "uz": "югуриш",
+      "uzn": "yugurish",
+      "uitspraak": "joegoerish",
+      "formeel": "yugurish",
+      "informeel": "yugurish"
+    },
+    "zitten": {
+      "uz": "ўтириш",
+      "uzn": "o‘tirish",
+      "uitspraak": "oetirish",
+      "formeel": "o‘tirish",
+      "informeel": "o‘tirish"
+    }
+  }
+}
 }
