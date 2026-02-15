@@ -109,6 +109,244 @@
         "formeel": "yalang‘och ota",
         "informeel": "yalang‘och ota"
       }
+    },
+
+    "1.2B": {
+      "Subthema": "kinderen",
+      "kind": {
+        "uz": "бола",
+        "uzn": "bola",
+        "uitspraak": "bola",
+        "formeel": "bola",
+        "informeel": "bola"
+      },
+      "zoon": {
+        "uz": "ўғил",
+        "uzn": "o‘g‘il",
+        "uitspraak": "oe-ghil",
+        "formeel": "o‘g‘il",
+        "informeel": "o‘g‘il"
+      },
+      "dochter": {
+        "uz": "қиз",
+        "uzn": "qiz",
+        "uitspraak": "kiz",
+        "formeel": "qiz",
+        "informeel": "qiz"
+      },
+      "stiefkind": {
+        "uz": "ўгай бола",
+        "uzn": "ugay bola",
+        "uitspraak": "oegaj bola",
+        "formeel": "ugay bola",
+        "informeel": "ugay bola"
+      },
+      "pleegkind": {
+        "uz": "тарбияланувчи",
+        "uzn": "tarbiyalanuvchi",
+        "uitspraak": "tar-bia-la-noev-tsji",
+        "formeel": "tarbiyalanuvchi",
+        "informeel": "tarbiyalanuvchi"
+      },
+      "adoptiekind": {
+        "uz": "асраб олинган бола",
+        "uzn": "asrab olingan bola",
+        "uitspraak": "asrab olingan bola",
+        "formeel": "asrab olingan bola",
+        "informeel": "asrab olingan bola"
+      },
+      "baby": {
+        "uz": "чаға",
+        "uzn": "chaga",
+        "uitspraak": "tsjaga",
+        "formeel": "chaga",
+        "informeel": "chaga"
+      }
+    },
+
+    "1.3B": {
+      "Subthema": "broers_en_zussen",
+      "broer": {
+        "uz": "ака / ука",
+        "uzn": "aka / uka",
+        "uitspraak": "aka / oeka",
+        "formeel": "aka / uka",
+        "informeel": "aka / uka"
+      },
+      "zus": {
+        "uz": "опа / сингил",
+        "uzn": "opa / singil",
+        "uitspraak": "opa / singil",
+        "formeel": "opa / singil",
+        "informeel": "opa / singil"
+      },
+      "stiefbroer": {
+        "uz": "ўгай ака",
+        "uzn": "ugay aka",
+        "uitspraak": "oegaj aka",
+        "formeel": "ugay aka",
+        "informeel": "ugay aka"
+      },
+      "stiefzus": {
+        "uz": "ўгай опа",
+        "uzn": "ugay opa",
+        "uitspraak": "oegaj opa",
+        "formeel": "ugay opa",
+        "informeel": "ugay opa"
+      },
+      "halfbroer": {
+        "uz": "ўгай ука",
+        "uzn": "ugay uka",
+        "uitspraak": "oegaj oeka",
+        "formeel": "ugay uka",
+        "informeel": "ugay uka"
+      },
+      "halfzus": {
+        "uz": "ўгай сингил",
+        "uzn": "ugay singil",
+        "uitspraak": "oegaj singil",
+        "formeel": "ugay singil",
+        "informeel": "ugay singil"
+      }
+    },
+
+    "1.4B": {
+      "Subthema": "grootouders",
+      "grootmoeder": {
+        "uz": "буvi",
+        "uzn": "buvi",
+        "uitspraak": "boewi",
+        "formeel": "buvi",
+        "informeel": "buvi"
+      },
+      "grootvader": {
+        "uz": "буva",
+        "uzn": "buva",
+        "uitspraak": "boewa",
+        "formeel": "buva",
+        "informeel": "buva"
+      },
+      "oma": {
+        "uz": "буvi",
+        "uzn": "buvi",
+        "uitspraak": "boewi",
+        "formeel": "buvi",
+        "informeel": "buvi"
+      },
+      "opa": {
+        "uz": "буva",
+        "uzn": "buva",
+        "uitspraak": "boewa",
+        "formeel": "buva",
+        "informeel": "buva"
+      }
+    },
+
+    "1.5B": {
+      "Subthema": "kleinkinderen",
+      "kleinkind": {
+        "uz": "невара",
+        "uzn": "nevara",
+        "uitspraak": "nevara",
+        "formeel": "nevara",
+        "informeel": "nevara"
+      },
+      "kleinzoon": {
+        "uz": "невара ўғил",
+        "uzn": "nevara o‘g‘il",
+        "uitspraak": "nevara oe-ghil",
+        "formeel": "nevara o‘g‘il",
+        "informeel": "nevara o‘g‘il"
+      },
+      "kleindochter": {
+        "uz": "невара қиз",
+        "uzn": "nevara qiz",
+        "uitspraak": "nevara kiz",
+        "formeel": "nevara qiz",
+        "informeel": "nevara qiz"
+      }
+    },
+
+    "1.6B": {
+      "Subthema": "overige_familie",
+      "familielid": {
+        "uz": "қариндош",
+        "uzn": "qarindosh",
+        "uitspraak": "karindosj",
+        "formeel": "qarindosh",
+        "informeel": "qarindosh"
+      },
+      "verwant": {
+        "uz": "яқин қариндош",
+        "uzn": "yaqin qarindosh",
+        "uitspraak": "jakin karindosj",
+        "formeel": "yaqin qarindosh",
+        "informeel": "yaqin qarindosh"
+      }
+    },
+
+    "1.7B": {
+      "Subthema": "huwelijk_en_partners",
+      "partner": {
+        "uz": "шерик",
+        "uzn": "sherik",
+        "uitspraak": "sjerik",
+        "formeel": "sherik",
+        "informeel": "sherik"
+      },
+      "echtgenoot": {
+        "uz": "эр",
+        "uzn": "er",
+        "uitspraak": "er",
+        "formeel": "er",
+        "informeel": "er"
+      },
+      "echtgenote": {
+        "uz": "хотин",
+        "uzn": "xotin",
+        "uitspraak": "chotin",
+        "formeel": "xotin",
+        "informeel": "xotin"
+      },
+      "verloofde": {
+        "uz": "совчи",
+        "uzn": "sovchi",
+        "uitspraak": "sov-tsji",
+        "formeel": "sovchi",
+        "informeel": "sovchi"
+      }
+    },
+
+    "1.8B": {
+      "Subthema": "uitgebreide_familie",
+      "oom": {
+        "uz": "амаки / тог‘а",
+        "uzn": "amaki / toga",
+        "uitspraak": "amaki / toga",
+        "formeel": "amaki / toga",
+        "informeel": "amaki / toga"
+      },
+      "tante": {
+        "uz": "хола / амма",
+        "uzn": "xola / amma",
+        "uitspraak": "chola / amma",
+        "formeel": "xola / amma",
+        "informeel": "xola / amma"
+      },
+      "neef": {
+        "uz": "жиян",
+        "uzn": "jiyan",
+        "uitspraak": "djijan",
+        "formeel": "jiyan",
+        "informeel": "jiyan"
+      },
+      "nicht": {
+        "uz": "жиян",
+        "uzn": "jiyan",
+        "uitspraak": "djijan",
+        "formeel": "jiyan",
+        "informeel": "jiyan"
+      }
     }
   }
 }
