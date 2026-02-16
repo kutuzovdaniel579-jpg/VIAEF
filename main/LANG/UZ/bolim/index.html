@@ -77,6 +77,32 @@ let woordenData = {};
 let huidigCaput = null;
 let huidigSub = null;
 
+/* -----------------------------------------
+      MICROSOFT EDGE STEM FORCEEREN
+------------------------------------------ */
+let edgeVoice = null;
+
+function loadVoices() {
+  const voices = speechSynthesis.getVoices();
+
+  // Zoek naar Microsoft-stemmen (Edge gebruikt deze)
+  edgeVoice = voices.find(v =>
+    v.name.toLowerCase().includes("microsoft") ||
+    v.voiceURI.toLowerCase().includes("microsoft")
+  );
+
+  if (!edgeVoice) {
+    console.warn("⚠ Microsoft Edge-stem niet gevonden. Fallback wordt gebruikt.");
+  }
+}
+
+// Stemmen kunnen async laden
+speechSynthesis.onvoiceschanged = loadVoices;
+loadVoices();
+
+/* -----------------------------------------
+                JSON LADEN
+------------------------------------------ */
 async function loadJSON() {
   const hoofdstukkenDiv = document.getElementById("hoofdstukken");
   hoofdstukkenDiv.textContent = "Hoofdstukken laden…";
@@ -168,14 +194,19 @@ function laadSubHoofdstuk(caput, sub) {
   });
 }
 
-/* -------------------------
-      TTS FUNCTIE
--------------------------- */
+/* -----------------------------------------
+                TTS FUNCTIE
+------------------------------------------ */
 function speak(text) {
   const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = "uz-UZ"; 
+  utter.lang = "uz-UZ";
   utter.rate = 1;
-  speechSynthesis.cancel(); 
+
+  if (edgeVoice) {
+    utter.voice = edgeVoice;
+  }
+
+  speechSynthesis.cancel();
   speechSynthesis.speak(utter);
 }
 
