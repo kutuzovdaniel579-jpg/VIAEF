@@ -31,10 +31,23 @@
     }
 
     .hoofdstuk-btn:hover,
-    .subhoofdstuk-btn:hover {
+    .subhoofdstuk-btn:hover:not(.quiz-btn) {
       border-width: 2px;
       border-color: #0b4f6d;
       box-shadow: 0 0 6px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ KNOP */
+    .quiz-btn {
+      background: #BF0D0D;
+      border-color: #8a0909;
+    }
+
+    .quiz-btn:hover {
+      border-width: 2px;
+      border-color: #5c0606;
+      box-shadow: 0 0 6px rgba(0,0,0,0.25);
       transform: translateY(-2px);
     }
 
@@ -85,7 +98,6 @@ let edgeVoice = null;
 function loadVoices() {
   const voices = speechSynthesis.getVoices();
 
-  // Zoek naar Microsoft-stemmen (Edge gebruikt deze)
   edgeVoice = voices.find(v =>
     v.name.toLowerCase().includes("microsoft") ||
     v.voiceURI.toLowerCase().includes("microsoft")
@@ -96,7 +108,6 @@ function loadVoices() {
   }
 }
 
-// Stemmen kunnen async laden
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
@@ -155,6 +166,15 @@ function laadCaput(caput) {
     btn.onclick = () => laadSubHoofdstuk(caput, key);
     subDiv.appendChild(btn);
   });
+
+  /* ⭐ QUIZ KNOP TOEVOEGEN */
+  const quizBtn = document.createElement("button");
+  quizBtn.className = "subhoofdstuk-btn quiz-btn";
+  quizBtn.textContent = "Quiz";
+  quizBtn.onclick = () => {
+    window.location.href = `quiz.html?caput=${huidigCaput}`;
+  };
+  subDiv.appendChild(quizBtn);
 }
 
 function laadSubHoofdstuk(caput, sub) {
