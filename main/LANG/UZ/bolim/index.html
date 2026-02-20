@@ -38,7 +38,6 @@
       transform: translateY(-2px);
     }
 
-    /* QUIZ KNOP */
     .quiz-btn {
       background: #BF0D0D;
       border-color: #8a0909;
@@ -91,25 +90,28 @@ let huidigCaput = null;
 let huidigSub = null;
 
 /* -----------------------------------------
-      MICROSOFT EDGE STEM FORCEEREN
+      Oezbeekse TTS STEM DETECTIE
 ------------------------------------------ */
-let edgeVoice = null;
+let uzVoice = null;
 
-function loadVoices() {
+function loadVoicesProperly() {
   const voices = speechSynthesis.getVoices();
 
-  edgeVoice = voices.find(v =>
-    v.name.toLowerCase().includes("microsoft") ||
-    v.voiceURI.toLowerCase().includes("microsoft")
+  if (!voices.length) {
+    setTimeout(loadVoicesProperly, 100);
+    return;
+  }
+
+  // Zoek Oezbeekse stem op taal (Edge heeft wél uzbek TTS)
+  uzVoice = voices.find(v =>
+    v.lang.toLowerCase().startsWith("uz")
   );
 
-  if (!edgeVoice) {
-    console.warn("⚠ Microsoft Edge-stem niet gevonden. Fallback wordt gebruikt.");
-  }
+  console.log("Gevonden Oezbeekse stem:", uzVoice);
 }
 
-speechSynthesis.onvoiceschanged = loadVoices;
-loadVoices();
+speechSynthesis.onvoiceschanged = loadVoicesProperly;
+loadVoicesProperly();
 
 /* -----------------------------------------
                 JSON LADEN
@@ -167,7 +169,6 @@ function laadCaput(caput) {
     subDiv.appendChild(btn);
   });
 
-  /* ⭐ QUIZ KNOP TOEVOEGEN */
   const quizBtn = document.createElement("button");
   quizBtn.className = "subhoofdstuk-btn quiz-btn";
   quizBtn.textContent = "Quiz";
@@ -196,11 +197,12 @@ function laadSubHoofdstuk(caput, sub) {
     const div = document.createElement("div");
     div.className = "woord";
 
-    const safeText = item.uzn.replace(/'/g, "\\'");
+    // HTML‑veilige encoding
+    const safeText = item.uzn.replace(/"/g, '&quot;');
 
     div.innerHTML = `
       <b>${key}</b>
-      <button class="tts-btn" onclick="speak('${safeText}')">🔊</button>
+      <button class="tts-btn" onclick="speak(&quot;${safeText}&quot;)">🔊</button>
       <br>
 
       <small>UZ (Cyrillisch):</small> ${item.uz}<br>
@@ -219,12 +221,15 @@ function laadSubHoofdstuk(caput, sub) {
 ------------------------------------------ */
 function speak(text) {
   const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = "uz-UZ";
-  utter.rate = 1;
 
-  if (edgeVoice) {
-    utter.voice = edgeVoice;
+  if (uzVoice) {
+    utter.voice = uzVoice;
+    utter.lang = uzVoice.lang;
+  } else {
+    utter.lang = "uz-UZ"; // fallback
   }
+
+  utter.rate = 1;
 
   speechSynthesis.cancel();
   speechSynthesis.speak(utter);
