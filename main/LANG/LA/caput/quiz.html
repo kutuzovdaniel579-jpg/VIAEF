@@ -95,11 +95,12 @@
   <h1>Quiz</h1>
 
   <div id="subSelect">
-    <p>Kies een subhoofdstuk:</p>
+    <p>Kies één of meerdere subhoofdstukken:</p>
     <div id="subButtons">Laden...</div>
+    <button id="confirmSubs" style="display:none; margin-top:10px;"
+            onclick="confirmSubSelection()">Bevestigen</button>
   </div>
 
-  <!-- NIEUW: VERTAALRICHTING -->
   <div id="translateSelect" style="display:none;">
     <p>Kies vertaalrichting:</p>
     <button onclick="setTranslateMode('NL-LA')">NL → LA</button>
@@ -133,12 +134,13 @@
     const urlParams = new URLSearchParams(window.location.search);
     const caput = urlParams.get("caput");
 
+    let caputData = {};
     let woorden = {};
     let keys = [];
     let index = 0;
     let score = 0;
     let mode = "Normal";
-    let translateMode = "NL-LA"; // standaard
+    let translateMode = "NL-LA";
     let timerInterval;
     let timeLeft = 10;
 
@@ -146,21 +148,49 @@
       const res = await fetch("caput.json");
       const data = await res.json();
 
-      const subhoofdstukken = data[caput];
+      caputData = data[caput];
       const subButtons = document.getElementById("subButtons");
       subButtons.innerHTML = "";
 
-      Object.keys(subhoofdstukken).forEach(sub => {
-        const btn = document.createElement("button");
-        btn.textContent = sub;
-        btn.onclick = () => selectSub(sub, subhoofdstukken[sub]);
-        subButtons.appendChild(btn);
+      Object.keys(caputData).forEach(sub => {
+        const wrapper = document.createElement("div");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = sub;
+
+        const label = document.createElement("label");
+        label.textContent = sub;
+        label.style.marginLeft = "8px";
+
+        wrapper.appendChild(checkbox);
+        wrapper.appendChild(label);
+        subButtons.appendChild(wrapper);
       });
+
+      document.getElementById("confirmSubs").style.display = "block";
     }
 
-    function selectSub(sub, woordenSet) {
-      woorden = woordenSet;
+    function confirmSubSelection() {
+      const checkboxes = document.querySelectorAll("#subButtons input[type='checkbox']");
+      let selectedSubs = [];
+
+      checkboxes.forEach(cb => {
+        if (cb.checked) selectedSubs.push(cb.value);
+      });
+
+      if (selectedSubs.length === 0) {
+        alert("Kies minstens één subhoofdstuk.");
+        return;
+      }
+
+      woorden = {};
+      selectedSubs.forEach(sub => {
+        Object.assign(woorden, caputData[sub]);
+      });
+
       keys = Object.keys(woorden);
+
       document.getElementById("subSelect").style.display = "none";
       document.getElementById("translateSelect").style.display = "block";
     }
