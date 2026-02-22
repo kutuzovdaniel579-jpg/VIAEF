@@ -9,7 +9,8 @@
     body { font-family: Arial; padding: 20px; }
 
     #subSelect button,
-    #translateSelect button {
+    #translateSelect button,
+    #genusSelect button {
       padding: 10px 15px;
       margin: 5px;
       font-size: 16px;
@@ -21,7 +22,8 @@
     }
 
     #subSelect button:hover,
-    #translateSelect button:hover {
+    #translateSelect button:hover,
+    #genusSelect button:hover {
       border-color: #007bff;
       box-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
@@ -107,6 +109,12 @@
     <button onclick="setTranslateMode('LA-NL')">LA → NL</button>
   </div>
 
+  <div id="genusSelect" style="display:none;">
+    <p>Genus meelearnen?</p>
+    <button onclick="setGenusMode(true)">Ja</button>
+    <button onclick="setGenusMode(false)">Nee</button>
+  </div>
+
   <div id="modeSelect" style="display:none;">
     <p>Kies een modus:</p>
     <button onclick="startQuiz('Normal')">Normal</button>
@@ -141,6 +149,7 @@
     let score = 0;
     let mode = "Normal";
     let translateMode = "NL-LA";
+    let learnGenus = true;
     let timerInterval;
     let timeLeft = 10;
 
@@ -198,6 +207,12 @@
     function setTranslateMode(mode) {
       translateMode = mode;
       document.getElementById("translateSelect").style.display = "none";
+      document.getElementById("genusSelect").style.display = "block";
+    }
+
+    function setGenusMode(value) {
+      learnGenus = value;
+      document.getElementById("genusSelect").style.display = "none";
       document.getElementById("modeSelect").style.display = "block";
     }
 
@@ -208,6 +223,10 @@
       nextQuestion();
     }
 
+    function stripGenus(word) {
+      return word.replace(/`\((m|v|o)\)`/gi, "").trim();
+    }
+
     function nextQuestion() {
       if (index >= keys.length) {
         endQuiz();
@@ -215,7 +234,13 @@
       }
 
       const item = woorden[keys[index]];
-      const vraag = translateMode === "NL-LA" ? item.NL : item.LA;
+      let vraag;
+
+      if (translateMode === "NL-LA") {
+        vraag = item.NL;
+      } else {
+        vraag = learnGenus ? item.LA : stripGenus(item.LA);
+      }
 
       document.getElementById("vraag").textContent = `Vertaal: ${vraag}`;
       document.getElementById("antwoord").value = "";
@@ -247,10 +272,15 @@
       const user = document.getElementById("antwoord").value.trim().toLowerCase();
       const item = woorden[keys[index]];
 
-      const correct =
-        translateMode === "NL-LA"
+      let correct;
+
+      if (translateMode === "NL-LA") {
+        correct = learnGenus
           ? item.LA.trim().toLowerCase()
-          : item.NL.trim().toLowerCase();
+          : stripGenus(item.LA).trim().toLowerCase();
+      } else {
+        correct = item.NL.trim().toLowerCase();
+      }
 
       if (mode === "Hard") clearInterval(timerInterval);
 
