@@ -425,5 +425,227 @@
         "informeel": "yeğen"
       }
     }
+  },
+  
+  "2B": {
+    "Thema": "school",
+
+    "2.1B": {
+      "Subthema": "schooltypen",
+      "school": {
+        "tr": "okul",
+        "uitspraak": "o-kul",
+        "formeel": "okul",
+        "informeel": "okul"
+      },
+      "basisschool": {
+        "tr": "ilkokul",
+        "uitspraak": "il-ko-kul",
+        "formeel": "ilkokul",
+        "informeel": "ilkokul"
+      },
+      "middelbare_school": {
+        "tr": "lise",
+        "uitspraak": "li-se",
+        "formeel": "lise",
+        "informeel": "lise"
+      },
+      "universiteit": {
+        "tr": "üniversite",
+        "uitspraak": "ü-ni-ver-si-te",
+        "formeel": "üniversite",
+        "informeel": "üniversite"
+      }
+    },
+
+    "2.2B": {
+      "Subthema": "schoolruimtes",
+      "klaslokaal": {
+        "tr": "sınıf",
+        "uitspraak": "sı-nıf",
+        "formeel": "sınıf",
+        "informeel": "sınıf"
+      },
+      "bibliotheek": {
+        "tr": "kütüphane",
+        "uitspraak": "kü-tüp-ha-ne",
+        "formeel": "kütüphane",
+        "informeel": "kütüphane"
+      },
+      "kantine": {
+        "tr": "kantin",
+        "uitspraak": "kan-tin",
+        "formeel": "kantin",
+        "informeel": "kantin"
+      },
+      "gymzaal": {
+        "tr": "spor salonu",
+        "uitspraak": "spor sa-lo-nu",
+        "formeel": "spor salonu",
+        "informeel": "spor salonu"
+      }
+    },
+
+    "2.3B": {
+      "Subthema": "schoolmateriaal",
+      "boek": {
+        "tr": "kitap",
+        "uitspraak": "ki-tap",
+        "formeel": "kitap",
+        "informeel": "kitap"
+      },
+      "schrift": {
+        "tr": "defter",
+        "uitspraak": "def-ter",
+        "formeel": "defter",
+        "informeel": "defter"
+      },
+      "pen": {
+        "tr": "kalem",
+        "uitspraak": "ka-lem",
+        "formeel": "kalem",
+        "informeel": "kalem"
+      },
+      "potlood": {
+        "tr": "kurşun kalem",
+        "uitspraak": "kur-şun ka-lem",
+        "formeel": "kurşun kalem",
+        "informeel": "kurşun kalem"
+      },
+      "rugzak": {
+        "tr": "sırt çantası",
+        "uitspraak": "sırt çan-ta-sı",
+        "formeel": "sırt çantası",
+        "informeel": "çanta"
+      }
+    },
+
+    "2.4B": {
+      "Subthema": "personeel",
+      "leraar": {
+        "tr": "öğretmen",
+        "uitspraak": "öğ-ret-men",
+        "formeel": "öğretmen",
+        "informeel": "hoca"
+      },
+      "directeur": {
+        "tr": "müdür",
+        "uitspraak": "mü-dür",
+        "formeel": "müdür",
+        "informeel": "müdür"
+      },
+      "conciërge": {
+        "tr": "hademe",
+        "uitspraak": "ha-de-me",
+        "formeel": "hademe",
+        "informeel": "hademe"
+      },
+      "assistent": {
+        "tr": "asistan",
+        "uitspraak": "a-sis-tan",
+        "formeel": "asistan",
+        "informeel": "asistan"
+      }
+    },
+
+    "2.5B": {
+      "Subthema": "leerlingen",
+      "leerling": {
+        "tr": "öğrenci",
+        "uitspraak": "öğ-ren-ci",
+        "formeel": "öğrenci",
+        "informeel": "öğrenci"
+      },
+      "klasgenoot": {
+        "tr": "sınıf arkadaşı",
+        "uitspraak": "sı-nıf ar-ka-da-şı",
+        "formeel": "sınıf arkadaşı",
+        "informeel": "arkadaş"
+      },
+      "nieuweling": {
+        "tr": "yeni öğrenci",
+        "uitspraak": "ye-ni öğ-ren-ci",
+        "formeel": "yeni öğrenci",
+        "informeel": "yeni"
+      }
+    },
+
+    "2.6B": {
+      "Subthema": "vakken",
+      "wiskunde": {
+        "tr": "matematik",
+        "uitspraak": "ma-te-ma-tik",
+        "formeel": "matematik",
+        "informeel": "matematik"
+      },
+      "taal": {
+        "tr": "dil",
+        "uitspraak": "dil",
+        "formeel": "dil",
+        "informeel": "dil"
+      },
+      "geschiedenis": {
+        "tr": "tarih",
+        "uitspraak": "ta-rih",
+        "formeel": "tarih",
+        "informeel": "tarih"
+      },
+      "biologie": {
+        "tr": "biyoloji",
+        "uitspraak": "bi-yo-lo-ji",
+        "formeel": "biyoloji",
+        "informeel": "biyoloji"
+      }
+    },
+
+    "2.7B": {
+      "Subthema": "activiteiten",
+      "huiswerk": {
+        "tr": "ödev",
+        "uitspraak": "ö-dev",
+        "formeel": "ödev",
+        "informeel": "ödev"
+      },
+      "studeren": {
+        "tr": "ders çalışmak",
+        "uitspraak": "ders ça-lış-mak",
+        "formeel": "ders çalışmak",
+        "informeel": "çalışmak"
+      },
+      "presenteren": {
+        "tr": "sunum yapmak",
+        "uitspraak": "su-num yap-mak",
+        "formeel": "sunum yapmak",
+        "informeel": "sunum"
+      },
+      "sporten": {
+        "tr": "spor yapmak",
+        "uitspraak": "spor yap-mak",
+        "formeel": "spor yapmak",
+        "informeel": "spor"
+      }
+    },
+
+    "2.8B": {
+      "Subthema": "administratie",
+      "rapport": {
+        "tr": "karne",
+        "uitspraak": "kar-ne",
+        "formeel": "karne",
+        "informeel": "karne"
+      },
+      "agenda": {
+        "tr": "ajanda",
+        "uitspraak": "a-jan-da",
+        "formeel": "ajanda",
+        "informeel": "ajanda"
+      },
+      "inschrijving": {
+        "tr": "kayıt",
+        "uitspraak": "ka-yıt",
+        "formeel": "kayıt",
+        "informeel": "kayıt"
+      }
+    }
   }
 }
