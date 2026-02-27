@@ -1,0 +1,429 @@
+{
+  "0B": {
+    "Thema": "begroeten_ontmoeten_afscheid",
+
+    "0.1B": {
+      "Subthema": "begroeten",
+      "hallo": {
+        "tr": "merhaba",
+        "uitspraak": "mer-ha-ba",
+        "formeel": "merhaba",
+        "informeel": "selam"
+      },
+      "goede_dag": {
+        "tr": "iyi günler",
+        "uitspraak": "i-yi gün-ler",
+        "formeel": "iyi günler",
+        "informeel": "günler"
+      },
+      "goedemorgen": {
+        "tr": "günaydın",
+        "uitspraak": "gün-ay-dın",
+        "formeel": "günaydın",
+        "informeel": "günaydın"
+      },
+      "goedenavond": {
+        "tr": "iyi akşamlar",
+        "uitspraak": "i-yi ak-sham-lar",
+        "formeel": "iyi akşamlar",
+        "informeel": "akşamlar"
+      },
+      "hoe_gaat_het": {
+        "tr": "nasılsınız",
+        "uitspraak": "na-sıl-sı-nız",
+        "formeel": "nasılsınız",
+        "informeel": "nasılsın"
+      }
+    },
+
+    "0.2B": {
+      "Subthema": "ontmoeten",
+      "aangenaam": {
+        "tr": "memnun oldum",
+        "uitspraak": "mem-nun ol-dum",
+        "formeel": "memnun oldum",
+        "informeel": "memnun oldum"
+      },
+      "mijn_naam_is": {
+        "tr": "benim adım ...",
+        "uitspraak": "be-nim a-dım",
+        "formeel": "benim adım ...",
+        "informeel": "adım ..."
+      },
+      "hoe_heet_jij": {
+        "tr": "adınız ne",
+        "uitspraak": "a-dı-nız ne",
+        "formeel": "adınız ne",
+        "informeel": "adın ne"
+      },
+      "waar_kom_je_vandaan": {
+        "tr": "nerelisiniz",
+        "uitspraak": "ne-re-li-si-niz",
+        "formeel": "nerelisiniz",
+        "informeel": "nerelisin"
+      }
+    },
+
+    "0.3B": {
+      "Subthema": "afscheid_nemen",
+      "tot_ziens": {
+        "tr": "hoşça kalın",
+        "uitspraak": "hoş-ça ka-lın",
+        "formeel": "hoşça kalın",
+        "informeel": "hoşça kal"
+      },
+      "dag": {
+        "tr": "güle güle",
+        "uitspraak": "gü-le gü-le",
+        "formeel": "güle güle",
+        "informeel": "güle güle"
+      },
+      "tot_later": {
+        "tr": "sonra görüşürüz",
+        "uitspraak": "son-ra gö-rü-şü-rüz",
+        "formeel": "sonra görüşürüz",
+        "informeel": "görüşürüz"
+      },
+      "goedenacht": {
+        "tr": "iyi geceler",
+        "uitspraak": "i-yi ge-ce-ler",
+        "formeel": "iyi geceler",
+        "informeel": "geceler"
+      }
+    },
+
+    "0.4B": {
+      "Subthema": "sociale_basiszinnen",
+      "dankjewel": {
+        "tr": "teşekkür ederim",
+        "uitspraak": "te-şek-kür e-de-rim",
+        "formeel": "teşekkür ederim",
+        "informeel": "teşekkürler"
+      },
+      "alstublieft": {
+        "tr": "lütfen",
+        "uitspraak": "lüt-fen",
+        "formeel": "lütfen",
+        "informeel": "lütfen"
+      },
+      "sorry": {
+        "tr": "özür dilerim",
+        "uitspraak": "ö-zür di-le-rim",
+        "formeel": "özür dilerim",
+        "informeel": "pardon"
+      },
+      "geen_probleem": {
+        "tr": "sorun değil",
+        "uitspraak": "so-run de-ğil",
+        "formeel": "sorun değil",
+        "informeel": "sıkıntı yok"
+      }
+    }
+  },
+
+  "1B": {
+    "Thema": "familie",
+
+    "1.1B": {
+      "Subthema": "ouders",
+      "moeder": {
+        "tr": "anne",
+        "uitspraak": "an-ne",
+        "formeel": "anne",
+        "informeel": "anne"
+      },
+      "vader": {
+        "tr": "baba",
+        "uitspraak": "ba-ba",
+        "formeel": "baba",
+        "informeel": "baba"
+      },
+      "ouder": {
+        "tr": "ebeveyn",
+        "uitspraak": "e-be-veyn",
+        "formeel": "ebeveyn",
+        "informeel": "ebeveyn"
+      },
+      "stiefmoeder": {
+        "tr": "üvey anne",
+        "uitspraak": "ü-vey an-ne",
+        "formeel": "üvey anne",
+        "informeel": "üvey anne"
+      },
+      "stiefvader": {
+        "tr": "üvey baba",
+        "uitspraak": "ü-vey ba-ba",
+        "formeel": "üvey baba",
+        "informeel": "üvey baba"
+      },
+      "pleegmoeder": {
+        "tr": "koruyucu anne",
+        "uitspraak": "ko-ru-yu-cu an-ne",
+        "formeel": "koruyucu anne",
+        "informeel": "koruyucu anne"
+      },
+      "pleegvader": {
+        "tr": "koruyucu baba",
+        "uitspraak": "ko-ru-yu-cu ba-ba",
+        "formeel": "koruyucu baba",
+        "informeel": "koruyucu baba"
+      },
+      "biologische_moeder": {
+        "tr": "biyolojik anne",
+        "uitspraak": "bi-yo-lo-jik an-ne",
+        "formeel": "biyolojik anne",
+        "informeel": "biyolojik anne"
+      },
+      "biologische_vader": {
+        "tr": "biyolojik baba",
+        "uitspraak": "bi-yo-lo-jik ba-ba",
+        "formeel": "biyolojik baba",
+        "informeel": "biyolojik baba"
+      },
+      "voogd": {
+        "tr": "vasi",
+        "uitspraak": "va-si",
+        "formeel": "vasi",
+        "informeel": "vasi"
+      },
+      "ouderfiguur": {
+        "tr": "ebeveyn figürü",
+        "uitspraak": "e-be-veyn fi-gü-rü",
+        "formeel": "ebeveyn figürü",
+        "informeel": "ebeveyn figürü"
+      },
+      "adoptieouder": {
+        "tr": "evlat edinen",
+        "uitspraak": "ev-lat e-di-nen",
+        "formeel": "evlat edinen",
+        "informeel": "evlat edinen"
+      },
+      "zwangere_moeder": {
+        "tr": "hamile anne",
+        "uitspraak": "ha-mi-le an-ne",
+        "formeel": "hamile anne",
+        "informeel": "hamile anne"
+      },
+      "alleenstaande_moeder": {
+        "tr": "yalnız anne",
+        "uitspraak": "yal-nız an-ne",
+        "formeel": "yalnız anne",
+        "informeel": "yalnız anne"
+      },
+      "alleenstaande_vader": {
+        "tr": "yalnız baba",
+        "uitspraak": "yal-nız ba-ba",
+        "formeel": "yalnız baba",
+        "informeel": "yalnız baba"
+      }
+    },
+
+    "1.2B": {
+      "Subthema": "kinderen",
+      "kind": {
+        "tr": "çocuk",
+        "uitspraak": "ço-cuk",
+        "formeel": "çocuk",
+        "informeel": "çocuk"
+      },
+      "zoon": {
+        "tr": "oğul",
+        "uitspraak": "o-ul",
+        "formeel": "oğul",
+        "informeel": "oğul"
+      },
+      "dochter": {
+        "tr": "kız",
+        "uitspraak": "kız",
+        "formeel": "kız",
+        "informeel": "kız"
+      },
+      "stiefkind": {
+        "tr": "üvey çocuk",
+        "uitspraak": "ü-vey ço-cuk",
+        "formeel": "üvey çocuk",
+        "informeel": "üvey çocuk"
+      },
+      "pleegkind": {
+        "tr": "koruyucu çocuk",
+        "uitspraak": "ko-ru-yu-cu ço-cuk",
+        "formeel": "koruyucu çocuk",
+        "informeel": "koruyucu çocuk"
+      },
+      "adoptiekind": {
+        "tr": "evlatlık",
+        "uitspraak": "ev-lat-lık",
+        "formeel": "evlatlık",
+        "informeel": "evlatlık"
+      },
+      "baby": {
+        "tr": "bebek",
+        "uitspraak": "be-bek",
+        "formeel": "bebek",
+        "informeel": "bebek"
+      }
+    },
+
+    "1.3B": {
+      "Subthema": "broers_en_zussen",
+      "broer": {
+        "tr": "erkek kardeş",
+        "uitspraak": "er-kek kar-deş",
+        "formeel": "erkek kardeş",
+        "informeel": "abi / kardeş"
+      },
+      "zus": {
+        "tr": "kız kardeş",
+        "uitspraak": "kız kar-deş",
+        "formeel": "kız kardeş",
+        "informeel": "abla / kardeş"
+      },
+      "stiefbroer": {
+        "tr": "üvey erkek kardeş",
+        "uitspraak": "ü-vey er-kek kar-deş",
+        "formeel": "üvey erkek kardeş",
+        "informeel": "üvey kardeş"
+      },
+      "stiefzus": {
+        "tr": "üvey kız kardeş",
+        "uitspraak": "ü-vey kız kar-deş",
+        "formeel": "üvey kız kardeş",
+        "informeel": "üvey kardeş"
+      },
+      "halfbroer": {
+        "tr": "üvey erkek kardeş",
+        "uitspraak": "ü-vey er-kek kar-deş",
+        "formeel": "üvey erkek kardeş",
+        "informeel": "üvey kardeş"
+      },
+      "halfzus": {
+        "tr": "üvey kız kardeş",
+        "uitspraak": "ü-vey kız kar-deş",
+        "formeel": "üvey kız kardeş",
+        "informeel": "üvey kardeş"
+      }
+    },
+
+    "1.4B": {
+      "Subthema": "grootouders",
+      "grootmoeder": {
+        "tr": "büyükanne",
+        "uitspraak": "bü-yük an-ne",
+        "formeel": "büyükanne",
+        "informeel": "anneanne / babaanne"
+      },
+      "grootvader": {
+        "tr": "büyükbaba",
+        "uitspraak": "bü-yük ba-ba",
+        "formeel": "büyükbaba",
+        "informeel": "dede"
+      },
+      "oma": {
+        "tr": "büyükanne",
+        "uitspraak": "bü-yük an-ne",
+        "formeel": "büyükanne",
+        "informeel": "anneanne / babaanne"
+      },
+      "opa": {
+        "tr": "büyükbaba",
+        "uitspraak": "bü-yük ba-ba",
+        "formeel": "büyükbaba",
+        "informeel": "dede"
+      }
+    },
+
+    "1.5B": {
+      "Subthema": "kleinkinderen",
+      "kleinkind": {
+        "tr": "torun",
+        "uitspraak": "to-run",
+        "formeel": "torun",
+        "informeel": "torun"
+      },
+      "kleinzoon": {
+        "tr": "erkek torun",
+        "uitspraak": "er-kek to-run",
+        "formeel": "erkek torun",
+        "informeel": "torun"
+      },
+      "kleindochter": {
+        "tr": "kız torun",
+        "uitspraak": "kız to-run",
+        "formeel": "kız torun",
+        "informeel": "torun"
+      }
+    },
+
+    "1.6B": {
+      "Subthema": "overige_familie",
+      "familielid": {
+        "tr": "aile üyesi",
+        "uitspraak": "a-i-le ü-ye-si",
+        "formeel": "aile üyesi",
+        "informeel": "aile üyesi"
+      },
+      "verwant": {
+        "tr": "akraba",
+        "uitspraak": "a-kra-ba",
+        "formeel": "akraba",
+        "informeel": "akraba"
+      }
+    },
+
+    "1.7B": {
+      "Subthema": "huwelijk_en_partners",
+      "partner": {
+        "tr": "partner",
+        "uitspraak": "part-ner",
+        "formeel": "partner",
+        "informeel": "partner"
+      },
+      "echtgenoot": {
+        "tr": "koca",
+        "uitspraak": "ko-ca",
+        "formeel": "koca",
+        "informeel": "koca"
+      },
+      "echtgenote": {
+        "tr": "eş",
+        "uitspraak": "eş",
+        "formeel": "eş",
+        "informeel": "eş"
+      },
+      "verloofde": {
+        "tr": "nişanlı",
+        "uitspraak": "ni-şan-lı",
+        "formeel": "nişanlı",
+        "informeel": "nişanlı"
+      }
+    },
+
+    "1.8B": {
+      "Subthema": "uitgebreide_familie",
+      "oom": {
+        "tr": "amca / dayı",
+        "uitspraak": "am-ca / da-yı",
+        "formeel": "amca / dayı",
+        "informeel": "amca / dayı"
+      },
+      "tante": {
+        "tr": "hala / teyze",
+        "uitspraak": "ha-la / tey-ze",
+        "formeel": "hala / teyze",
+        "informeel": "hala / teyze"
+      },
+      "neef": {
+        "tr": "yeğen",
+        "uitspraak": "ye-en",
+        "formeel": "yeğen",
+        "informeel": "yeğen"
+      },
+      "nicht": {
+        "tr": "yeğen",
+        "uitspraak": "ye-en",
+        "formeel": "yeğen",
+        "informeel": "yeğen"
+      }
+    }
+  }
+}
