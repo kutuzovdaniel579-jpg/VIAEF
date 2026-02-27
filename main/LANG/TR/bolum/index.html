@@ -81,7 +81,7 @@ async function loadJSON() {
   hoofdstukkenDiv.textContent = "Hoofdstukken laden…";
 
   try {
-    const res = await fetch("Bolum.json", { cache: "no-store" });
+    const res = await fetch("bolum.json", { cache: "no-store" });
     if (!res.ok) throw new Error("Kon Bolum.json niet laden");
 
     woordenData = await res.json();
