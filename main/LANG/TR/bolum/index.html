@@ -53,6 +53,20 @@
     }
 
     .woord small { color: #555; }
+
+    .tts-btn {
+      margin-left: 10px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      background: #51A6E8;
+      color:white;
+      border:1px solid #0f6f99;
+    }
+
+    .tts-btn:hover {
+      background:#3a8ac7;
+    }
   </style>
 </head>
 
@@ -72,6 +86,19 @@ let woordenData = {};
 let huidigCaput = null;
 let huidigSub = null;
 
+/* ------------------------------
+   🔊 TTS FUNCTIE
+------------------------------ */
+function speakTR(text) {
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "tr-TR";
+  utter.rate = 1;
+  speechSynthesis.speak(utter);
+}
+
+/* ------------------------------
+   JSON LADEN
+------------------------------ */
 async function loadJSON() {
   const hoofdstukkenDiv = document.getElementById("hoofdstukken");
   hoofdstukkenDiv.textContent = "Hoofdstukken laden…";
@@ -97,6 +124,9 @@ async function loadJSON() {
   }
 }
 
+/* ------------------------------
+   CAPUT LADEN
+------------------------------ */
 function laadCaput(caput) {
   huidigCaput = caput;
   huidigSub = null;
@@ -127,6 +157,9 @@ function laadCaput(caput) {
   subDiv.appendChild(quizBtn);
 }
 
+/* ------------------------------
+   SUBHOOFDSTUK LADEN + TTS
+------------------------------ */
 function laadSubHoofdstuk(caput, sub) {
   huidigSub = sub;
 
@@ -150,7 +183,9 @@ function laadSubHoofdstuk(caput, sub) {
 
     div.innerHTML = `
       <b>${key}</b><br>
-      🇹🇷 <b>${item.tr}</b><br>
+      🇹🇷 <b>${item.tr}</b>
+      <button class="tts-btn" onclick="speakTR('${item.tr}')">🔊</button>
+      <br>
       <small>Uitspraak: ${item.uitspraak ?? "-"}</small><br>
       <small>Formeel: ${item.formeel ?? "-"}</small><br>
       <small>Informeel: ${item.informeel ?? "-"}</small>
