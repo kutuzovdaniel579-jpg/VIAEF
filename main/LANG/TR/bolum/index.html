@@ -68,10 +68,6 @@
   <div id="woordenLijst"></div>
 
 <script>
-/* ------------------------------
-   CAPUT FUNCTIONALITEIT (ZONDER TAALENGINE)
------------------------------- */
-
 let woordenData = {};
 let huidigCaput = null;
 let huidigSub = null;
@@ -82,13 +78,9 @@ async function loadJSON() {
 
   try {
     const res = await fetch("bolum.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("Kon Bolum.json niet laden");
+    if (!res.ok) throw new Error("Kon bolum.json niet laden");
 
     woordenData = await res.json();
-
-    if (!woordenData || typeof woordenData !== "object") {
-      throw new Error("Bolum.json heeft geen geldige structuur");
-    }
 
     hoofdstukkenDiv.innerHTML = "";
 
@@ -101,13 +93,7 @@ async function loadJSON() {
     });
 
   } catch (err) {
-    console.error("LOADJSON FOUT:", err);
-    hoofdstukkenDiv.innerHTML = `
-      <div style="color:red;">
-        Fout bij laden van hoofdstukken.<br>
-        ${err.message}
-      </div>
-    `;
+    hoofdstukkenDiv.innerHTML = `<div style="color:red;">${err.message}</div>`;
   }
 }
 
@@ -119,22 +105,17 @@ function laadCaput(caput) {
   document.getElementById("subTitel").textContent = "";
   document.getElementById("woordenLijst").innerHTML = "";
 
-  const subHoofdstukkenDiv = document.getElementById("subHoofdstukken");
-  subHoofdstukkenDiv.innerHTML = "";
+  const subDiv = document.getElementById("subHoofdstukken");
+  subDiv.innerHTML = "";
 
   const subhoofdstukken = woordenData[caput];
-
-  if (!subhoofdstukken) {
-    subHoofdstukkenDiv.innerHTML = `<div style="color:red;">Geen subhoofdstukken gevonden.</div>`;
-    return;
-  }
 
   Object.keys(subhoofdstukken).forEach(sub => {
     const btn = document.createElement("button");
     btn.className = "subhoofdstuk-btn";
     btn.textContent = sub;
     btn.onclick = () => laadSubHoofdstuk(caput, sub);
-    subHoofdstukkenDiv.appendChild(btn);
+    subDiv.appendChild(btn);
   });
 
   const quizBtn = document.createElement("button");
@@ -143,7 +124,7 @@ function laadCaput(caput) {
   quizBtn.onclick = () => {
     window.location.href = `quiz.html?caput=${huidigCaput}`;
   };
-  subHoofdstukkenDiv.appendChild(quizBtn);
+  subDiv.appendChild(quizBtn);
 }
 
 function laadSubHoofdstuk(caput, sub) {
@@ -168,8 +149,11 @@ function laadSubHoofdstuk(caput, sub) {
     div.className = "woord";
 
     div.innerHTML = `
-      <b>${item.NL ?? ""}</b> → ${item.LA ?? ""}<br>
-      <small>${item.Gen ?? ""} ${item.Tel ?? ""}</small>
+      <b>${key}</b><br>
+      🇹🇷 <b>${item.tr}</b><br>
+      <small>Uitspraak: ${item.uitspraak ?? "-"}</small><br>
+      <small>Formeel: ${item.formeel ?? "-"}</small><br>
+      <small>Informeel: ${item.informeel ?? "-"}</small>
     `;
 
     lijst.appendChild(div);
