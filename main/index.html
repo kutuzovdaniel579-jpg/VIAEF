@@ -5,29 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VIÆF</title>
   
-  <!-- OPEN GRAPH -->
-<meta property="og:title" content="VIÆF – Centrale Hub">
-<meta property="og:description" content="Kies je vak, taal of richting. VIÆF brengt alles overzichtelijk samen.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://kutuzovdaniel579-jpg.github.io/VIAEF/">
-<meta property="og:image" content="https://kutuzovdaniel579-jpg.github.io/VIAEF/assets/icon-og.png">
-<meta property="og:site_name" content="VIÆF">
+  <meta property="og:title" content="VIÆF – Centrale Hub">
+  <meta property="og:description" content="Kies je vak, taal of richting. VIÆF brengt alles overzichtelijk samen.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kutuzovdaniel579-jpg.github.io/VIAEF/">
+  <meta property="og:image" content="https://kutuzovdaniel579-jpg.github.io/VIAEF/assets/icon-og.png">
+  <meta property="og:site_name" content="VIÆF">
 
-<!-- TWITTER CARD -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="VIÆF – Centrale Hub">
-<meta name="twitter:description" content="Kies je vak, taal of richting. VIÆF brengt alles overzichtelijk samen.">
-<meta name="twitter:image" content="https://kutuzovdaniel579-jpg.github.io/VIAEF/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VIÆF – Centrale Hub">
+  <meta name="twitter:description" content="Kies je vak, taal of richting. VIÆF brengt alles overzichtelijk samen.">
+  <meta name="twitter:image" content="https://kutuzovdaniel579-jpg.github.io/VIAEF/assets/og-image.png">
 
-<!-- FAVICON FALLBACK -->
-<link rel="icon" href="https://kutuzovdaniel579-jpg.github.io/VIAEF/assets/icon.png">
-
+  <link rel="icon" href="https://kutuzovdaniel579-jpg.github.io/VIAEF/assets/icon.png">
 
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      background: black;
+      /* Achtergrond afbeelding configuratie */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://raw.githubusercontent.com/kutuzovdaniel579-jpg/VIAEF/refs/heads/main/assets/icon-og.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-color: black; /* Fallback kleur */
+      
       color: white;
       font-family: Arial, sans-serif;
       height: 100vh;
@@ -44,6 +46,12 @@
       align-items: center;
       text-align: center;
       animation: fadeIn 0.6s ease-out forwards;
+      /* Glas-effect voor de containers voor betere leesbaarheid op drukke achtergronden */
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     @keyframes fadeIn {
@@ -52,61 +60,54 @@
     }
 
     h1 {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
 
     .taal-btn {
-      padding: 10px 15px;
-      margin: 5px;
+      padding: 12px 20px;
+      margin: 8px;
       background: #51A6E8;
       color: white;
       border-radius: 6px;
       border: 1px solid #0f6f99;
       cursor: pointer;
       font-size: 18px;
-      transition: 0.2s;
-      width: 200px;
+      transition: all 0.3s ease;
+      width: 220px;
+      font-weight: bold;
     }
 
     .taal-btn:hover {
-      border-width: 2px;
-      border-color: #0b4f6d;
-      box-shadow: 0 0 6px rgba(255,255,255,0.25);
-      transform: translateY(-2px);
+      background: #3a91d4;
+      border-color: #ffffff;
+      box-shadow: 0 0 15px rgba(81, 166, 232, 0.4);
+      transform: translateY(-3px);
     }
   </style>
 </head>
 
 <body>
-
-  <!-- CATEGORIE KEUZE -->
+    
   <div id="keuzeScherm">
     <h1>Kies een categorie</h1>
     <div id="categorieKnoppen"></div>
   </div>
 
-  <!-- TAAL KEUZE -->
   <div id="taalKeuze">
     <h1>Kies een taal</h1>
     <div id="taalKnoppen"></div>
   </div>
 
 <script>
-/* ------------------------------
-   CATEGORIEËN
------------------------------- */
-
+/* (Script blijft hetzelfde als jouw origineel) */
 const categorieën = [
   { naam: "Aardrijkskunde", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/GE" },
   { naam: "Geschiedenis", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/HS" },
   { naam: "ICT", link: "https://kutuzovdaniel579-jpg.github.io/VIAEF/main/ICT" },
   { naam: "Talen", type: "talen" }
 ];
-
-/* ------------------------------
-   TALEN
------------------------------- */
 
 const talen = [
   { naam: "Latijn", link: "main/LANG/LA/index.html" },
@@ -119,13 +120,8 @@ const talen = [
   { naam: "Nederlands", link: "main/LANG/NL/index.html" }
 ];
 
-/* ------------------------------
-   APP START
------------------------------- */
-
 function startApp() {
   document.getElementById("keuzeScherm").style.display = "flex";
-
   const container = document.getElementById("categorieKnoppen");
   container.innerHTML = "";
 
@@ -133,15 +129,12 @@ function startApp() {
     const btn = document.createElement("button");
     btn.className = "taal-btn";
     btn.textContent = c.naam;
-
     btn.onclick = () => {
       if (c.type === "talen") {
         document.getElementById("keuzeScherm").style.display = "none";
         document.getElementById("taalKeuze").style.display = "flex";
-
         const taalContainer = document.getElementById("taalKnoppen");
         taalContainer.innerHTML = "";
-
         talen.forEach(t => {
           const tbtn = document.createElement("button");
           tbtn.className = "taal-btn";
@@ -149,12 +142,10 @@ function startApp() {
           tbtn.onclick = () => window.location.href = t.link;
           taalContainer.appendChild(tbtn);
         });
-
       } else {
         window.location.href = c.link;
       }
     };
-
     container.appendChild(btn);
   });
 }
