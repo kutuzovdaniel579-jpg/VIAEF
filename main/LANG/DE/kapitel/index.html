@@ -1,1 +1,168 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kapitel — Woorden</title>
 
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: black; color: white; }
+    h1 { margin-bottom: 10px; }
+
+    #kapitels, #subKapitels { margin-bottom: 15px; }
+
+    .kapitel-btn,
+    .subkapitel-btn {
+      padding: 10px 15px;
+      margin: 5px;
+      background: #51A6E8;
+      color: white;
+      border-radius: 6px;
+      border: 1px solid #0f6f99;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .kapitel-btn:hover,
+    .subkapitel-btn:hover:not(.quiz-btn) {
+      border-width: 2px;
+      border-color: #0b4f6d;
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+
+    .quiz-btn {
+      background: #BF0D0D;
+      border-color: #8a0909;
+    }
+
+    .quiz-btn:hover {
+      border-width: 2px;
+      border-color: #5c0606;
+      box-shadow: 0 0 6px rgba(0,0,0,0.25);
+      transform: translateY(-2px);
+    }
+
+    .woord {
+      padding: 15px;
+      margin: 10px 0;
+      background: #f0f0f0;
+      border-radius: 6px;
+      color: black;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .woord b { font-size: 1.1em; color: #333; }
+    .woord span { color: #000; font-weight: bold; margin-top: 4px; }
+    .thema-label { color: #51A6E8; font-weight: bold; margin-bottom: 10px; display: block; }
+  </style>
+</head>
+
+<body>
+
+  <h1>Kapitel — Woorden</h1>
+
+  <div id="kapitels">Kapitels laden…</div>
+  <div id="subKapitels"></div>
+
+  <h2 id="kapitelTitel"></h2>
+  <span id="themaTitel" class="thema-label"></span>
+  <h3 id="subTitel"></h3>
+  <div id="woordenLijst"></div>
+
+<script>
+/* ------------------------------
+   CONFIGURATIE & FETCH
+------------------------------ */
+const JSON_URL = "https://raw.githubusercontent.com/kutuzovdaniel579-jpg/VIAEF/refs/heads/main/main/LANG/DE/kapitel/kapitel.json";
+
+let woordenData = {};
+let huidigKapitel = null;
+
+async function loadJSON() {
+  const kapitelsDiv = document.getElementById("kapitels");
+  
+  try {
+    const res = await fetch(JSON_URL);
+    if (!res.ok) throw new Error("Kon JSON niet laden van GitHub");
+
+    woordenData = await res.json();
+    kapitelsDiv.innerHTML = "";
+
+    // Knoppen genereren voor K0, K1, etc.
+    Object.keys(woordenData).forEach(kap => {
+      const btn = document.createElement("button");
+      btn.className = "kapitel-btn";
+      btn.textContent = kap;
+      btn.onclick = () => laadKapitel(kap);
+      kapitelsDiv.appendChild(btn);
+    });
+
+  } catch (err) {
+    console.error("FOUT:", err);
+    kapitelsDiv.innerHTML = `<div style="color:red;">Fout bij laden: ${err.message}</div>`;
+  }
+}
+
+function laadKapitel(kapKey) {
+  huidigKapitel = kapKey;
+  
+  const data = woordenData[kapKey];
+  document.getElementById("kapitelTitel").textContent = `Kapitel ${kapKey}`;
+  document.getElementById("themaTitel").textContent = data.Thema || "";
+  document.getElementById("subTitel").textContent = "";
+  document.getElementById("woordenLijst").innerHTML = "";
+
+  const subDiv = document.getElementById("subKapitels");
+  subDiv.innerHTML = "";
+
+  // Knoppen voor subsecties (K0.1, K0.2, etc.)
+  Object.keys(data).forEach(key => {
+    if (key !== "Thema") {
+      const btn = document.createElement("button");
+      btn.className = "subkapitel-btn";
+      btn.textContent = key;
+      btn.onclick = () => laadSubKapitel(kapKey, key);
+      subDiv.appendChild(btn);
+    }
+  });
+
+  // Quiz knop
+  const quizBtn = document.createElement("button");
+  quizBtn.className = "subkapitel-btn quiz-btn";
+  quizBtn.textContent = "Quiz";
+  quizBtn.onclick = () => {
+    window.location.href = `quiz.html?kapitel=${huidigKapitel}`;
+  };
+  subDiv.appendChild(quizBtn);
+}
+
+function laadSubKapitel(kapKey, subKey) {
+  const lijst = document.getElementById("woordenLijst");
+  lijst.innerHTML = "";
+
+  const subData = woordenData[kapKey][subKey];
+  document.getElementById("subTitel").textContent = `${subKey}: ${subData.SubThema || ""}`;
+
+  // Woorden tonen
+  Object.keys(subData).forEach(wordKey => {
+    if (wordKey !== "SubThema") {
+      const div = document.createElement("div");
+      div.className = "woord";
+      div.innerHTML = `
+        <b>${wordKey}</b>
+        <span>${subData[wordKey]}</span>
+      `;
+      lijst.appendChild(div);
+    }
+  });
+}
+
+// Initialisatie
+loadJSON();
+</script>
+
+</body>
+</html>
