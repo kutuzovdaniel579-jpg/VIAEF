@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title data-i18n="quiz_title">Quiz</title>
+  <title>Quiz</title>
 
   <style>
     body { font-family: Arial; padding: 20px; background:black; color:white; }
@@ -88,57 +88,28 @@
       margin-top: 20px;
       font-size: 18px;
     }
-
-    .lang-switch {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      display: flex;
-      gap: 6px;
-    }
-
-    .lang-switch button {
-      padding: 4px 8px;
-      font-size: 12px;
-      background: #222;
-      color: #fff;
-      border: 1px solid #555;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .lang-switch button.active {
-      background: #51A6E8;
-      border-color: #0f6f99;
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- Taalkeuze -->
-  <div class="lang-switch">
-    <button id="btn-nl">NL</button>
-    <button id="btn-en">EN</button>
-  </div>
-
-  <h1 data-i18n="quiz_title"></h1>
+  <h1>Quiz</h1>
 
   <div id="subSelect">
-    <p data-i18n="quiz_choose_sub"></p>
-    <div id="subButtons" data-i18n="quiz_loading"></div>
+    <p>Kies een subhoofdstuk:</p>
+    <div id="subButtons">Laden...</div>
   </div>
 
   <div id="translateSelect" style="display:none;">
-    <p data-i18n="quiz_choose_direction"></p>
+    <p>Kies richting:</p>
     <button onclick="setTranslateMode('NL-GR')">NL → GR</button>
     <button onclick="setTranslateMode('GR-NL')">GR → NL</button>
   </div>
 
   <div id="modeSelect" style="display:none;">
-    <p data-i18n="quiz_choose_mode"></p>
-    <button onclick="startQuiz('Normal')" data-i18n="quiz_normal"></button>
-    <button onclick="startQuiz('Hard')" data-i18n="quiz_hard"></button>
+    <p>Kies modus:</p>
+    <button onclick="startQuiz('Normal')">Normaal</button>
+    <button onclick="startQuiz('Hard')">Moeilijk</button>
   </div>
 
   <div id="quiz" style="display:none;">
@@ -160,49 +131,6 @@
 
 <script>
 /* ------------------------------
-   TAALENGINE
------------------------------- */
-
-let currentLang = "nl";
-let translationsCache = null;
-
-async function loadTranslations() {
-  if (translationsCache) return translationsCache;
-  const res = await fetch("../../../languages/languages.json");
-  translationsCache = await res.json();
-  return translationsCache;
-}
-
-async function applyLanguage(lang) {
-  currentLang = lang;
-  localStorage.setItem("language", lang);
-
-  const t = await loadTranslations();
-
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.getAttribute("data-i18n");
-    if (t[lang] && t[lang][key]) el.textContent = t[lang][key];
-  });
-
-  document.getElementById("btn-nl").classList.toggle("active", lang === "nl");
-  document.getElementById("btn-en").classList.toggle("active", lang === "en");
-}
-
-document.addEventListener("DOMContentLoaded", async () => {
-  let saved = localStorage.getItem("language");
-
-  if (!saved) {
-    const browserLang = navigator.language.toLowerCase();
-    saved = browserLang.startsWith("nl") ? "nl" : "en";
-  }
-
-  await applyLanguage(saved);
-
-  document.getElementById("btn-nl").onclick = () => applyLanguage("nl");
-  document.getElementById("btn-en").onclick = () => applyLanguage("en");
-});
-
-/* ------------------------------
    QUIZ LOGICA
 ------------------------------ */
 
@@ -222,7 +150,7 @@ let timeLeft = 10;
    LADEN VAN WOORDEN / ALFABET
 ------------------------------ */
 
-async function loadWords() {async function loadWords() {
+async function loadWords() {
   const subButtons = document.getElementById("subButtons");
 
   // ------------------------------
@@ -296,8 +224,7 @@ function nextQuestion() {
   const item = woorden[keys[index]];
   const vraag = translateMode === "NL-GR" ? item.NL : item.GR;
 
-  document.getElementById("vraag").textContent =
-    `${translationsCache[currentLang]["quiz_translate"]} ${vraag}`;
+  document.getElementById("vraag").textContent = "Vertaal: " + vraag;
 
   document.getElementById("antwoord").value = "";
   document.getElementById("result").textContent = "";
@@ -319,7 +246,7 @@ function startTimer() {
     timer.textContent = `⏳ ${timeLeft}`;
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      fout(translationsCache[currentLang]["quiz_time_up"]);
+      fout("Tijd is op!");
     }
   }, 1000);
 }
@@ -339,13 +266,12 @@ function check() {
     score++;
     juist();
   } else {
-    fout(`${translationsCache[currentLang]["quiz_wrong"]} ${correct}`);
+    fout("Fout! Correct was: " + correct);
   }
 }
 
 function juist() {
-  document.getElementById("result").textContent =
-    translationsCache[currentLang]["quiz_correct"];
+  document.getElementById("result").textContent = "Juist!";
   index++;
   setTimeout(nextQuestion, 800);
 }
@@ -361,14 +287,14 @@ function updateProgress() {
   const percentage = (index / keys.length) * 100;
   bar.style.width = percentage + "%";
   document.getElementById("scoreDisplay").textContent =
-    `${translationsCache[currentLang]["quiz_score"]} ${score} / ${keys.length}`;
+    `Score: ${score} / ${keys.length}`;
 }
 
 function endQuiz() {
   document.getElementById("quiz").innerHTML = `
-    <h2>${translationsCache[currentLang]["quiz_done"]}</h2>
-    <p>${translationsCache[currentLang]["quiz_score"]} ${score} / ${keys.length}</p>
-    <button onclick="location.href='index.html'">${translationsCache[currentLang]["quiz_back"]}</button>
+    <h2>Klaar!</h2>
+    <p>Score: ${score} / ${keys.length}</p>
+    <button onclick="location.href='index.html'">Terug</button>
   `;
 }
 
