@@ -222,12 +222,12 @@ let timeLeft = 10;
    LADEN VAN WOORDEN / ALFABET
 ------------------------------ */
 
-async function loadWords() {
+async function loadWords() {async function loadWords() {
   const subButtons = document.getElementById("subButtons");
 
-  /* ------------------------------
-     ABC-QUIZ (alfabet.json)
-  ------------------------------ */
+  // ------------------------------
+  // ABC-QUIZ (alfabet.json)
+  // ------------------------------
   if (caput === "ABC") {
     const res = await fetch("alfabet.json");
     const data = await res.json();
@@ -236,8 +236,8 @@ async function loadWords() {
 
     Object.keys(data).forEach((gr, i) => {
       woorden["L" + i] = {
-        NL: data[gr],  // transliteratie
-        GR: gr         // letter
+        NL: data[gr],
+        GR: gr
       };
     });
 
@@ -248,13 +248,15 @@ async function loadWords() {
     return;
   }
 
-  /* ------------------------------
-     NORMALE HOOFDSTUKKEN
-  ------------------------------ */
-  const res = await fetch("kefálio.json");
-  const data = await res.json();
+  // ------------------------------
+  // NORMALE HOOFDSTUKKEN
+  // ------------------------------
+  let res = await fetch("kefálio.json");
+  if (!res.ok) res = await fetch("kefalio.json"); // fallback zonder accent
 
+  const data = await res.json();
   const subhoofdstukken = data[caput];
+
   subButtons.innerHTML = "";
 
   Object.keys(subhoofdstukken).forEach(sub => {
