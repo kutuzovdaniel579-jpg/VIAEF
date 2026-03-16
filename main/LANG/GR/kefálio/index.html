@@ -107,6 +107,18 @@ async function loadJSON() {
   const hoofdstukkenDiv = document.getElementById("hoofdstukken");
   hoofdstukkenDiv.innerHTML = "";
 
+  /* ------------------------------
+     ABC-KNOP TOEVOEGEN
+  ------------------------------ */
+  const abcBtn = document.createElement("button");
+  abcBtn.className = "hoofdstuk-btn";
+  abcBtn.textContent = "ABC";
+  abcBtn.onclick = toonAlfabet;
+  hoofdstukkenDiv.appendChild(abcBtn);
+
+  /* ------------------------------
+     NORMALE HOOFDSTUKKEN
+  ------------------------------ */
   Object.keys(woordenData).forEach(caput => {
     const btn = document.createElement("button");
     btn.className = "hoofdstuk-btn";
@@ -190,6 +202,46 @@ function laadSubHoofdstuk(caput, sub) {
       <button class="tts-btn" onclick="spreek('${item.GR}')">🔊</button><br>
       <span class="latin">${lat}</span><br>
       <small>${item.Gen ?? ""}</small>
+    `;
+
+    lijst.appendChild(div);
+  });
+}
+
+/* ------------------------------
+   ALFABET-SCHERM
+------------------------------ */
+function toonAlfabet() {
+  huidigCaput = "ABC";
+  huidigSub = null;
+
+  document.getElementById("caputTitel").textContent = "Grieks Alfabet";
+  document.getElementById("subTitel").textContent = "";
+  const lijst = document.getElementById("woordenLijst");
+  lijst.innerHTML = "";
+
+  const subHoofdstukkenDiv = document.getElementById("subHoofdstukken");
+  subHoofdstukkenDiv.innerHTML = "";
+
+  // Quiz-knop
+  const quizBtn = document.createElement("button");
+  quizBtn.className = "subhoofdstuk-btn quiz-btn";
+  quizBtn.textContent = "Quiz";
+  quizBtn.onclick = () => {
+    window.location.href = `quiz.html?caput=ABC`;
+  };
+  subHoofdstukkenDiv.appendChild(quizBtn);
+
+  // Toon alfabet
+  Object.keys(alfabetMap).forEach(gr => {
+    const lat = alfabetMap[gr];
+
+    const div = document.createElement("div");
+    div.className = "woord";
+
+    div.innerHTML = `
+      <b>${gr}</b> → ${lat}
+      <button class="tts-btn" onclick="spreek('${gr}')">🔊</button>
     `;
 
     lijst.appendChild(div);
