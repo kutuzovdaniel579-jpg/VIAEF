@@ -1,17 +1,49 @@
 {
-  "α": "a", "ά": "a", "ὰ": "a", "ᾶ": "a", "ἀ": "a", "ἁ": "ha", "ἄ": "a", "ἂ": "a", "ἆ": "a", "ἅ": "ha", "ἃ": "ha", "ἇ": "ha",
-  "β": "b", "γ": "g", "δ": "d",
-  "ε": "e", "έ": "e", "ὲ": "e", "ἐ": "e", "ἑ": "he", "ἔ": "e", "ἒ": "e", "ἕ": "he", "ἓ": "he",
-  "ζ": "z",
-  "η": "ē", "ή": "ē", "ὴ": "ē", "ῆ": "ē", "ἠ": "ē", "ἡ": "hē", "ἤ": "ē", "ἢ": "ē", "ἦ": "ē", "ἥ": "hē", "ἣ": "hē", "ἧ": "hē",
-  "θ": "th",
-  "ι": "i", "ί": "i", "ὶ": "i", "ῖ": "i", "ἰ": "i", "ἱ": "hi", "ἴ": "i", "ἲ": "i", "ἶ": "i", "ἵ": "hi", "ἳ": "hi", "ἷ": "hi",
-  "κ": "k", "λ": "l", "μ": "m", "ν": "n", "ξ": "x",
-  "ο": "o", "ό": "o", "ὸ": "o", "ὀ": "o", "ὁ": "ho", "ὄ": "o", "ὂ": "o", "ὅ": "ho", "ὃ": "ho",
-  "π": "p", "ρ": "r", "ῥ": "hr",
-  "σ": "s", "ς": "s",
-  "τ": "t",
-  "υ": "y", "ύ": "y", "ὺ": "y", "ῦ": "y", "ὐ": "y", "ὑ": "hy", "ὔ": "y", "ὒ": "y", "ὖ": "y", "ὕ": "hy", "ὓ": "hy", "ὗ": "hy",
-  "φ": "ph", "χ": "ch", "ψ": "ps",
-  "ω": "ō", "ώ": "ō", "ὼ": "ō", "ῶ": "ō", "ὠ": "ō", "ὡ": "hō", "ὤ": "ō", "ὢ": "ō", "ὦ": "ō", "ὥ": "hō", "ὣ": "hō", "ὧ": "hō"
+  "1": {
+    "α": { "NL": "alfa", "UITSPRAAK": "a", "ID": 1 },
+    "β": { "NL": "beta", "UITSPRAAK": "b", "ID": 2 },
+    "γ": { "NL": "gamma", "UITSPRAAK": "g", "ID": 3 },
+    "δ": { "NL": "delta", "UITSPRAAK": "d", "ID": 4 },
+    "ε": { "NL": "epsilon", "UITSPRAAK": "e", "ID": 5 },
+    "ζ": { "NL": "zèta", "UITSPRAAK": "z", "ID": 6 },
+    "η": { "NL": "èta", "UITSPRAAK": "ē", "ID": 7 },
+    "θ": { "NL": "thèta", "UITSPRAAK": "th", "ID": 8 },
+    "ι": { "NL": "iota", "UITSPRAAK": "i", "ID": 9 },
+    "κ": { "NL": "kappa", "UITSPRAAK": "k", "ID": 10 },
+    "λ": { "NL": "lambda", "UITSPRAAK": "l", "ID": 11 },
+    "μ": { "NL": "mu", "UITSPRAAK": "m", "ID": 12 },
+    "ν": { "NL": "nu", "UITSPRAAK": "n", "ID": 13 },
+    "ξ": { "NL": "xi", "UITSPRAAK": "x", "ID": 14 },
+    "ο": { "NL": "omikron", "UITSPRAAK": "o", "ID": 15 },
+    "π": { "NL": "pi", "UITSPRAAK": "p", "ID": 16 },
+    "ρ": { "NL": "rho", "UITSPRAAK": "r/hr", "ID": 17 },
+    "σ": { "NL": "sigma", "UITSPRAAK": "s", "ID": 18 },
+    "τ": { "NL": "tau", "UITSPRAAK": "t", "ID": 19 },
+    "υ": { "NL": "upsilon", "UITSPRAAK": "y", "ID": 20 },
+    "φ": { "NL": "phi", "UITSPRAAK": "ph", "ID": 21 },
+    "χ": { "NL": "chi", "UITSPRAAK": "ch", "ID": 22 },
+    "ψ": { "NL": "psi", "UITSPRAAK": "ps", "ID": 23 },
+    "ω": { "NL": "omega", "UITSPRAAK": "ō", "ID": 24 }
+  },
+
+  "2": {
+    "αι": { "NL": "ai", "UITSPRAAK": "ai", "ID": 1 },
+    "ει": { "NL": "ei", "UITSPRAAK": "ee", "ID": 2 },
+    "οι": { "NL": "oi", "UITSPRAAK": "ee", "ID": 3 },
+    "υι": { "NL": "yi", "UITSPRAAK": "i", "ID": 4 },
+    "ου": { "NL": "ou", "UITSPRAAK": "oe", "ID": 5 },
+    "αυ": { "NL": "au", "UITSPRAAK": "af/av", "ID": 6 },
+    "ευ": { "NL": "eu", "UITSPRAAK": "ef/ev", "ID": 7 },
+    "ηυ": { "NL": "ēu", "UITSPRAAK": "ef/ev", "ID": 8 }
+  },
+
+  "3": {
+    "γγ": { "NL": "ng", "UITSPRAAK": "ng", "ID": 1 },
+    "γκ": { "NL": "gk", "UITSPRAAK": "ng/k", "ID": 2 },
+    "γχ": { "NL": "nch", "UITSPRAAK": "ngch", "ID": 3 },
+    "μπ": { "NL": "mp", "UITSPRAAK": "b/p", "ID": 4 },
+    "ντ": { "NL": "nt", "UITSPRAAK": "d/t", "ID": 5 },
+    "τσ": { "NL": "ts", "UITSPRAAK": "ts", "ID": 6 },
+    "τζ": { "NL": "tz", "UITSPRAAK": "dz", "ID": 7 }
+  }
 }
