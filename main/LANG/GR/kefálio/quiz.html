@@ -161,12 +161,19 @@ async function loadWords() {
     const data = await res.json();
 
     woorden = {};
+    let counter = 0;
 
-    Object.keys(data).forEach((gr, i) => {
-      woorden["L" + i] = {
-        NL: data[gr],
-        GR: gr
-      };
+    // categorieën 1,2,3 doorlopen
+    Object.keys(data).forEach(cat => {
+      const groep = data[cat];
+
+      Object.keys(groep).forEach(gr => {
+        woorden["L" + counter] = {
+          NL: groep[gr].NL,
+          GR: gr
+        };
+        counter++;
+      });
     });
 
     keys = Object.keys(woorden);
@@ -179,8 +186,7 @@ async function loadWords() {
   // ------------------------------
   // NORMALE HOOFDSTUKKEN
   // ------------------------------
-  let res = await fetch("kefalio.json");
-  
+  let res = await fetch("kefálio.json");
   const data = await res.json();
   const subhoofdstukken = data[caput];
 
