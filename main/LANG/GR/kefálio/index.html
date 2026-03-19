@@ -82,43 +82,54 @@
   <div id="woordenLijst"></div>
 
 <script>
-/* ------------------------------
-   KEFÁLIO FUNCTIONALITEIT
------------------------------- */
-
 let woordenData = {};
 let alfabetMap = {};
+let alfabetFlat = {};
 let huidigCaput = null;
 let huidigSub = null;
 
+/* ------------------------------
+   ALFABET LADEN (NIEUW)
+------------------------------ */
 async function loadAlfabet() {
   const res = await fetch("alfabet.json");
-  alfabetMap = await res.json();
+  const data = await res.json();
+
+  alfabetMap = data;
+
+  Object.keys(data).forEach(cat => {
+    Object.keys(data[cat]).forEach(gr => {
+      alfabetFlat[gr] = data[cat][gr];
+    });
+  });
 }
 
+/* ------------------------------
+   TRANSLITERATIE (NL)
+------------------------------ */
 function translit(gr) {
-  return gr.split("").map(ch => alfabetMap[ch] ?? ch).join("");
+  return gr
+    .split("")
+    .map(ch => alfabetFlat[ch]?.NL ?? ch)
+    .join("");
 }
 
+/* ------------------------------
+   JSON LADEN
+------------------------------ */
 async function loadJSON() {
-  const res = await fetch("kefálio.json");
+  const res = await fetch("kefalio.json");
   woordenData = await res.json();
 
   const hoofdstukkenDiv = document.getElementById("hoofdstukken");
   hoofdstukkenDiv.innerHTML = "";
 
-  /* ------------------------------
-     ABC-KNOP TOEVOEGEN
-  ------------------------------ */
   const abcBtn = document.createElement("button");
   abcBtn.className = "hoofdstuk-btn";
   abcBtn.textContent = "ABC";
   abcBtn.onclick = toonAlfabet;
   hoofdstukkenDiv.appendChild(abcBtn);
 
-  /* ------------------------------
-     NORMALE HOOFDSTUKKEN
-  ------------------------------ */
   Object.keys(woordenData).forEach(caput => {
     const btn = document.createElement("button");
     btn.className = "hoofdstuk-btn";
@@ -128,6 +139,9 @@ async function loadJSON() {
   });
 }
 
+/* ------------------------------
+   HOOFDSTUK LADEN
+------------------------------ */
 function laadCaput(caput) {
   huidigCaput = caput;
   huidigSub = null;
@@ -165,6 +179,9 @@ function laadCaput(caput) {
   subHoofdstukkenDiv.appendChild(quizBtn);
 }
 
+/* ------------------------------
+   THEMA
+------------------------------ */
 function toonThema(caput) {
   const thema = woordenData[caput]?.thema;
 
@@ -180,6 +197,9 @@ function toonThema(caput) {
   lijst.appendChild(div);
 }
 
+/* ------------------------------
+   SUBHOOFDSTUK LADEN
+------------------------------ */
 function laadSubHoofdstuk(caput, sub) {
   huidigSub = sub;
 
@@ -209,7 +229,7 @@ function laadSubHoofdstuk(caput, sub) {
 }
 
 /* ------------------------------
-   ALFABET-SCHERM
+   ALFABET-SCHERM (NIEUW)
 ------------------------------ */
 function toonAlfabet() {
   huidigCaput = "ABC";
@@ -223,7 +243,6 @@ function toonAlfabet() {
   const subHoofdstukkenDiv = document.getElementById("subHoofdstukken");
   subHoofdstukkenDiv.innerHTML = "";
 
-  // Quiz-knop
   const quizBtn = document.createElement("button");
   quizBtn.className = "subhoofdstuk-btn quiz-btn";
   quizBtn.textContent = "Quiz";
@@ -232,22 +251,25 @@ function toonAlfabet() {
   };
   subHoofdstukkenDiv.appendChild(quizBtn);
 
-  // Toon alfabet
-  Object.keys(alfabetMap).forEach(gr => {
-    const lat = alfabetMap[gr];
+  Object.keys(alfabetFlat).forEach(gr => {
+    const item = alfabetFlat[gr];
 
     const div = document.createElement("div");
     div.className = "woord";
 
     div.innerHTML = `
-      <b>${gr}</b> → ${lat}
-      <button class="tts-btn" onclick="spreek('${gr}')">🔊</button>
+      <b>${gr}</b> → ${item.NL}
+      <button class="tts-btn" onclick="spreek('${gr}')">🔊</button><br>
+      <small>Uitspraak: ${item.UITSPRAAK} — ID: ${item.ID}</small>
     `;
 
     lijst.appendChild(div);
   });
 }
 
+/* ------------------------------
+   TTS
+------------------------------ */
 function spreek(tekst) {
   const utter = new SpeechSynthesisUtterance(tekst);
   utter.lang = "el-GR";
