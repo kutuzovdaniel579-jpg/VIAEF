@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIAEF | Taalkeuze</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-light: #f8fafc;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Achtergrond animatie */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: #94a3b8;
+            font-weight: 300;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            width: 90%;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .lang-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .lang-card:hover {
+            transform: translateY(-10px);
+            background: var(--primary-color);
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .lang-code {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .lang-name {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+        }
+
+        /* Animaties */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .container { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>VIAEF Talen</h1>
+        <p>Selecteer een taal om te beginnen</p>
+    </header>
+
+    <div class="container">
+        <a href="LANG/DE/index.html" class="lang-card">
+            <span class="lang-code">DE</span>
+            <span class="lang-name">Duits</span>
+        </a>
+        <a href="LANG/GR/index.html" class="lang-card">
+            <span class="lang-code">GR</span>
+            <span class="lang-name">Grieks</span>
+        </a>
+        <a href="LANG/LA/index.html" class="lang-card">
+            <span class="lang-code">LA</span>
+            <span class="lang-name">Latijn</span>
+        </a>
+        <a href="LANG/TR/index.html" class="lang-card">
+            <span class="lang-code">TR</span>
+            <span class="lang-name">Turks</span>
+        </a>
+        <a href="LANG/UZ/index.html" class="lang-card">
+            <span class="lang-code">UZ</span>
+            <span class="lang-name">Oezbeeks</span>
+        </a>
+    </div>
+
+</body>
+</html>
