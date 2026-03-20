@@ -23,6 +23,8 @@ Every vocabulary entry follows a strict, unified schema, making the dataset pred
 **For Learning:**
 - Latin
 - Greek
+- German
+- Turk
 
 **Website Languages:**
 - Dutch
