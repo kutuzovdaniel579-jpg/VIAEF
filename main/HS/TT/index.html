@@ -1,104 +1,254 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tijdlijnen — Geschiedenis</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIÆF • Tijdlijnen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background:black; color:white; }
-    h1 { margin-bottom: 10px; }
+    <style>
+        :root {
+            --neon-white: #ffffff;
+            --neon-glow: rgba(255, 255, 255, 0.6);
+            --bg: #080808;
+            --accent: #51A6E8;
+        }
 
-    #categorieën { margin-bottom: 20px; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: white; 
+            margin: 0; 
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
 
-    .cat-btn {
-      padding: 10px 15px;
-      margin: 5px;
-      background: #51A6E8;
-      color: white;
-      border-radius: 6px;
-      border: 1px solid #0f6f99;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.2s;
-    }
+        h1 { 
+            text-align: center; 
+            font-weight: 800; 
+            letter-spacing: -1px; 
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
 
-    .cat-btn:hover {
-      border-width: 2px;
-      border-color: #0b4f6d;
-      box-shadow: 0 0 6px rgba(0,0,0,0.2);
-      transform: translateY(-2px);
-    }
+        /* Categorie Knoppen */
+        #categorieën { 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            gap: 10px; 
+            margin-bottom: 60px; 
+        }
 
-    .tijdlijn-item {
-      background: #f0f0f0;
-      color:black;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 6px;
-    }
+        .cat-btn {
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
 
-    .jaar { font-weight: bold; }
-  </style>
+        .cat-btn:hover, .cat-btn.active {
+            background: var(--accent);
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(81, 166, 232, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* De Tijdlijn As */
+        #tijdlijn {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        #tijdlijn::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255,255,255,0.1);
+            transform: translateX(-50%);
+        }
+
+        /* Tijdlijn Items */
+        .tijdlijn-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s forwards ease-out;
+        }
+
+        .tijdlijn-item:nth-child(odd) { left: 0; text-align: right; }
+        .tijdlijn-item:nth-child(even) { left: 50%; text-align: left; }
+
+        /* De Bolletjes op de as */
+        .tijdlijn-item::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            top: 25px;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .tijdlijn-item:nth-child(odd)::after { right: -7px; }
+        .tijdlijn-item:nth-child(even)::after { left: -7px; }
+
+        /* Neon Animatie bij Hover */
+        .tijdlijn-item:hover::after {
+            background: var(--neon-white);
+            box-shadow: 0 0 10px var(--neon-white), 0 0 20px var(--neon-white);
+            transform: scale(1.5);
+        }
+
+        .jaar { 
+            font-weight: 800; 
+            font-size: 1.4rem; 
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .beschrijving {
+            font-size: 0.95rem;
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
+        .tijdlijn-item:hover .beschrijving { color: white; }
+
+        /* Zwevend Kader (Modal) */
+        #infoModal {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid var(--neon-white);
+            padding: 30px;
+            border-radius: 20px;
+            z-index: 1000;
+            max-width: 400px;
+            width: 80%;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 40px rgba(255,255,255,0.15);
+        }
+
+        #infoModal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        #modalClose {
+            margin-top: 20px;
+            padding: 8px 20px;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile View */
+        @media (max-width: 600px) {
+            #tijdlijn::before { left: 20px; }
+            .tijdlijn-item { width: 100%; left: 0 !important; text-align: left !important; padding-left: 50px; }
+            .tijdlijn-item::after { left: 13px !important; }
+        }
+    </style>
 </head>
-
 <body>
 
-  <h1>Tijdlijnen — Geschiedenis</h1>
+    <h1>Tijdlijnen — Geschiedenis</h1>
 
-  <div id="categorieën">Categorieën laden…</div>
+    <div id="categorieën">Categorieën laden…</div>
 
-  <h2 id="catTitel"></h2>
-  <div id="tijdlijn"></div>
+    <div id="tijdlijn"></div>
+
+    <div id="infoModal">
+        <h2 id="modalJaar" style="color:var(--accent); margin-top:0;"></h2>
+        <p id="modalTekst"></p>
+        <button id="modalClose" onclick="closeModal()">Sluiten</button>
+    </div>
 
 <script>
 let data = {};
-let huidigeCategorie = null;
 
 async function loadJSON() {
-  const div = document.getElementById("categorieën");
-  div.textContent = "Categorieën laden…";
+    const div = document.getElementById("categorieën");
+    try {
+        const res = await fetch("https://raw.githubusercontent.com/kutuzovdaniel579-jpg/VIAEF/refs/heads/main/main/HS/TT/tijdlijnen.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("Kon tijdlijnen.json niet laden");
+        data = await res.json();
 
-  try {
-    const res = await fetch("tijdlijnen.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("Kon tijdlijnen.json niet laden");
-
-    data = await res.json();
-
-    div.innerHTML = "";
-    Object.keys(data).forEach(cat => {
-      const btn = document.createElement("button");
-      btn.className = "cat-btn";
-      btn.textContent = cat;
-      btn.onclick = () => laadCategorie(cat);
-      div.appendChild(btn);
-    });
-
-  } catch (err) {
-    div.innerHTML = `<div style="color:red;">${err.message}</div>`;
-  }
+        div.innerHTML = "";
+        Object.keys(data).forEach((cat, index) => {
+            const btn = document.createElement("button");
+            btn.className = "cat-btn";
+            btn.textContent = cat;
+            btn.onclick = (e) => {
+                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                laadCategorie(cat);
+            };
+            div.appendChild(btn);
+            if(index === 0) btn.click(); // Laad eerste categorie automatisch
+        });
+    } catch (err) {
+        div.innerHTML = `<div style="color:red;">${err.message}</div>`;
+    }
 }
 
 function laadCategorie(cat) {
-  huidigeCategorie = cat;
+    const container = document.getElementById("tijdlijn");
+    container.innerHTML = "";
+    
+    data[cat].forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "tijdlijn-item";
+        div.style.animationDelay = `${index * 0.1}s`;
+        
+        div.innerHTML = `
+            <div class="jaar">${item.jaar}</div>
+            <div class="beschrijving">${item.beschrijving}</div>
+        `;
 
-  document.getElementById("catTitel").textContent = cat;
-  const container = document.getElementById("tijdlijn");
-  container.innerHTML = "";
+        div.onclick = () => openModal(item.jaar, item.info || item.beschrijving);
+        container.appendChild(div);
+    });
+}
 
-  const items = data[cat];
+function openModal(jaar, tekst) {
+    document.getElementById("modalJaar").textContent = jaar;
+    document.getElementById("modalTekst").textContent = tekst;
+    document.getElementById("infoModal").classList.add("active");
+}
 
-  items.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "tijdlijn-item";
-
-    div.innerHTML = `
-      <div class="jaar">${item.jaar}</div>
-      <div>${item.beschrijving}</div>
-    `;
-
-    container.appendChild(div);
-  });
+function closeModal() {
+    document.getElementById("infoModal").classList.remove("active");
 }
 
 loadJSON();
