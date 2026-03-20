@@ -1,49 +1,139 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VIÆF • Uzbek</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIÆF • Uzbek</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      padding: 20px; 
-      background: black;
-      color: white;
-    }
+    <style>
+        :root {
+            --primary: #51A6E8;
+            --primary-glow: rgba(81, 166, 232, 0.2);
+            --bg: #0d1117;
+            --card-bg: #161b22;
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+        }
 
-    h1 { margin-bottom: 20px; }
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at top left, #1c2128 0%, #0d1117 100%);
+        }
 
-    a {
-      display: block;
-      padding: 15px;
-      margin: 10px 0;
-      background: #51A6E8;
-      color: white;
-      border-radius: 8px;
-      border: 1px solid #0f6f99;
-      text-decoration: none;
-      font-size: 20px;
-      transition: 0.2s;
-    }
+        .container {
+            width: 90%;
+            max-width: 420px;
+            padding: 2rem;
+            animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-    a:hover {
-      border-width: 2px;
-      border-color: #0b4f6d;
-      box-shadow: 0 0 6px rgba(0,0,0,0.2);
-      transform: translateY(-2px);
-    }
-  </style>
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        h1 { 
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.04em;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 1.5rem;
+            background: var(--card-bg);
+            color: white;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+            transition: all 0.25s ease;
+        }
+
+        .nav-item:hover {
+            background: #1f2937;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 
+                        0 0 15px var(--primary-glow);
+        }
+
+        /* Indicatorteken */
+        .nav-item::after {
+            content: '→';
+            font-size: 1.1rem;
+            color: var(--primary);
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: all 0.25s ease;
+        }
+
+        .nav-item:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.98) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 1.5rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
 </head>
 
 <body>
 
-  <h1>Uzbeeks – Hoofdmenu</h1>
+    <div class="container">
+        <header>
+            <h1>Oezbeeks</h1>
+            <div class="subtitle">Hoofdmenu</div>
+        </header>
 
-  <a href="camera/">Camera</a>
-  <a href="bolim/">Woorden</a>
-  <a href="gram/">Grammatica</a>
+        <nav class="nav-menu">
+            <a href="camera/" class="nav-item">
+                <span>Camera</span>
+            </a>
+            <a href="bolim/" class="nav-item">
+                <span>Woorden</span>
+            </a>
+            <a href="gram/" class="nav-item">
+                <span>Grammatica</span>
+            </a>
+        </nav>
+    </div>
 
 </body>
 </html>
