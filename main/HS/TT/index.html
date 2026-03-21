@@ -12,6 +12,7 @@
             --neon-glow: rgba(255, 255, 255, 0.6);
             --bg: #080808;
             --accent: #51A6E8;
+            --quiz-accent: #ffffff;
         }
 
         body { 
@@ -23,12 +24,44 @@
             line-height: 1.6;
         }
 
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
         h1 { 
-            text-align: center; 
             font-weight: 800; 
             letter-spacing: -1px; 
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             text-transform: uppercase;
+        }
+
+        /* Quiz Knop Styling */
+        .quiz-container {
+            margin-bottom: 30px;
+        }
+
+        .quiz-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 25px;
+            background: transparent;
+            color: var(--quiz-accent);
+            border: 2px solid var(--quiz-accent);
+            border-radius: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-btn:hover {
+            background: var(--quiz-accent);
+            color: black;
+            box-shadow: 0 0 20px var(--neon-glow);
+            transform: translateY(-3px);
         }
 
         /* Categorie Knoppen */
@@ -92,7 +125,6 @@
         .tijdlijn-item:nth-child(odd) { left: 0; text-align: right; }
         .tijdlijn-item:nth-child(even) { left: 50%; text-align: left; }
 
-        /* De Bolletjes op de as */
         .tijdlijn-item::after {
             content: '';
             position: absolute;
@@ -109,7 +141,6 @@
         .tijdlijn-item:nth-child(odd)::after { right: -7px; }
         .tijdlijn-item:nth-child(even)::after { left: -7px; }
 
-        /* Neon Animatie bij Hover */
         .tijdlijn-item:hover::after {
             background: var(--neon-white);
             box-shadow: 0 0 10px var(--neon-white), 0 0 20px var(--neon-white);
@@ -131,7 +162,7 @@
 
         .tijdlijn-item:hover .beschrijving { color: white; }
 
-        /* Zwevend Kader (Modal) */
+        /* Modal */
         #infoModal {
             position: fixed;
             top: 50%; left: 50%;
@@ -172,7 +203,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Mobile View */
         @media (max-width: 600px) {
             #tijdlijn::before { left: 20px; }
             .tijdlijn-item { width: 100%; left: 0 !important; text-align: left !important; padding-left: 50px; }
@@ -182,7 +212,12 @@
 </head>
 <body>
 
-    <h1>Tijdlijnen — Geschiedenis</h1>
+    <header>
+        <h1>Tijdlijnen — Geschiedenis</h1>
+        <div class="quiz-container">
+            <a href="https://github.com/kutuzovdaniel579-jpg/VIAEF/main/HS/TT/quiz.html" class="quiz-btn">Start de Quiz →</a>
+        </div>
+    </header>
 
     <div id="categorieën">Categorieën laden…</div>
 
@@ -215,7 +250,7 @@ async function loadJSON() {
                 laadCategorie(cat);
             };
             div.appendChild(btn);
-            if(index === 0) btn.click(); // Laad eerste categorie automatisch
+            if(index === 0) btn.click(); 
         });
     } catch (err) {
         div.innerHTML = `<div style="color:red;">${err.message}</div>`;
