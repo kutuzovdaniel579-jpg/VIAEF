@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIÆF • Interactieve Geschiedenis Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080808;
+            --accent: #51A6E8;
+            --success: #2ecc71;
+            --error: #e74c3c;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: white;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .quiz-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 { font-weight: 800; text-align: center; margin: 0; text-transform: uppercase; letter-spacing: 2px; font-size: 1.2rem; }
+        
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.4s ease;
+        }
+
+        #question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* Meerkeuze Styling */
+        .options-grid { display: grid; gap: 12px; }
+        .option-btn {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .option-btn:hover:not(:disabled) { background: rgba(255,255,255,0.1); border-color: var(--accent); }
+
+        /* Tijdlijn Vraag Styling */
+        .timeline-wrapper {
+            position: relative;
+            padding: 40px 0;
+            margin-top: 20px;
+        }
+        .timeline-line {
+            width: 100%;
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+            position: relative;
+        }
+        .timeline-point {
+            position: absolute;
+            top: -10px;
+            width: 20px;
+            height: 20px;
+            background: #222;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translateX(-50%);
+            transition: 0.3s;
+        }
+        .timeline-point:hover { background: var(--accent); transform: translateX(-50%) scale(1.2); }
+        .point-label {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .correct { background: var(--success) !important; color: black !important; font-weight: bold; border-color: var(--success) !important; }
+        .wrong { background: var(--error) !important; border-color: var(--error) !important; }
+
+        #result-screen { text-align: center; display: none; }
+        .score-circle { font-size: 4rem; font-weight: 800; color: var(--accent); margin: 20px 0; }
+        
+        .btn-reset {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-card">
+    <div id="quiz-header">
+        <h1>Geschiedenis Quiz</h1>
+        <div class="progress-container"><div id="progress-bar"></div></div>
+        <div id="question-text">Laden...</div>
+        <div id="quiz-content"></div>
+    </div>
+
+    <div id="result-screen">
+        <h1>Resultaat</h1>
+        <div class="score-circle" id="final-score">0/0</div>
+        <p id="feedback-text"></p>
+        <button class="btn-reset" onclick="location.reload()">Opnieuw Starten</button>
+    </div>
+</div>
+
+<script>
+const questionsPool = [
+    // TYPE: CHOICE
+    { type: "choice", q: "Wanneer begon de Franse Revolutie?", options: ["1776", "1789", "1804", "1815"], correct: "1789" },
+    { type: "choice", q: "Wie schilderde de Nachtwacht?", options: ["Vincent van Gogh", "Johannes Vermeer", "Rembrandt van Rijn", "Jan Steen"], correct: "Rembrandt van Rijn" },
+    { type: "choice", q: "In welk jaar viel de Berlijnse Muur?", options: ["1985", "1989", "1991", "1990"], correct: "1989" },
+    { type: "choice", q: "Wat was de hoofdstad van het Romeinse Rijk?", options: ["Athene", "Rome", "Constantinopel", "Alexandrië"], correct: "Rome" },
+    { type: "choice", q: "Welk land viel Polen binnen in 1939?", options: ["Rusland", "Frankrijk", "Duitsland", "Italië"], correct: "Duitsland" },
+    
+    // TYPE: TIMELINE (De gebruiker moet het juiste jaar aanklikken op een visuele lijn)
+    { 
+        type: "timeline", 
+        q: "Duid op de tijdlijn het jaar aan waarin de Eerste Wereldoorlog begon.", 
+        options: ["1900", "1914", "1918", "1939", "1945"], 
+        correct: "1914" 
+    },
+    { 
+        type: "timeline", 
+        q: "Welk jaartal hoort bij de ontdekking van Amerika door Columbus?", 
+        options: ["1348", "1453", "1492", "1566", "1602"], 
+        correct: "1492" 
+    },
+    { 
+        type: "timeline", 
+        q: "Wanneer vond de Slag bij Guldensporen plaats?", 
+        options: ["1200", "1302", "1340", "1415", "1500"], 
+        correct: "1302" 
+    }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let shuffledQuestions = [];
+
+function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+function initQuiz() {
+    shuffledQuestions = shuffle([...questionsPool]);
+    loadQuestion();
+}
+
+function loadQuestion() {
+    const qData = shuffledQuestions[currentQuestion];
+    document.getElementById("progress-bar").style.width = (currentQuestion / shuffledQuestions.length * 100) + "%";
+    document.getElementById("question-text").textContent = qData.q;
+    const content = document.getElementById("quiz-content");
+    content.innerHTML = "";
+
+    if (qData.type === "choice") {
+        const grid = document.createElement("div");
+        grid.className = "options-grid";
+        shuffle([...qData.options]).forEach(opt => {
+            const btn = document.createElement("button");
+            btn.className = "option-btn";
+            btn.textContent = opt;
+            btn.onclick = () => checkAnswer(btn, opt, qData.correct);
+            grid.appendChild(btn);
+        });
+        content.appendChild(grid);
+    } 
+    else if (qData.type === "timeline") {
+        const wrapper = document.createElement("div");
+        wrapper.className = "timeline-wrapper";
+        const line = document.createElement("div");
+        line.className = "timeline-line";
+        
+        qData.options.forEach((opt, index) => {
+            const pos = (index / (qData.options.length - 1)) * 100;
+            const point = document.createElement("div");
+            point.className = "timeline-point";
+            point.style.left = pos + "%";
+            point.innerHTML = `<span class="point-label">${opt}</span>`;
+            point.onclick = () => checkAnswer(point, opt, qData.correct);
+            line.appendChild(point);
+        });
+        wrapper.appendChild(line);
+        content.appendChild(wrapper);
+    }
+}
+
+function checkAnswer(element, selected, correct) {
+    const isCorrect = selected === correct;
+    const allOptions = document.querySelectorAll('.option-btn, .timeline-point');
+    
+    allOptions.forEach(el => el.style.pointerEvents = "none");
+
+    if (isCorrect) {
+        element.classList.add("correct");
+        score++;
+    } else {
+        element.classList.add("wrong");
+        // Toon het juiste antwoord ook
+        allOptions.forEach(el => {
+            if (el.textContent.trim() === correct || (el.querySelector('.point-label') && el.querySelector('.point-label').textContent === correct)) {
+                el.classList.add("correct");
+            }
+        });
+    }
+
+    setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < shuffledQuestions.length) {
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    }, 1500);
+}
+
+function showResults() {
+    document.getElementById("quiz-header").style.display = "none";
+    document.getElementById("result-screen").style.display = "block";
+    document.getElementById("final-score").textContent = `${score}/${shuffledQuestions.length}`;
+    
+    let msg = score === shuffledQuestions.length ? "Perfecte score! Jij bent een geschiedenis-expert." : "Goed gedaan! Blijf oefenen.";
+    document.getElementById("feedback-text").textContent = msg;
+}
+
+initQuiz();
+</script>
+
+</body>
+</html>
